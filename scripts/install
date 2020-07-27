@@ -1,0 +1,23 @@
+#!/bin/bash
+set -o errexit # same as `set -e`
+
+# Some softwares must be installed first
+if test "$(uname)" = "Darwin"
+then
+	# Mac installation branch
+    echo mac
+	
+elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
+then
+	# Linux installation branch
+    sudo apt install curl git wget -y
+    bash ~/.Qdotfiles/conda/install.sh
+fi
+##################################################
+## Install all the softwares
+##################################################
+# cd the relevant path of last path.
+cd "$(dirname $0)"/.. 
+
+# find the installers and run them iteratively
+find . -name install.sh | while read installer ; do bash "${installer}" ; done
