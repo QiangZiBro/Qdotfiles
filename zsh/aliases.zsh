@@ -8,7 +8,7 @@ common_settings () {
 }
 mac_settings () {
     alias nvim="~/applications/nvim-osx64/bin/nvim"
-    alias chrome="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+    alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
     alias meshlab="/Applications/meshlab.app/Contents/MacOS/meshlab"
     alias meshlabserver="/Applications/meshlab.app/Contents/MacOS/meshlabserver"
 }
