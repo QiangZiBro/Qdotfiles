@@ -1,6 +1,6 @@
 common_settings () {
+    alias ei="nvim ~/.Qdotfiles/scripts/init.sh"
     alias grealpath=realpath
-    alias gsed=sed
     alias fm="ranger"
     alias sb="source ~/.zshrc"
     alias eb="nvim ~/.zshrc"
@@ -8,6 +8,7 @@ common_settings () {
 }
 mac_settings () {
     alias nvim="~/applications/nvim-osx64/bin/nvim"
+    alias chrome="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
     alias meshlab="/Applications/meshlab.app/Contents/MacOS/meshlab"
     alias meshlabserver="/Applications/meshlab.app/Contents/MacOS/meshlabserver"
 }

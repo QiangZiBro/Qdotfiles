@@ -1,4 +1,4 @@
-if test "$(uname)" = "Darwin"
+if test "$(uname)" = "Darwin";then
     # mac branch
     #
     function proxy(){
@@ -27,9 +27,7 @@ if test "$(uname)" = "Darwin"
         fi
     }
 
-then
-elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
-then
+elif test "$(expr substr $(uname -s) 1 5)" = "Linux";then
     # linux branch
 
 fi
