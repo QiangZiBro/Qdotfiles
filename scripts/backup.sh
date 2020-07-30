@@ -1,3 +1,4 @@
 #!/bin/bash
 
-echo "backup in `pwd`"
+cd "$(dirname $0)"/..
+cp ~/.config/nvim/init.vim neovim/

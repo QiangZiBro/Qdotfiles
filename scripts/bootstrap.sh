@@ -6,7 +6,7 @@ case "${unameOut}" in
     Linux*)
         machine=Linux
         sudo mkdir -p /usr/softwares/
-	sudo chmod 777 -R /usr/softwares/
+	    sudo chmod 777 -R /usr/softwares/
         ;;
     Darwin*)
         machine=Mac
@@ -25,7 +25,7 @@ if [ ! -d "$PROJECT_PATH" ]; then
     mkdir -p $PROJECT_PATH/downloads
 fi
 
-~/.Qdotfiles/scripts/install
+#~/.Qdotfiles/scripts/install
 
 # if init.sh not in ~/.zsh, the add it
 INIT_ZSH="source ~/.Qdotfiles/scripts/init.sh"
@@ -35,4 +35,6 @@ then
     echo $INIT_ZSH >> ~/.zshrc
 fi
 
-
+cd "$(dirname $0)"/..
+#nvim
+mkdir -p ~/.config/nvim && cp neovim/init.vim ~/.config/nvim
