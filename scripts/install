@@ -1,5 +1,8 @@
 #!/bin/bash
 set -o errexit # same as `set -e`
+name=$1
+cd "$(dirname $0)"/..
+bash ${name:?"undefined software name"}/install.sh
 #name=$1
 #cd "$(dirname $0)"/.. 
 # Some softwares must be installed first
