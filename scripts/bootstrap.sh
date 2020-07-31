@@ -27,14 +27,16 @@ fi
 
 #~/.Qdotfiles/scripts/install
 
-# if init.sh not in ~/.zsh, the add it
-INIT_ZSH="source ~/.Qdotfiles/scripts/init.sh"
-if ! grep -Fxq "$INIT_ZSH" ~/.zshrc
-then
-    # not found
-    echo $INIT_ZSH >> ~/.zshrc
-fi
-
-cd "$(dirname $0)"/..
-#nvim
-mkdir -p ~/.config/nvim && cp neovim/init.vim ~/.config/nvim
+if [ "$1" = "config" ];then
+    cd "$(dirname $0)"/..
+    cp zsh/.zshrc ~
+    # nvim
+    mkdir -p ~/.config/nvim && cp neovim/init.vim ~/.config/nvim
+    # if init.sh not in ~/.zsh, the add it
+    INIT_ZSH="source ~/.Qdotfiles/scripts/init.sh"
+    if ! grep -Fxq "$INIT_ZSH" ~/.zshrc
+    then
+        # not found
+        echo $INIT_ZSH >> ~/.zshrc
+    fi
+fi    

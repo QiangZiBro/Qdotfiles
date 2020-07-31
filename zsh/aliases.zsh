@@ -5,6 +5,7 @@ common_settings () {
     alias sb="source ~/.zshrc"
     alias eb="nvim ~/.zshrc"
     alias cb="cd ~/.Qdotfiles/zsh/"
+    alias unproxy='http_proxy="" https_proxy=""'
 }
 mac_settings () {
     alias nvim="~/applications/nvim-osx64/bin/nvim"
