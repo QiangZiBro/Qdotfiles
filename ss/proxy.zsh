@@ -30,4 +30,18 @@ if test "$(uname)" = "Darwin";then
 elif test "$(expr substr $(uname -s) 1 5)" = "Linux";then
     # linux branch
 
+    function proxy(){
+        if [ "$1" = "start" ]; then
+            export http_proxy="127.0.0.1:8118"
+            export https_proxy="127.0.0.1:8118"
+            git config --global https.proxy https://127.0.0.1:8118
+        else
+            if [ "$1" = "stop" ]; then
+                export http_proxy=""
+                export https_proxy=""
+            else
+                echo "Wrong parameter!Usage: proxy [start|stop]"
+            fi
+        fi
+    }
 fi
