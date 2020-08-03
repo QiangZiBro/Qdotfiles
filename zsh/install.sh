@@ -16,6 +16,5 @@ then
 fi
 
 
-curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-source ~/.Qdotfiles/zsh/theme.zsh
-© 2020 GitHub, Inc.
+#curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+#source ~/.Qdotfiles/zsh/theme.zsh
