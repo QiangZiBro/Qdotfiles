@@ -15,6 +15,7 @@ export LESS_TERMCAP_se=$'\E[27m\E(B\E[m'
 export LESS_TERMCAP_ZV=""
 export LESS_TERMCAP_so=$'\E[1m\E[33m\E[44m'
 
+
 # install zplug, plugin manager for zsh, https://github.com/zplug/zplug
 # curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 # zplug configruation
