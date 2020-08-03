@@ -19,20 +19,18 @@ export LESS_TERMCAP_so=$'\E[1m\E[33m\E[44m'
 # install zplug, plugin manager for zsh, https://github.com/zplug/zplug
 # curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 # zplug configruation
-if [[ ! -d "${ZPLUG_HOME}" ]]; then
-  if [[ ! -d ~/.zplug ]]; then
-    git clone https://github.com/zplug/zplug ~/.zplug
-    # If we can't get zplug, it'll be a very sobering shell experience. To at
-    # least complete the sourcing of this file, we'll define an always-false
-    # returning zplug function.
-    if [[ $? != 0 ]]; then
-      function zplug() {
-        return 1
-      }
-    fi
+if [[ ! -d ~/.zplug ]]; then
+  git clone https://github.com/zplug/zplug ~/.zplug
+  # If we can't get zplug, it'll be a very sobering shell experience. To at
+  # least complete the sourcing of this file, we'll define an always-false
+  # returning zplug function.
+  if [[ $? != 0 ]]; then
+    function zplug() {
+      return 1
+    }
   fi
-  export ZPLUG_HOME=~/.zplug
 fi
+export ZPLUG_HOME=~/.zplug
 if [[ -d "${ZPLUG_HOME}" ]]; then
   source "${ZPLUG_HOME}/init.zsh"
 fi
