@@ -50,7 +50,7 @@ fi
 zplug load
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/Qdotfiles/zsh/.p10k.zsh ]] || source ~/Qdotfiles/zsh.p10k.zsh
+[[ ! -f ~/.Qdotfiles/zsh/.p10k.zsh ]] || source ~/.Qdotfiles/zsh/.p10k.zsh
 #POWERLEVEL9K_MODE='nerdfont-complete'
 #POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 #POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=''
