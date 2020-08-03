@@ -4,7 +4,7 @@
 #if ! command -v  conda &> /dev/null
 #then
     # installation process...
-    if test "$(uname)" = "darwin"
+    if test "$(uname)" = "Darwin"
     then
         # download
         conda_mac=~/.Qdotfiles/downloads/miniconda3_mac.sh
@@ -15,6 +15,8 @@
 
         # install
         bash $conda_mac -p /Users/mac/applications/miniconda3 -b
+        # config for zsh
+        ./condabin/conda init zsh
 
     elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
     then
