@@ -27,16 +27,19 @@ fi
 
 #~/.Qdotfiles/scripts/install
 
-if [ "$1" = "config" ];then
-    cd "$(dirname $0)"/..
-    cp zsh/.zshrc ~
-    # nvim
-    mkdir -p ~/.config/nvim && cp neovim/init.vim ~/.config/nvim
-    # if init.sh not in ~/.zsh, the add it
-    INIT_ZSH="source ~/.Qdotfiles/scripts/init.sh"
-    if ! grep -Fxq "$INIT_ZSH" ~/.zshrc
-    then
-        # not found
-        echo $INIT_ZSH >> ~/.zshrc
-    fi
-fi    
+ cd $PROJECT_PATH
+
+ # zshrc
+ cp zsh/.zshrc ~
+ # nvim
+ mkdir -p ~/.config/nvim && cp neovim/init.vim ~/.config/nvim
+ # privoxy
+ sudo cp privoxy/config /etc/privoxy/
+
+ # if init.sh not in ~/.zsh, the add it
+ INIT_ZSH="source ~/.Qdotfiles/scripts/init.sh"
+ if ! grep -Fxq "$INIT_ZSH" ~/.zshrc
+ then
+     # not found
+     echo $INIT_ZSH >> ~/.zshrc
+ fi
