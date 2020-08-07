@@ -1,4 +1,13 @@
 #!/bin/bash
+insert_if_not_exists() {
+    content=$1
+    file=$2
+    if ! grep -Fxq $content $file
+    then
+        echo $content >> $file
+    fi
+}
+
 
 # get variables in mac or linux
 unameOut="$(uname -s)"
@@ -27,19 +36,15 @@ fi
 
 #~/.Qdotfiles/scripts/install
 
- cd $PROJECT_PATH
+cd $PROJECT_PATH
 
- # zshrc
- cp zsh/.zshrc ~
- # nvim
- mkdir -p ~/.config/nvim && cp neovim/init.vim ~/.config/nvim
- # privoxy
- sudo cp privoxy/config /etc/privoxy/
+# zshrc
+cp zsh/.zshrc ~
+# nvim
+mkdir -p ~/.config/nvim && cp neovim/init.vim ~/.config/nvim
+# privoxy
+sudo mkdir -p /etc/privoxy && sudo cp privoxy/config /etc/privoxy/
 
- # if init.sh not in ~/.zsh, the add it
- INIT_ZSH="source ~/.Qdotfiles/scripts/init.sh"
- if ! grep -Fxq "$INIT_ZSH" ~/.zshrc
- then
-     # not found
-     echo $INIT_ZSH >> ~/.zshrc
- fi
+# if init.sh not in ~/.zsh, the add it
+INIT_ZSH_COMMAND="source ~/.Qdotfiles/scripts/init.sh"
+insert_if_not_exists $INIT_ZSH_COMMAND ~/.zshrc
