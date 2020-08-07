@@ -1,10 +1,11 @@
 #!/bin/bash
+set -e
 insert_if_not_exists() {
-    content=$1
+    content="$1"
     file=$2
-    if ! grep -Fxq $content $file
+    if ! grep -Fxq "$content" $file
     then
-        echo $content >> $file
+        echo "$content" >> $file
     fi
 }
 
@@ -46,5 +47,4 @@ mkdir -p ~/.config/nvim && cp neovim/init.vim ~/.config/nvim
 sudo mkdir -p /etc/privoxy && sudo cp privoxy/config /etc/privoxy/
 
 # if init.sh not in ~/.zsh, the add it
-INIT_ZSH_COMMAND="source ~/.Qdotfiles/scripts/init.sh"
-insert_if_not_exists $INIT_ZSH_COMMAND ~/.zshrc
+insert_if_not_exists 'source ~/.Qdotfiles/scripts/init.sh' ~/.zshrc
