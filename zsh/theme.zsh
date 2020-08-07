@@ -26,7 +26,7 @@ if [[ -d ~/.zplug ]]; then
     fi
     zplug 'plugins/git', from:oh-my-zsh, if:'which git'
     zplug 'romkatv/powerlevel10k', use:powerlevel10k.zsh-theme
-    zplug "plugins/vi-mode", from:oh-my-zsh
+    # zplug "plugins/vi-mode", from:oh-my-zsh
     zplug 'zsh-users/zsh-autosuggestions'
     zplug 'zsh-users/zsh-completions', defer:2
     zplug 'zsh-users/zsh-history-substring-search'
