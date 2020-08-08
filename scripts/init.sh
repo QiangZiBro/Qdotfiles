@@ -16,3 +16,6 @@ source ~/.Qdotfiles/git/aliases.zsh
 
 # ccat
 source ~/.Qdotfiles/ccat/ccat.zsh
+
+# conda
+source ~/.Qdotfiles/conda/conda.zsh
