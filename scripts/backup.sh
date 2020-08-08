@@ -3,4 +3,8 @@
 cd "$(dirname $0)"/..
 cp ~/.config/nvim/init.vim neovim
 cp ~/.zshrc zsh
-sudo cp /etc/privoxy/config privoxy
+
+if [ -f /etc/privoxy/config ];
+then
+    sudo cp /etc/privoxy/config privoxy
+fi
