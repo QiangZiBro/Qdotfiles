@@ -1,5 +1,12 @@
 #!/bin/bash
 
+source_if_exists(){
+    file="$1"
+
+    if [ -f "$file" ];then
+        source "$file"
+    fi
+}
 
 # zsh
 source ~/.Qdotfiles/zsh/aliases.zsh
@@ -19,3 +26,6 @@ source ~/.Qdotfiles/ccat/ccat.zsh
 
 # conda
 source ~/.Qdotfiles/conda/conda.zsh
+
+# github
+source_if_exists ~/.Qdotfiles/git/outh.sh
