@@ -107,7 +107,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
-export EDITOR=~/applications/nvim-osx64/bin/nvim
+export EDITOR=nvim
 source ~/.Qdotfiles/scripts/init.sh
 
 
