@@ -22,6 +22,7 @@ cp init.toml  ~/.SpaceVim.d
 # 配置python环境
 CONDA_BASE=$(conda info --base)
 PYTHON_PATH=$CONDA_BASE/bin/python
+$PYTHON_PATH -m pip install flake8 yapf autoflake isort pynvim
 cat << EOF >> ~/.SpaceVim/config/neovim.vim
 let g:python3_host_prog = '$PYTHON_PATH'
 EOF
