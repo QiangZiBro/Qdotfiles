@@ -4,5 +4,5 @@ git pull origin master
 bash ~/.Qdotfiles/scripts/backup.sh
 
 
-git add -A && git commit -m 'update'
+git add -A && git commit -m 'update from ci'
 git push origin HEAD
