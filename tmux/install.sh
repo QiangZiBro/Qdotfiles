@@ -16,5 +16,7 @@ then
          sudo apt install tmux -y
     fi
 fi
+# tmux plug manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 exit 0
