@@ -8,6 +8,6 @@ elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
 then
      # linux installation branch
     echo linux install
-    sudo apt install -y cowsay fortune tree
+    sudo apt install -y cowsay fortune tree make
 
 fi

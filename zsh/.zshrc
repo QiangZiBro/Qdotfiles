@@ -109,7 +109,4 @@ source $ZSH/oh-my-zsh.sh
 
 export EDITOR=nvim
 source ~/.Qdotfiles/scripts/init.sh
-
-
 proxy start
-fortune | cowsay
