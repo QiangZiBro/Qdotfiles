@@ -27,3 +27,4 @@ cat << EOF >> ~/.SpaceVim/config/neovim.vim
 let g:python3_host_prog = '$PYTHON_PATH'
 EOF
 
+nvim +VimProcInstall +qall
