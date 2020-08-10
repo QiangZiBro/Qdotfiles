@@ -26,6 +26,12 @@
     filemanager = "nerdtree"
     disable_plugins=["neomake.vim"]
     default_indent = 4
+    autocomplete_parens = false
+    autocomplete_method = "deoplete"
+    
+
+
+
     
 # Enable autocomplete layer
 [[layers]]

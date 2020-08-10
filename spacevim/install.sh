@@ -18,3 +18,11 @@ fi
 
 curl -sLf https://spacevim.org/install.sh | bash
 cp init.toml  ~/.SpaceVim.d
+
+# 配置python环境
+CONDA_BASE=$(conda info --base)
+PYTHON_PATH=$CONDA_BASE/bin/python
+cat << EOF >> ~/.SpaceVim/config/neovim.vim
+let g:python3_host_prog = '$PYTHON_PATH'
+EOF
+
