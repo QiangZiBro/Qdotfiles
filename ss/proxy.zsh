@@ -12,12 +12,11 @@ function proxy(){
         export http_proxy="127.0.0.1:$PROXY_PORT"
         export https_proxy="127.0.0.1:$PROXY_PORT"
         git config --global https.proxy https://127.0.0.1:$PROXY_PORT
+    elif [ "$1" = "stop" ]; then
+        export http_proxy=""
+        export https_proxy=""
+        git config --global https.proxy ''
     else
-        if [ "$1" = "stop" ]; then
-            export http_proxy=""
-            export https_proxy=""
-        else
-            echo "Wrong parameter!Usage: proxy [start|stop]"
-        fi
+        echo "Wrong parameter!Usage: proxy [start|stop]"
     fi
 }
