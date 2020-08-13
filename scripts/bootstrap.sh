@@ -20,8 +20,6 @@ case "${unameOut}" in
         ;;
     Darwin*)
         machine=Mac
-        # HOME_PATH="/Users/$USER"
-        # PROJECT_PATH=$HOME_PATH/.Qdotfiles
         mkdir -p ~/applications/ 
         ;;
     *)
@@ -35,21 +33,23 @@ if [ ! -d "$PROJECT_PATH" ]; then
     mkdir -p $PROJECT_PATH/downloads
 fi
 
-#~/.Qdotfiles/scripts/install
-
 cd $PROJECT_PATH
 
 # zshrc
 cp zsh/.zshrc ~
+
 # nvim
-mkdir -p ~/.config/nvim && cp neovim/init.vim ~/.config/nvim
-# privoxy
-sudo mkdir -p /etc/privoxy && sudo cp privoxy/config /etc/privoxy/
+# mkdir -p ~/.config/nvim && cp neovim/init.vim ~/.config/nvim
+
 # spacevim
 if [ -d ~/.SpaceVim.d ];then
     cp spacevim/init.toml ~/.SpaceVim.d/
 fi
+
+# privoxy
+sudo mkdir -p /etc/privoxy && sudo cp privoxy/config /etc/privoxy/
 # tmux
 cp tmux/.tmux.conf ~
+
 # if init.sh not in ~/.zsh, the add it
 insert_if_not_exists 'source ~/.Qdotfiles/scripts/init.sh' ~/.zshrc
