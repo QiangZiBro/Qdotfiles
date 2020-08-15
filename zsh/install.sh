@@ -15,6 +15,5 @@ then
     sudo  chsh $USER -s $(which zsh)
 fi
 
-
-#curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 #source ~/.Qdotfiles/zsh/theme.zsh
