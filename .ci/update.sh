@@ -1,8 +1,17 @@
 set -ex
 cd $(dirname $0)/..
-git pull origin master
-bash ~/.Qdotfiles/scripts/backup.sh
+if [ "$1" = "push" ];then
+    git pull origin master
+    bash ~/.Qdotfiles/scripts/backup.sh
+    
+    
+    git add -A && git commit -m 'update from ci'
+    git push origin HEAD
 
-
-git add -A && git commit -m 'update from ci'
-git push origin HEAD
+elif [ "$1" = "pull" ];then
+    git pull origin HEAD
+    if [ "$2" = "all" ];then
+        ssh l1 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull" &# ssh执行远程脚本
+        ssh l2 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull" &# ssh执行远程脚本
+    fi
+fi
