@@ -39,15 +39,11 @@ cd $PROJECT_PATH
 cp zsh/.zshrc ~
 
 # nvim
-# mkdir -p ~/.config/nvim && cp neovim/init.vim ~/.config/nvim
-
-# spacevim
-if [ -d ~/.SpaceVim.d ];then
-    cp spacevim/init.toml ~/.SpaceVim.d/
-fi
+mkdir -p ~/.config/nvim && cp neovim/init.vim ~/.config/nvim
 
 # privoxy
 sudo mkdir -p /etc/privoxy && sudo cp privoxy/config /etc/privoxy/
+
 # tmux
 cp tmux/.tmux.conf ~
 
