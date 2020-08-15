@@ -1,10 +1,9 @@
 set -ex
 cd $(dirname $0)/..
+
 if [ "$1" = "push" ];then
     git pull origin master
     bash ~/.Qdotfiles/scripts/backup.sh
-    
-    
     git add -A && git commit -m 'update from ci'
     git push origin HEAD
 
