@@ -29,3 +29,6 @@ source ~/.Qdotfiles/conda/conda.zsh
 
 # github
 source_if_exists ~/.Qdotfiles/git/outh.sh
+
+# docker
+source ~/.Qdotfiles/docker/docker.zsh
