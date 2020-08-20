@@ -14,12 +14,10 @@ insert_if_not_exists() {
 unameOut="$(uname -s)"
 case "${unameOut}" in
     Linux*)
-        machine=Linux
         sudo mkdir -p /usr/softwares/
 	    sudo chmod 777 -R /usr/softwares/
         ;;
     Darwin*)
-        machine=Mac
         mkdir -p ~/applications/ 
         ;;
     *)
