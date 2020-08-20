@@ -6,7 +6,11 @@ then
 elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
 then
  	# Linux installation branch
-    eval "$(lua /usr/softwares/z.lua/z.lua --init zsh)"
+    if command -v  lua5.3  &> /dev/null
+    then
+        # exists
+        eval "$(lua /usr/softwares/z.lua/z.lua --init zsh)"
+        alias z=_zlua
+    fi
 fi
 
-alias z=_zlua

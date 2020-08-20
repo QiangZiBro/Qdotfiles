@@ -1,5 +1,6 @@
 #!/bin/bash
 # check the software based on the directory.
+set -x
 if test "$(uname)" = "Darwin"
 then
     zlua_dir=~/applications/z.lua
@@ -15,7 +16,7 @@ elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
         if [ ! -d $zlua_dir ]
         then
             sudo apt-get install lua5.3
-            sudo ln -s /usr/bin/lua5.3 /usr/bin/lua
+            # sudo ln -s /usr/bin/lua5.3 /usr/bin/lua
          	# linux installation branch
             git clone https://github.com/skywind3000/z.lua $zlua_dir
         fi

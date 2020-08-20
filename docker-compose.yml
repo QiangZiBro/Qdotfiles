@@ -1,0 +1,12 @@
+version: '3'
+services:
+    Qlinux: 
+        build: 
+            context: .
+            dockerfile: Dockerfile
+        image: qlinux
+        ports:
+            - "8118:8118"
+        volumes:
+            - "/Users/mac/coding/learnDocker/basic_linux_environment/rootfs:/home/qiangzibro/rootfs"
+        
