@@ -11,6 +11,4 @@ elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
 then
      # linux installation branch
      pip install pygments
-
-
 fi

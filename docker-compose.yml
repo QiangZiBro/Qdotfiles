@@ -8,5 +8,5 @@ services:
         ports:
             - "8118:8118"
         volumes:
-            - "/Users/mac/coding/learnDocker/basic_linux_environment/rootfs:/home/qiangzibro/rootfs"
+            - "~/.Qdotfiles/:/home/qiangzibro/.Qdotfiles"
         

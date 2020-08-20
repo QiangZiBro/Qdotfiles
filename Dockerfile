@@ -52,16 +52,19 @@ RUN apt-get install -y --no-install-recommends \
         tmux zsh
 #    rm -rf /var/lib/apt/lists/*
 
-COPY . /home/$USER/.Qdotfiles
 USER $USER
+COPY . /home/$USER/.Qdotfiles
 WORKDIR /home/$USER
 
-RUN cd ~/.Qdotfiles && sudo -p password su && ./scripts/bootstrap.sh
+RUN cd /home/$USER/.Qdotfiles &&\
+    sudo -p password su &&\
+    ./scripts/bootstrap.sh
 
-RUN bash ~/.Qdotfiles/scripts/command_proxy.sh daemon &&\
+RUN bash ~/.Qdotfiles/scripts/cproxy daemon &&\
     export https_proxy="127.0.0.1:8118" && export http_proxy="127.0.0.1:8118" &&\
     # Your command that need proxy
     curl google.com &&\
-    sudo -p password su && bash ~/.Qdotfiles/scripts/install_softwares.sh
+    #sudo -p password su &&\
+    bash ~/.Qdotfiles/scripts/install_softwares.sh
 
-CMD [".Qdotfiles/scripts/command_proxy.sh"]
+CMD [".Qdotfiles/scripts/cproxy"]
