@@ -1,14 +1,8 @@
 # Dotfiles of QiangZiBro
 
-As an unix enthusiast, I want to make my work flow easier by collecting various configuration files, and make the configuration and installation process automatic. 
+My personal configurations in linux/mac, use at your own risk!
 
-> **Warning:** If you want to give these dotfiles a try, you should first fork this repository, review the code, and remove things you don’t want or need. Don’t blindly use my settings unless you know what that entails. Use at your own risk!
 
-## Philosophy
-
-- Because of  reasons as we know in China, some softwares may be slow to download. Thus, each software should be download as fast as possible(Changing sources to which of china etc.)
-
-- The configuration can be used in both real machines(Mac, Linux) and docker.
 
 ## How to use
 
@@ -19,34 +13,28 @@ As an unix enthusiast, I want to make my work flow easier by collecting various 
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/QiangZiBro/Qdotfiles/master/scripts/bootstrap.sh)"
 ```
 
-**Backup**
+**Backup dotfiles:**
 
 ```bash
 ~/.Qdotfiles/scripts/backup
 ```
 
+**Use in docker**
 
+```bash
+# 1.clone
+git clone https://github.com/QiangZiBro/Qdotfiles ~/.Qdotfiles && cd ~/.Qdotfiles
+# 2.put ss.json (a shadowsocks configuration) in `ss/` directory
 
-## Softwares
-
-When running `bash scripts/bootstrap.sh`, the script will check the existence of softwares below, and install what is not exsited.
-
-
-1. Miniconda
-2. Tmux
-3. Shadowsocks
-4. Privoxy
-5. Neovim
-6. Ranger
-7. Homebrew
+# 3.build the image
+docker-compose build
+```
 
 
 
-## Good Reference
+**Use ss service  with docker container**
 
-1. https://github.com/skywind3000/awesome-cheatsheets
-
-
+![ss_proxy](imgs/README_imgs/ss_proxy.gif)
 
 
 

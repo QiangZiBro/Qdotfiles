@@ -62,9 +62,9 @@ RUN cd /home/$USER/.Qdotfiles &&\
 
 RUN bash ~/.Qdotfiles/scripts/cproxy daemon &&\
     export https_proxy="127.0.0.1:8118" && export http_proxy="127.0.0.1:8118" &&\
-    # Your command that need proxy
-    curl google.com &&\
-    #sudo -p password su &&\
+    # Your command that need proxy, such as
+    # curl google.com &&\
+    # sudo -p password su &&\
     bash ~/.Qdotfiles/scripts/install_softwares.sh
 
 CMD [".Qdotfiles/scripts/cproxy"]

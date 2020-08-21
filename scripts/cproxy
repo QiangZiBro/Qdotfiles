@@ -2,7 +2,7 @@
 #------------------------------------------------------------------------------
 # Configure the service. This script runs in docker container
 #------------------------------------------------------------------------------
-cat << EOF
+cat << "EOF"
  ________________________ 
 < All is done! Try blow: >
  ------------------------ 
@@ -16,12 +16,11 @@ cat << EOF
 EOF
 
 start=$1
-/usr/sbin/privoxy --no-daemon /etc/privoxy/config &
+/usr/sbin/privoxy --no-daemon /etc/privoxy/config  &
 
 cd $(dirname $0)/..
 if [ "$start" = "daemon" ]; then
     sslocal -c ss/ss.json 2>&1 >/dev/null &
-
     sleep 2
 
 elif [ "$start" = "down" ]; then
