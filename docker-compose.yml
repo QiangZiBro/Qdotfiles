@@ -11,4 +11,4 @@ services:
         ports:
             - "8118:8118"
         volumes:
-            - "~/.Qdotfiles/ss/ss.json:/home/qiangzibro/.Qdotfiles/ss/ss.json"
+            - "~/.Qdotfiles/:/home/qiangzibro/.Qdotfiles/"
