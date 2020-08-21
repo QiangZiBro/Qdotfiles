@@ -9,6 +9,6 @@ services:
         image: qlinux
         ports:
             - "8118:8118"
-        volumes:
-            - "~/.Qdotfiles/:/home/qiangzibro/.Qdotfiles"
+#         volumes:
+#             - "~/.Qdotfiles/:/home/qiangzibro/.Qdotfiles"
         
