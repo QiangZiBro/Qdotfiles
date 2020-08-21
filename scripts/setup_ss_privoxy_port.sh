@@ -1,8 +1,8 @@
 #!/bin/bash
 # set -x
 cd $(dirname $0)/..
-SS_PORT_IN_FILES="privoxy/config ss/ss.json"
-PRIVOXY_PORT_IN_FILES="docker-compose.yml scripts/cproxy ss/proxy.zsh privoxy/config"
+SS_PORT_IN_FILES="privoxy/config ss/ss.json scripts/setup_ss_privoxy_port.sh"
+PRIVOXY_PORT_IN_FILES="docker-compose.yml scripts/cproxy ss/proxy.zsh privoxy/config scripts/setup_ss_privoxy_port.sh"
 
 read -p "ss port [default 1080]:" SS_PORT
 SS_PORT=${SS_PORT:-1080}

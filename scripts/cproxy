@@ -15,10 +15,10 @@ cat << "EOF"
     curl google.com
 EOF
 
-start=$1
-/usr/sbin/privoxy --no-daemon /etc/privoxy/config  &
-
 cd $(dirname $0)/..
+/usr/sbin/privoxy --no-daemon privoxy/config  &
+
+start=$1
 if [ "$start" = "daemon" ]; then
     sslocal -c ss/ss.json 2>&1 >/dev/null &
     sleep 2
