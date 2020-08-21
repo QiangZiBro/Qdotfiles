@@ -14,6 +14,8 @@ RUN apt-get update --fix-missing -qqy && apt-get update  -qqy &&\
     apt-get install -y --no-install-recommends \
         # some basic softwares 
         sudo privoxy curl git procps 
+        #    rm -rf /var/lib/apt/lists/*
+
 # 2.create user
 RUN export uid=1000 gid=1000 pswd=password &&\
     apt-get clean && \
@@ -38,32 +40,26 @@ RUN python3 -m pip install shadowsocks &&\
 
 #------------------------------------------------------------------------------
 # Expose ports, so you can use the exposed port when build:
-# -p your_local_port:8118
-# export https_proxy="127.0.0.1:your_local_port"  &&  export http_proxy="127.0.0.1:your_local_port"
+# -p your_local_port:PRIVOXY_PORT
+# export https_proxy="127.0.0.1:PRIVOXY_PORT"  &&  export http_proxy="127.0.0.1:PRIVOXY_PORT"
 #------------------------------------------------------------------------------
-EXPOSE 8118
 
-
-#------------------------------------------------------------------------------
-#  Install softwares, below are things that maybe frequently modified
-#------------------------------------------------------------------------------
-RUN apt-get update  -qqy
-RUN apt-get install -y --no-install-recommends \
-        tmux zsh
-#    rm -rf /var/lib/apt/lists/*
-
+ARG PRIVOXY_PORT
+EXPOSE PRIVOXY_PORT
 USER $USER
 COPY . /home/$USER/.Qdotfiles
 WORKDIR /home/$USER
-
 RUN cd /home/$USER/.Qdotfiles &&\
     sudo -p password su &&\
     ./scripts/bootstrap.sh
 
+#------------------------------------------------------------------------------
+#  Install softwares, below are things that maybe frequently modified
+#------------------------------------------------------------------------------
 ARG INSTALL_SOFTWARES=true
 RUN if [ ${INSTALL_SOFTWARES} = true ]; then\
         bash ~/.Qdotfiles/scripts/cproxy daemon &&\
-        export https_proxy="127.0.0.1:8118" && export http_proxy="127.0.0.1:8118" &&\
+        export https_proxy="127.0.0.1:${PRIVOXY_PORT}" && export http_proxy="127.0.0.1:${PRIVOXY_PORT}" &&\
         # Your command that need proxy, such as
         # curl google.com &&\
         # sudo -p password su &&\
