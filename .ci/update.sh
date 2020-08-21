@@ -5,7 +5,7 @@ if [ "$1" = "push" ];then
     git pull origin HEAD
     bash ~/.Qdotfiles/scripts/backup.sh
     if [ -n "$2" ];then
-        git add -A && git commit -m '$2'
+        git add -A && git commit -m "$2"
     else
         git add -A && git commit -m 'update from ci'
     fi
