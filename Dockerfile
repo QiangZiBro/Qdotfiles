@@ -45,7 +45,7 @@ RUN python3 -m pip install shadowsocks &&\
 #------------------------------------------------------------------------------
 
 ARG PRIVOXY_PORT
-EXPOSE PRIVOXY_PORT
+EXPOSE $PRIVOXY_PORT
 USER $USER
 COPY . /home/$USER/.Qdotfiles
 WORKDIR /home/$USER
