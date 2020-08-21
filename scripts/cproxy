@@ -7,7 +7,7 @@ cat << "EOF"
 < All is done! Try blow: >
  ------------------------ 
 
-    PROXY_PORT=8118
+    PROXY_PORT=8998
     export http_proxy=127.0.0.1:$PROXY_PORT
     export https_proxy=127.0.0.1:$PROXY_PORT
     git config --global https.proxy https://127.0.0.1:$PROXY_PORT

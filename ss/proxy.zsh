@@ -4,7 +4,7 @@ if test "$(uname)" = "Darwin";then
     
 elif test "$(expr substr $(uname -s) 1 5)" = "Linux";then
     # linux branch
-    PROXY_PORT=8118
+    PROXY_PORT=8998
 fi
 
 function proxy(){
