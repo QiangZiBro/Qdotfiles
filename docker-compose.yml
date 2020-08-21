@@ -10,6 +10,5 @@ services:
         image: qlinux
         ports:
             - "8118:8118"
-#         volumes:
-#             - "~/.Qdotfiles/:/home/qiangzibro/.Qdotfiles"
-        
+        volumes:
+            - "~/.Qdotfiles/ss/ss.json:/home/qiangzibro/.Qdotfiles/ss/ss.json"
