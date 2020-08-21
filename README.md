@@ -27,7 +27,7 @@ git clone https://github.com/QiangZiBro/Qdotfiles ~/.Qdotfiles && cd ~/.Qdotfile
 # 2.put ss.json (a shadowsocks configuration) in `ss/` directory
 
 # 3.build the image
-docker-compose build
+docker-compose build --build-arg INSTALL_SOFTWARES=true
 ```
 
 

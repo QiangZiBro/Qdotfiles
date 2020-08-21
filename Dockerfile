@@ -60,11 +60,14 @@ RUN cd /home/$USER/.Qdotfiles &&\
     sudo -p password su &&\
     ./scripts/bootstrap.sh
 
-RUN bash ~/.Qdotfiles/scripts/cproxy daemon &&\
-    export https_proxy="127.0.0.1:8118" && export http_proxy="127.0.0.1:8118" &&\
-    # Your command that need proxy, such as
-    # curl google.com &&\
-    # sudo -p password su &&\
-    bash ~/.Qdotfiles/scripts/install_softwares.sh
+ARG INSTALL_SOFTWARES=true
+RUN if [ ${INSTALL_SOFTWARES} = true ]; then\
+        bash ~/.Qdotfiles/scripts/cproxy daemon &&\
+        export https_proxy="127.0.0.1:8118" && export http_proxy="127.0.0.1:8118" &&\
+        # Your command that need proxy, such as
+        # curl google.com &&\
+        # sudo -p password su &&\
+        bash ~/.Qdotfiles/scripts/install_softwares.sh \
+    ;fi
 
 CMD [".Qdotfiles/scripts/cproxy"]

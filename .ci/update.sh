@@ -4,7 +4,11 @@ cd $(dirname $0)/..
 if [ "$1" = "push" ];then
     git pull origin HEAD
     bash ~/.Qdotfiles/scripts/backup.sh
-    git add -A && git commit -m 'update from ci'
+    if [ -z "$2" ];then
+        git add -A && git commit -m '$2'
+    else
+        git add -A && git commit -m 'update from ci'
+    fi
     git push origin HEAD
 
 elif [ "$1" = "pull" ];then
