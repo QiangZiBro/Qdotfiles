@@ -4,7 +4,7 @@ logdir /var/log/privoxy
 # filterfile default.filter
 
 logfile privoxy.log
-listen-address  :8118
+listen-address  :8998
 toggle  1
 
 enable-remote-toggle  0

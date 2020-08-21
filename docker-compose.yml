@@ -6,9 +6,9 @@ services:
             dockerfile: Dockerfile
             args:
                 - INSTALL_SOFTWARES=fasle
-                - PRIVOXY_PORT=8118
+                - PRIVOXY_PORT=8998
         image: qlinux
         ports:
-            - "8118:8118"
+            - "8998:8998"
         volumes:
             - "~/.Qdotfiles/:/home/qiangzibro/.Qdotfiles/"
