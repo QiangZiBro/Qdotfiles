@@ -1,3 +1,4 @@
+alias de="docker exec"
 alias dcu="docker-compose up"
 alias dcd="docker-compose up -d"
 alias dce="docker-compose exec"
