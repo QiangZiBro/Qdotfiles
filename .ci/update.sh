@@ -20,4 +20,4 @@ main(){
     fi
 }
 
-main "$@" 1>/dev/null
+main "$@" 2>&1 >/dev/null
