@@ -29,16 +29,3 @@ git clone https://github.com/QiangZiBro/Qdotfiles ~/.Qdotfiles && cd ~/.Qdotfile
 # 3.build the image
 docker-compose build --build-arg INSTALL_SOFTWARES=true
 ```
-
-
-
-**Use ss service  with docker container**
-
-![ss_proxy](imgs/README_imgs/ss_proxy.gif)
-
-
-
-
-
-
-
