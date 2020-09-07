@@ -1,4 +1,4 @@
-set -ex
+set -e
 cd $(dirname $0)/..
 main(){
     if [ "$1" = "push" ];then
@@ -20,4 +20,4 @@ main(){
     fi
 }
 
-main "$@"
+main "$@" 1>/dev/null
