@@ -1,5 +1,4 @@
-
-
+_set_env(){
 if test "$(uname)" = "Darwin"
 then
     # >>> conda initialize >>>
@@ -33,3 +32,6 @@ then
     unset __conda_setup
     # <<< conda initialize <<<
 fi
+}
+
+_set_env
