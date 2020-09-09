@@ -9,6 +9,4 @@ then
      # linux installation branch
     echo linux install
     sudo apt install -y zsh ranger curl tree make htop
-    #sudo apt install -y fortune cowsay
-
 fi

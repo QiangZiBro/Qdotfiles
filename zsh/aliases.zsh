@@ -4,10 +4,9 @@ common_settings () {
     alias fm="ranger"
     alias sb="source ~/.zshrc"
     alias eb="nvim ~/.zshrc"
-    alias cb="cd ~/.Qdotfiles/zsh/"
+    alias cz="cd ~/.Qdotfiles/zsh/"
     alias cq="cd ~/.Qdotfiles/"
     alias unproxy='http_proxy="" https_proxy=""'
-    alias vinit='nvim ~/.Qdotfiles/scripts/init.sh'
 }
 mac_settings () {
     alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
