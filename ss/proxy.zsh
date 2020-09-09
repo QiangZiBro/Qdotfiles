@@ -1,13 +1,13 @@
-if test "$(uname)" = "Darwin";then
-    # mac branch
-    PROXY_PORT=1087
-    
-elif test "$(expr substr $(uname -s) 1 5)" = "Linux";then
-    # linux branch
-    PROXY_PORT=8998
-fi
 
 function proxy(){
+    if test "$(uname)" = "Darwin";then
+        # mac branch
+        PROXY_PORT=1087
+    elif test "$(expr substr $(uname -s) 1 5)" = "Linux";then
+        # linux branch
+        PROXY_PORT=8998
+    fi
+
     if [ "$1" = "start" ]; then
         export http_proxy="127.0.0.1:$PROXY_PORT"
         export https_proxy="127.0.0.1:$PROXY_PORT"
