@@ -11,4 +11,3 @@ sudo_cp_if_exists(){
 cp ~/.config/nvim/init.vim neovim
 cp ~/.zshrc zsh
 cp ~/.tmux.conf tmux
-sudo_cp_if_exists /etc/privoxy/config privoxy
