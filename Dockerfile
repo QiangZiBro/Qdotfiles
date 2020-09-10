@@ -18,7 +18,8 @@ RUN apt-get update --fix-missing -qqy && apt-get update  -qqy &&\
 
 # 2.create user
 RUN export uid=1000 gid=1000 pswd=password &&\
-    apt-get clean && \
+    # may not be useful
+    # apt-get clean && \
     groupadd -g $gid $USER && \
     useradd -g $USER -G sudo -m -s /bin/bash $USER && \
     # -m : create home dir if not exists
@@ -60,8 +61,10 @@ ARG INSTALL_SOFTWARES=true
 RUN if [ ${INSTALL_SOFTWARES} = true ]; then\
         bash ~/.Qdotfiles/scripts/cproxy daemon &&\
         export https_proxy="127.0.0.1:${PRIVOXY_PORT}" && export http_proxy="127.0.0.1:${PRIVOXY_PORT}" &&\
-        # Your command that need proxy, such as
+        # Your commands that need proxy, such as
         # curl google.com &&\
+
+        # may not use sudo priviledge, so I comment below
         # sudo -p password su &&\
         bash ~/.Qdotfiles/scripts/install_softwares.sh \
     ;fi

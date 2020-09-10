@@ -37,6 +37,9 @@ greeting(){
 	printf "$RESET"
 }
 insert_if_not_exists() {
+    # not useful anymore...
+    # if init.sh not in ~/.zsh, the add it
+    # insert_if_not_exists 'source ~/.Qdotfiles/scripts/init.sh' ~/.zshrc
     content="$1"
     file=$2
     if ! grep -Fxq "$content" $file
@@ -47,7 +50,7 @@ insert_if_not_exists() {
 
 
 pre_set(){
-# get variables in mac or linux
+    # get variables in mac or linux
     unameOut="$(uname -s)"
     case "${unameOut}" in
         Linux*)
@@ -76,15 +79,10 @@ check_project(){
 setup_config(){
     # zshrc
     cp zsh/.zshrc ~
-    # if init.sh not in ~/.zsh, the add it
-    # insert_if_not_exists 'source ~/.Qdotfiles/scripts/init.sh' ~/.zshrc
     
     # nvim
     mkdir -p ~/.config/nvim && cp neovim/init.vim ~/.config/nvim
-    
-    # privoxy
-    sudo mkdir -p /etc/privoxy && sudo cp privoxy/config /etc/privoxy/
-    
+
     # tmux
     cp tmux/.tmux.conf ~
 
