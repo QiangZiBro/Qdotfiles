@@ -5,7 +5,7 @@ function proxy(){
         PROXY_PORT=1087
     elif test "$(expr substr $(uname -s) 1 5)" = "Linux";then
         # linux branch
-        PROXY_PORT=8998
+        PROXY_PORT=8999
     fi
 
     if [ "$1" = "start" ]; then
