@@ -16,7 +16,7 @@ cat << "EOF"
 EOF
 
 cd $(dirname $0)/..
-/usr/sbin/privoxy --no-daemon privoxy/config  &
+/usr/sbin/privoxy --no-daemon privoxy/config 2>&1 >/dev/null &
 
 start=$1
 if [ "$start" = "daemon" ]; then

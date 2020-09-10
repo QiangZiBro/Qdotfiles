@@ -63,7 +63,6 @@ RUN if [ ${INSTALL_SOFTWARES} = true ]; then\
         export https_proxy="127.0.0.1:${PRIVOXY_PORT}" && export http_proxy="127.0.0.1:${PRIVOXY_PORT}" &&\
         # Your commands that need proxy, such as
         # curl google.com &&\
-
         # may not use sudo priviledge, so I comment below
         # sudo -p password su &&\
         bash ~/.Qdotfiles/scripts/install_softwares.sh \
