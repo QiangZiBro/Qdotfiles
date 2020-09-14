@@ -10,7 +10,7 @@
 " =    Plugins    =
 " +===============+
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/bundles')
 
 Plug 'joshdick/onedark.vim'
 Plug 'icymind/NeoSolarized'
@@ -20,6 +20,8 @@ Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
 Plug 'powerline/fonts'
 "Plug 'kien/rainbow_parentheses.vim'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'connorholyday/vim-snazzy'
 Plug 'liuchengxu/space-vim-dark'
 
