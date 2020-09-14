@@ -16,7 +16,7 @@
 if !exists('g:bundle_group')
 	let g:bundle_group = ['basic', 'tags', 'enhanced', 'filetypes', 'textobj']
 	let g:bundle_group += ['tags', 'airline', 'nerdtree', 'ale', 'echodoc']
-	let g:bundle_group += ['leaderf']
+	let g:bundle_group += ['leaderf', 'coc']
 endif
 
 
@@ -45,7 +45,7 @@ call plug#begin(get(g:, 'bundle_home', '~/.vim/bundles'))
 Plug 'easymotion/vim-easymotion'
 
 " 文件浏览器，代替 netrw
-Plug 'justinmk/vim-dirvish'
+" Plug 'justinmk/vim-dirvish'
 
 " 表格对齐，使用命令 Tabularize
 Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
@@ -59,31 +59,31 @@ Plug 'chrisbra/vim-diff-enhanced'
 " 这个排序函数可以将目录排在前面，文件排在后面，并且按照字母顺序排序
 " 比默认的纯按照字母排序更友好点。
 "----------------------------------------------------------------------
-function! s:setup_dirvish()
-	if &buftype != 'nofile' && &filetype != 'dirvish'
-		return
-	endif
-	if has('nvim')
-		return
-	endif
-	" 取得光标所在行的文本（当前选中的文件名）
-	let text = getline('.')
-	if ! get(g:, 'dirvish_hide_visible', 0)
-		exec 'silent keeppatterns g@\v[\/]\.[^\/]+[\/]?$@d _'
-	endif
-	" 排序文件名
-	exec 'sort ,^.*[\/],'
-	let name = '^' . escape(text, '.*[]~\') . '[/*|@=|\\*]\=\%($\|\s\+\)'
-	" 定位到之前光标处的文件
-	call search(name, 'wc')
-	noremap <silent><buffer> ~ :Dirvish ~<cr>
-	noremap <buffer> % :e %
-endfunc
+"function! s:setup_dirvish()
+"	if &buftype != 'nofile' && &filetype != 'dirvish'
+"		return
+"	endif
+"	if has('nvim')
+"		return
+"	endif
+"	" 取得光标所在行的文本（当前选中的文件名）
+"	let text = getline('.')
+"	if ! get(g:, 'dirvish_hide_visible', 0)
+"		exec 'silent keeppatterns g@\v[\/]\.[^\/]+[\/]?$@d _'
+"	endif
+"	" 排序文件名
+"	exec 'sort ,^.*[\/],'
+"	let name = '^' . escape(text, '.*[]~\') . '[/*|@=|\\*]\=\%($\|\s\+\)'
+"	" 定位到之前光标处的文件
+"	call search(name, 'wc')
+"	noremap <silent><buffer> ~ :Dirvish ~<cr>
+"	noremap <buffer> % :e %
+"endfunc
 
-augroup MyPluginSetup
-	autocmd!
-	autocmd FileType dirvish call s:setup_dirvish()
-augroup END
+"augroup MyPluginSetup
+"	autocmd!
+"	autocmd FileType dirvish call s:setup_dirvish()
+"augroup END
 
 
 "----------------------------------------------------------------------
@@ -91,17 +91,9 @@ augroup END
 "----------------------------------------------------------------------
 if index(g:bundle_group, 'basic') >= 0
 
-	" 展示开始画面，显示最近编辑过的文件
-	Plug 'mhinz/vim-startify'
 
 	" 一次性安装一大堆 colorscheme
 	Plug 'flazz/vim-colorschemes'
-	colorscheme gruvbox
-	let g:gruvbox_contrast_dark='soft'
-	let g:lightline = {'colorscheme': 'snazzy', }
-    hi Normal     ctermbg=NONE guibg=NONE
-    hi LineNr     ctermbg=NONE guibg=NONE
-    hi SignColumn ctermbg=NONE guibg=NONE
 
 	" 支持库，给其他插件用的函数库
 	Plug 'xolox/vim-misc'
@@ -147,6 +139,7 @@ if index(g:bundle_group, 'basic') >= 0
 	let g:signify_vcs_cmds = {
 			\ 'git': 'git diff --no-color --diff-algorithm=histogram --no-ext-diff -U0 -- %f',
 			\}
+
 endif
 
 
@@ -154,6 +147,10 @@ endif
 " 增强插件
 "----------------------------------------------------------------------
 if index(g:bundle_group, 'enhanced') >= 0
+	" 在 vim 里打开ranger
+	Plug 'francoiscabrol/ranger.vim'
+	let g:NERDTreeHijackNetrw = 0 
+	let g:ranger_replace_netrw = 1 
 
 	" 用 v 选中一个区域后，ALT_+/- 按分隔符扩大/缩小选区
 	Plug 'terryma/vim-expand-region'
@@ -175,6 +172,7 @@ if index(g:bundle_group, 'enhanced') >= 0
 
 	" 提供 gist 接口
 	Plug 'lambdalisue/vim-gista', { 'on': 'Gista' }
+	
 	
 	" ALT_+/- 用于按分隔符扩大缩小 v 选区
 	map <m-=> <Plug>(expand_region_expand)
@@ -342,12 +340,6 @@ if index(g:bundle_group, 'nerdtree') >= 0
         \ }
 endif
 
-"----------------------------------------------------------------------
-" Ranger
-"----------------------------------------------------------------------
-Plug 'francoiscabrol/ranger.vim'
-let g:NERDTreeHijackNetrw = 0 
-let g:ranger_replace_netrw = 1 
 
 "----------------------------------------------------------------------
 " LanguageTool 语法检查
@@ -550,93 +542,135 @@ endif
 
 
 "----------------------------------------------------------------------
+" coc.nvim
+"----------------------------------------------------------------------
+if index(g:bundle_group, 'coc') >= 0
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	set hidden
+	set updatetime=100
+	" Don't pass messages to |ins-completion-menu|.
+	set shortmess+=c
+	
+	" Always show the signcolumn, otherwise it would shift the text each time
+	" diagnostics appear/become resolved.
+	if has("patch-8.1.1564")
+	  " Recently vim can merge signcolumn and number column into one
+	  set signcolumn=number
+	else
+	  set signcolumn=yes
+	endif
+	" Use tab for trigger completion with characters ahead and navigate.
+	" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+	" other plugin before putting this into your config.
+	inoremap <silent><expr> <TAB>
+		  \ pumvisible() ? "\<C-n>" :
+		  \ <SID>check_back_space() ? "\<TAB>" :
+		  \ coc#refresh()
+	inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+	function! s:check_back_space() abort
+	  let col = col('.') - 1
+	  return !col || getline('.')[col - 1]  =~# '\s'
+	endfunction
+	" Use `[g` and `]g` to navigate diagnostics
+	" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+	nmap <silent> [g <Plug>(coc-diagnostic-prev)
+	nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+	" GoTo code navigation.
+	nmap <silent> gd <Plug>(coc-definition)
+	nmap <silent> gy <Plug>(coc-type-definition)
+	nmap <silent> gi <Plug>(coc-implementation)
+	nmap <silent> gr <Plug>(coc-references)
+endif
+
+
+"----------------------------------------------------------------------
 " 结束插件安装
 "----------------------------------------------------------------------
 call plug#end()
 
 
-
-"----------------------------------------------------------------------
-" YouCompleteMe 默认设置：YCM 需要你另外手动编译安装
-"----------------------------------------------------------------------
-
-" 禁用预览功能：扰乱视听
-let g:ycm_add_preview_to_completeopt = 0
-
-" 禁用诊断功能：我们用前面更好用的 ALE 代替
-let g:ycm_show_diagnostics_ui = 0
-let g:ycm_server_log_level = 'info'
-let g:ycm_min_num_identifier_candidate_chars = 2
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_complete_in_strings=1
-let g:ycm_key_invoke_completion = '<c-z>'
-set completeopt=menu,menuone,noselect
-
-" noremap <c-z> <NOP>
-
-" 两个字符自动触发语义补全
-let g:ycm_semantic_triggers =  {
-			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
-			\ 'cs,lua,javascript': ['re!\w{2}'],
-			\ }
-
-
-"----------------------------------------------------------------------
-" Ycm 白名单（非名单内文件不启用 YCM），避免打开个 1MB 的 txt 分析半天
-"----------------------------------------------------------------------
-let g:ycm_filetype_whitelist = { 
-			\ "c":1,
-			\ "cpp":1, 
-			\ "objc":1,
-			\ "objcpp":1,
-			\ "python":1,
-			\ "java":1,
-			\ "javascript":1,
-			\ "coffee":1,
-			\ "vim":1, 
-			\ "go":1,
-			\ "cs":1,
-			\ "lua":1,
-			\ "perl":1,
-			\ "perl6":1,
-			\ "php":1,
-			\ "ruby":1,
-			\ "rust":1,
-			\ "erlang":1,
-			\ "asm":1,
-			\ "nasm":1,
-			\ "masm":1,
-			\ "tasm":1,
-			\ "asm68k":1,
-			\ "asmh8300":1,
-			\ "asciidoc":1,
-			\ "basic":1,
-			\ "vb":1,
-			\ "make":1,
-			\ "cmake":1,
-			\ "html":1,
-			\ "css":1,
-			\ "less":1,
-			\ "json":1,
-			\ "cson":1,
-			\ "typedscript":1,
-			\ "haskell":1,
-			\ "lhaskell":1,
-			\ "lisp":1,
-			\ "scheme":1,
-			\ "sdl":1,
-			\ "sh":1,
-			\ "zsh":1,
-			\ "bash":1,
-			\ "man":1,
-			\ "markdown":1,
-			\ "matlab":1,
-			\ "maxima":1,
-			\ "dosini":1,
-			\ "conf":1,
-			\ "config":1,
-			\ "zimbu":1,
-			\ "ps1":1,
-			\ }
-
-
+"
+""----------------------------------------------------------------------
+"" YouCompleteMe 默认设置：YCM 需要你另外手动编译安装
+""----------------------------------------------------------------------
+"
+"" 禁用预览功能：扰乱视听
+"let g:ycm_add_preview_to_completeopt = 0
+"
+"" 禁用诊断功能：我们用前面更好用的 ALE 代替
+"let g:ycm_show_diagnostics_ui = 0
+"let g:ycm_server_log_level = 'info'
+"let g:ycm_min_num_identifier_candidate_chars = 2
+"let g:ycm_collect_identifiers_from_comments_and_strings = 1
+"let g:ycm_complete_in_strings=1
+"let g:ycm_key_invoke_completion = '<c-z>'
+"set completeopt=menu,menuone,noselect
+"
+"" noremap <c-z> <NOP>
+"
+"" 两个字符自动触发语义补全
+"let g:ycm_semantic_triggers =  {
+"			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+"			\ 'cs,lua,javascript': ['re!\w{2}'],
+"			\ }
+"
+"
+""----------------------------------------------------------------------
+"" Ycm 白名单（非名单内文件不启用 YCM），避免打开个 1MB 的 txt 分析半天
+""----------------------------------------------------------------------
+"let g:ycm_filetype_whitelist = { 
+"			\ "c":1,
+"			\ "cpp":1, 
+"			\ "objc":1,
+"			\ "objcpp":1,
+"			\ "python":1,
+"			\ "java":1,
+"			\ "javascript":1,
+"			\ "coffee":1,
+"			\ "vim":1, 
+"			\ "go":1,
+"			\ "cs":1,
+"			\ "lua":1,
+"			\ "perl":1,
+"			\ "perl6":1,
+"			\ "php":1,
+"			\ "ruby":1,
+"			\ "rust":1,
+"			\ "erlang":1,
+"			\ "asm":1,
+"			\ "nasm":1,
+"			\ "masm":1,
+"			\ "tasm":1,
+"			\ "asm68k":1,
+"			\ "asmh8300":1,
+"			\ "asciidoc":1,
+"			\ "basic":1,
+"			\ "vb":1,
+"			\ "make":1,
+"			\ "cmake":1,
+"			\ "html":1,
+"			\ "css":1,
+"			\ "less":1,
+"			\ "json":1,
+"			\ "cson":1,
+"			\ "typedscript":1,
+"			\ "haskell":1,
+"			\ "lhaskell":1,
+"			\ "lisp":1,
+"			\ "scheme":1,
+"			\ "sdl":1,
+"			\ "sh":1,
+"			\ "zsh":1,
+"			\ "bash":1,
+"			\ "man":1,
+"			\ "markdown":1,
+"			\ "matlab":1,
+"			\ "maxima":1,
+"			\ "dosini":1,
+"			\ "conf":1,
+"			\ "config":1,
+"			\ "zimbu":1,
+"			\ "ps1":1,
+"			\ }
