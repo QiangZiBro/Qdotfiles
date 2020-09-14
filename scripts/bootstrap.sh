@@ -54,8 +54,8 @@ pre_set(){
     unameOut="$(uname -s)"
     case "${unameOut}" in
         Linux*)
-            sudo mkdir -p /usr/softwares/
-    	    sudo chmod 777 -R /usr/softwares/
+			sudo mkdir -p /usr/softwares/
+			sudo chmod 777 -R /usr/softwares/
             ;;
         Darwin*)
             mkdir -p ~/applications/ 
@@ -79,7 +79,7 @@ check_project(){
 setup_config(){
     # zshrc
     cp zsh/.zshrc ~
-    
+
     # nvim
     mkdir -p ~/.config/nvim && cp neovim/init.vim ~/.config/nvim
 

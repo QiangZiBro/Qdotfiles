@@ -4,12 +4,11 @@ echo Install neovim...
 # Homebrew is not installed, so install it
 if test "$(uname)" = "Darwin"
 then
- 	# Mac installation branch
+	# Mac installation branch
     brew install neovim
- 	
 elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
 then
- 	# Linux installation branch
+	# Linux installation branch
     echo proxy:$http_proxy
     http_proxy= https_proxy= sudo apt-get install --no-install-recommends -y neovim    	
     echo proxy:$http_proxy
