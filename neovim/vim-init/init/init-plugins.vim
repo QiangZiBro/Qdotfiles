@@ -43,6 +43,8 @@ call plug#begin(get(g:, 'bundle_home', '~/.vim/bundles'))
 
 " 全文快速移动，<leader><leader>f{char} 即可触发
 Plug 'easymotion/vim-easymotion'
+map f <Plug>(easymotion-prefix)   
+map f <Plug>(easymotion-s)
 
 " 文件浏览器，代替 netrw
 " Plug 'justinmk/vim-dirvish'
