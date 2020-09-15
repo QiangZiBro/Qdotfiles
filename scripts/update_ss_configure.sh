@@ -4,6 +4,8 @@ update_ss(){
     if [ ! -z $1 ]
     then
         cat export.json| jq '.configs' | jq '[.[] | select(.server=="$1")][0]' > ss.json
+	else
+		exit 1
     fi
 }
 
