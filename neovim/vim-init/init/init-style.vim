@@ -1,11 +1,3 @@
-"======================================================================
-"
-" init-style.vim - 显示样式设置
-"
-" Created by skywind on 2018/05/30
-" Last Modified: 2018/05/30 20:29:07
-"
-"======================================================================
 " vim: set ts=4 sw=4 tw=78 noet :
 
 
@@ -51,7 +43,9 @@ set background=dark
 set t_Co=256
 
 " 设置颜色主题，会在所有 runtimepaths 的 colors 目录寻找同名配置
-color desert256
+color gruvbox
+"color sublime
+"color papercol
 
 
 "----------------------------------------------------------------------
