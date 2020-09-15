@@ -12,7 +12,6 @@ main(){
     
     elif [ "$1" = "pull" ];then
         git pull origin master
-        bash ~/.Qdotfiles/scripts/bootstrap.sh
         if [ "$2" = "all" ];then
             ssh l1 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull" &# ssh执行远程脚本
             ssh l2 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull" &# ssh执行远程脚本
