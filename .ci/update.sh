@@ -1,4 +1,3 @@
-set -e
 cd $(dirname $0)/..
 main(){
     if [ "$1" = "push" ];then
