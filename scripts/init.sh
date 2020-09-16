@@ -36,3 +36,6 @@ source ~/.Qdotfiles/docker/docker.zsh
 
 # tmux
 source ~/.Qdotfiles/tmux/tmux.zsh
+
+# nvm
+source ~/.Qdotfiles/nvm/nvm.zsh
