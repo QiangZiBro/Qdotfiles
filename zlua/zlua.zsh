@@ -9,7 +9,7 @@ then
     if command -v  lua5.3 &> /dev/null && test -f /usr/softwares/z.lua/z.lua 
     then
         # exists
-        eval "$(lua /usr/softwares/z.lua/z.lua --init zsh)"
+        eval "$(lua5.3 /usr/softwares/z.lua/z.lua --init zsh)"
         alias z=_zlua
     fi
 fi
