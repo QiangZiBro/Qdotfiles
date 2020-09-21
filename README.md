@@ -29,3 +29,11 @@ git clone https://github.com/QiangZiBro/Qdotfiles ~/.Qdotfiles && cd ~/.Qdotfile
 # 3.build the image
 docker-compose build --build-arg INSTALL_SOFTWARES=true
 ```
+
+
+
+## Reference
+
+[^1]: [holman](https://github.com/holman)/**[dotfiles](https://github.com/holman/dotfiles)**
+[^2]: [mathiasbynens](https://github.com/mathiasbynens)/**[dotfiles](https://github.com/mathiasbynens/dotfiles)**
+
