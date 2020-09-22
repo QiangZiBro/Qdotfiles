@@ -93,7 +93,9 @@ setup_config(){
     cp tmux/.tmux.conf ~
 
 	# git
-	cp git/.gitconfig ~ && cp git/.gitmessage ~
+	cp git/.gitconfig ~
+	cp git/.gitmessage ~
+	cp_if_file_exists git/.git-credentials ~
 
 	# ssh
 	cp ssh/config ~/.ssh

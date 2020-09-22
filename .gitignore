@@ -4,4 +4,5 @@ ss.json
 export.json
 target
 ssh/config
+git/.git-credentials
 
