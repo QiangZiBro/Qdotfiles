@@ -48,6 +48,12 @@ insert_if_not_exists() {
     fi
 }
 
+cp_if_file_exists(){
+    if [ -f "$1" -a -e $2 ];
+    then
+        cp "$1" "$2"
+    fi
+}
 
 pre_set(){
     # get variables in mac or linux
@@ -88,6 +94,9 @@ setup_config(){
 
 	# git
 	cp git/.gitconfig ~ && cp git/.gitmessage ~
+
+	# ssh
+	cp ssh/config ~/.ssh
 
 }
 
