@@ -1,0 +1,27 @@
+##
+# Host Database
+#
+# localhost is used to configure the loopback interface
+# when the system is booting.  Do not change this entry.
+##
+
+127.0.0.1	localhost
+
+10.22.75.177 lab1
+10.22.75.213 lab2
+
+151.101.72.249 github.http://global.ssl.fastly.net
+192.30.253.112 github.com
+255.255.255.255	broadcasthost
+::1             localhost
+# Added by Docker Desktop
+# To allow the same kube context to work on the host and the container:
+127.0.0.1 kubernetes.docker.internal
+# End of section
+127.0.0.1     activate.xmind.net
+127.0.0.1     practivate.xmind.net
+127.0.0.1     lm.licenses.xmind.net
+127.0.0.1     lmlicenses.xmind.net
+127.0.0.1     www.xmind.net
+127.0.0.1     na1r.services.xmind.net
+199.232.68.133 raw.githubusercontent.com

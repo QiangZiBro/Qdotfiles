@@ -1,9 +1,26 @@
-[https]
-	proxy = 
+#---------------------------------------------------------------------------------
+# 配置文件开始
+#	【注意】
+#	1. 本配置文件按修改频率从高到低，对应从前到后排列
+#	2. 如果直接使用我的配置文件，请进行对应修改！！！
+#---------------------------------------------------------------------------------
 
 [user]
   name = QiangZiBro
   email = qiangzibro@gmail.com
+
+[https]
+	proxy = 
+	sslVerify = false
+	lowSpeedLimit = 0
+	lowSpeedTime = 999999
+
+[alias]
+	lastcommit = rev-parse HEAD
+
+[core]
+  editor = nvim
+  pager = diff-so-fancy | less --tabs=4 -RFX
 
 [push]
   default = current
@@ -11,8 +28,6 @@
 [commit]
   template = ~/.gitmessage
 
-[core]
-  editor = nvim
 
 [color]
   ui = true
@@ -26,3 +41,10 @@
 # git config --global credential.helper store
 [credential]
 	helper = store
+
+#---------------------------------------------------------------------------------
+# 配置文件结束
+#	【注意】
+#	1. 本配置文件按修改频率从高到低，对应从前到后排列
+#	2. 如果直接使用我的配置文件，请进行对应修改！！！
+#---------------------------------------------------------------------------------
