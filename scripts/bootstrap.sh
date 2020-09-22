@@ -86,6 +86,9 @@ setup_config(){
     # tmux
     cp tmux/.tmux.conf ~
 
+	# git
+	cp git/.gitconfig ~ && cp git/.gitmessage ~
+
 }
 
 main(){
