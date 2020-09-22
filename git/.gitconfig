@@ -16,3 +16,5 @@
 
 [color]
   ui = true
+[credential]
+	helper = store
