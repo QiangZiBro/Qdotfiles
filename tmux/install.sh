@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -e
-# Smartly use code below, this code can't find command for alias
 if ! command -v  tmux &> /dev/null
 then
     # installation process...
@@ -16,8 +15,12 @@ then
          sudo apt install tmux -y
     fi
 fi
+
 # tmux plug manager
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+dir="~/.tmux/plugins/tpm"
+if [ ! -d $dir ];then
+	git clone https://github.com/tmux-plugins/tpm $dir
+fi
 tmux source ~/.tmux.conf
 
 exit 0

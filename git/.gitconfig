@@ -1,0 +1,18 @@
+[https]
+	proxy = 
+
+[user]
+  name = QiangZiBro
+  email = qiangzibro@gmail.com
+
+[push]
+  default = current
+
+[commit]
+  template = ~/.gitmessage
+
+[core]
+  editor = nvim
+
+[color]
+  ui = true
