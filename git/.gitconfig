@@ -16,5 +16,13 @@
 
 [color]
   ui = true
+
+#---------------------------------------------------------------------------------
+# git免密登录
+#---------------------------------------------------------------------------------
+# 1.[需要做] 在~/.git-credentials里编辑下面内容
+# https://{username}:{password}@github.com
+# 2.[不用做] 下面配置是运行下列语句的结果
+# git config --global credential.helper store
 [credential]
 	helper = store
