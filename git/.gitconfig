@@ -9,6 +9,9 @@
   name = QiangZiBro
   email = qiangzibro@gmail.com
 
+[http]
+	sslVerify = false
+
 [https]
 	proxy = 
 	sslVerify = false
@@ -35,7 +38,7 @@
 #---------------------------------------------------------------------------------
 # git免密登录
 #---------------------------------------------------------------------------------
-# 1.[需要做] 在~/.git-credentials里编辑下面内容
+# 1.[需要做] 在~/.git-credentials里写好你的账号密码，不带花括号
 # https://{username}:{password}@github.com
 # 2.[不用做] 下面配置是运行下列语句的结果
 # git config --global credential.helper store

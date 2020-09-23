@@ -48,7 +48,7 @@ insert_if_not_exists() {
     fi
 }
 
-cp_if_file_exists(){
+cp_file_if_exists(){
     if [ -f "$1" -a -e $2 ];
     then
         cp "$1" "$2"
@@ -95,7 +95,7 @@ setup_config(){
 	# git
 	cp git/.gitconfig ~
 	cp git/.gitmessage ~
-	cp_if_file_exists git/.git-credentials ~
+	cp_file_if_exists git/.git-credentials ~
 
 	# ssh
 	cp ssh/config ~/.ssh
