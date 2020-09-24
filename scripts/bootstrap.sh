@@ -100,6 +100,10 @@ setup_config(){
 	# ssh
 	cp ssh/config ~/.ssh
 
+	# python
+	cp conda/.condarc ~
+	cp -r .pip ~
+
 }
 
 main(){
