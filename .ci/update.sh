@@ -8,7 +8,9 @@ main(){
         else
             git add -A && git commit -m 'update from ci'
         fi
-        git push origin master
+        git push origin master &
+		git push gitlab master &
+		wait
     
     elif [ "$1" = "pull" ];then
         git pull origin master
