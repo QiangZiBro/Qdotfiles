@@ -1,6 +1,5 @@
 common_settings () {
     alias ei="nvim ~/.Qdotfiles/scripts/init.sh"
-    alias grealpath=realpath
     alias fm="ranger"
     alias sb="source ~/.zshrc"
     alias eb="nvim ~/.zshrc"
