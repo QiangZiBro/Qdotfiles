@@ -8,7 +8,6 @@ elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
 then
      # linux installation branch
     echo linux install
-    sudo apt install -y zsh ranger curl tree \
-		make htop nodejs tmux\
-		docker docker.io docker-compose 
+    sudo apt install -y git zsh ranger curl tree \
+		make htop nodejs tmux
 fi
