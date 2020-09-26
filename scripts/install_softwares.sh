@@ -1,4 +1,5 @@
 #!/bin/bash
+# install all softwares
 
 cd "$(dirname $0)"/..
 

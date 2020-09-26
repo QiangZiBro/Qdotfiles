@@ -1,3 +1,14 @@
+#---------------------------------------------------------------------------------
+#  安装cuda驱动之前必须要进行的配置
+# 
+#	  第一步： 
+#	  sudo bash ./cuda_install_preset.sh -r
+#	  第二步：
+#	  sudo bash ./cuda_install_preset.sh
+#	  第三步：
+#	  在https://developer.nvidia.com/cuda-downloads找到你的驱动runfile，下载，然后运行
+#	  ./cuda_*linux.run 
+#---------------------------------------------------------------------------------
 disable_nouveau(){
 cat << EOF >>/etc/modprobe.d/blacklist-nouveau.conf
 blacklist nouveau
@@ -15,13 +26,6 @@ elif [ "$1" = "-h" ];
 then
 cat << EOF
 设置cuda的脚本，具有安装必备软件和禁止nouveau的功能。
-第一步： 
-sudo bash ./cuda_install_preset.sh -r
-第二步：
-sudo bash ./cuda_install_preset.sh
-第三步：
-安装你的驱动，比如
-./cuda_*linux.run 
 
 这个脚本使用方法：
 	bash ./cuda_install_preset.sh [-rh]

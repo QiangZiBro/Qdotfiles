@@ -2,6 +2,7 @@
   <h3 align="center">QiangZiBro的dotfiles</h3>
   <p align="center">
     点文件(dotfiles)狭义上指unix系统上以点开头的配置文件，这个仓库是我的点文件合集。
+    <br />
     同时我还加入了常用软件安装脚本，并让其跑在了docker里面。使用前请先看看哪些文件生效了，切勿盲目使用！虽欢迎你使用，但自己承担风险！
 ​       <br />
     <a href="README_en.md">EN</a>
@@ -68,17 +69,14 @@ git clone https://github.com/QiangZiBro/Qdotfiles ~/.Qdotfiles && cd ~/.Qdotfile
 
 ### 脚本功能
 
-| 文本                                                         | 意义                                                 |
-| ------------------------------------------------------------ | ---------------------------------------------------- |
-| [scripts/setup_users.sh](./scripts/scripts/setup_users.sh)   | 在一台新机器上设置若干组、用户（如果已经有可以跳过） |
-| [scripts/bootstrap.sh](scripts/bootstrap.sh)                 | 将配置部署到机器上                                   |
-| [scripts/backup.sh](scripts/backup.sh)                       | 备份脚本                                             |
-| [scripts/setup_ss_privoxy_port.sh](scripts/setup_ss_privoxy_port.sh) | 更换ss端口和privoxy端口                              |
-| [scripts/cproxy](scripts/cproxy)                             | 开启命令行代理                                       |
-| [scripts/init.sh](scripts/init.sh)                           | zsh配置的入口（不要运行）                            |
-| [ss/update_ss.*](ss/update_ss.py)                            | 通过ip从一堆配置中选取一份配置文件                   |
-
-
+| 文本                                                         | 意义                               |
+| ------------------------------------------------------------ | ---------------------------------- |
+| [ss/update_ss.*](ss/update_ss.py)                            | 通过ip从一堆配置中选取一份配置文件 |
+| [scripts/bootstrap.sh](scripts/bootstrap.sh)                 | 将配置部署到机器上                 |
+| [scripts/backup.sh](scripts/backup.sh)                       | 备份脚本                           |
+| [scripts/setup_ss_privoxy_port.sh](scripts/setup_ss_privoxy_port.sh) | 更换ss端口和privoxy端口            |
+| [scripts/cproxy](scripts/cproxy)                             | 开启命令行代理                     |
+| [scripts/init.sh](scripts/init.sh)                           | zsh配置的入口（不要运行）          |
 
 ## 实现过程
 
