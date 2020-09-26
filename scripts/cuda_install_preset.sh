@@ -1,3 +1,9 @@
+if [ ! "$(expr substr $(uname -s) 1 5)" = "Linux" ]
+then
+	echo Your system is not linux, abort!
+	exit 1
+fi
+
 disable_nouveau(){
 cat << EOF >>/etc/modprobe.d/blacklist-nouveau.conf
 blacklist nouveau
