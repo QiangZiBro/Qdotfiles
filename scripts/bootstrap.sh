@@ -98,7 +98,7 @@ setup_config(){
 	cp_file_if_exists git/.git-credentials ~
 
 	# ssh
-	cp ssh/config ~/.ssh
+	cp_file_if_exists ssh/config ~/.ssh
 
 	# python
 	cp conda/.condarc ~
