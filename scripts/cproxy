@@ -3,10 +3,7 @@
 # Configure the service. This script runs in docker container
 #------------------------------------------------------------------------------
 cat << "EOF"
- ________________________ 
-< All is done! Try blow: >
- ------------------------ 
-
+INFO: All is done! Try blow:
     PROXY_PORT=8999
     export http_proxy=127.0.0.1:$PROXY_PORT
     export https_proxy=127.0.0.1:$PROXY_PORT
