@@ -1,4 +1,5 @@
 <p align="center">
+  <img src="https://gitee.com/qiangzibro/uPic/raw/master/uPic/undraw_xmas_snowman_k7yf.svg"  style="zoom:40%;">
   <h3 align="center">QiangZiBro的dotfiles</h3>
   <p align="center">
     点文件(dotfiles)狭义上指unix系统上以点开头的配置文件，这个仓库是我的点文件合集。
@@ -8,6 +9,7 @@
     <a href="README_en.md">EN</a>
   </p>
 </p>
+
 
 
 ## 前言
