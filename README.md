@@ -1,11 +1,13 @@
 <p align="center">
   <h3 align="center">QiangZiBro的dotfiles</h3>
   <p align="center">
-    点文件(dotfiles)狭义上指unix系统上以点开头的配置文件，这个仓库是我的点文件合集。注意！使用前请先看看哪些文件生效了，并自己承担风险！
+    点文件(dotfiles)狭义上指unix系统上以点开头的配置文件，这个仓库是我的点文件合集。
+    同时我还加入了常用软件安装脚本，并让其跑在了docker里面。使用前请先看看哪些文件生效了，切勿盲目使用！虽欢迎你使用，但自己承担风险！
 ​       <br />
     <a href="README_en.md">EN</a>
   </p>
 </p>
+
 
 ## 前言
 
