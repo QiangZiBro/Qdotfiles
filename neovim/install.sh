@@ -1,16 +1,17 @@
 #!/bin/bash
-set -ex
-
 if test "$(uname)" = "Darwin"
 then
     brew install neovim
 elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
 then
 	# Use neovim for all users
-	if [ ! -f /usr/bin/nvim ];then
-		sudo wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage -P /usr/bin/
-		sudo mv /usr/bin/nvim.appimage /usr/bin/nvim
-		sudo chmod 777 /usr/bin/nvim
+	if [ ! -f /usr/local/bin/nvim ];then
+		cd /usr/softwares
+		wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage 
+		chmod 777 ./nvim.appimage
+		./nvim.appimage --appimage-extract
+		mv squashfs-root nvim
+		sudo ln -s `realpath nvim/AppRun` /usr/local/bin/nvim
 	fi
 fi
 
@@ -22,4 +23,4 @@ then
 fi
 
 ## 安装插件
-nvim +PlugInstall +qall
+#nvim +PlugInstall +qall
