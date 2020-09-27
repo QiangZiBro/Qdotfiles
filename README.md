@@ -30,19 +30,19 @@
 
 按使用频率由高到底从前到后
 
-### 立即从一台unix机器上设置Qdotfiles
+### 1 立即从一台unix机器上设置Qdotfiles
 
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/QiangZiBro/Qdotfiles/master/scripts/bootstrap.sh)"
 ```
 
-### 仅克隆项目
+### 2 仅克隆项目
 
 ```bash
 git clone https://github.com/QiangZiBro/Qdotfiles ~/.Qdotfiles && cd ~/.Qdotfiles
 ```
 
-### 配置命令行代理
+### 3 配置命令行代理
 
 像apt、docker、pip、conda都可以通过上一个条命令一键换回国内源，但对下载有困难的比如git、wget、pytorch官方包，需要使用命令行代理
 
@@ -50,6 +50,15 @@ git clone https://github.com/QiangZiBro/Qdotfiles ~/.Qdotfiles && cd ~/.Qdotfile
 
 - 第二步：输入`dcd`可运行docker镜像到后台
 - 第三步：`proxy start`开启代理，这个命令会设置http、https的代理端口，并设置git的http代理
+
+### 4 在docker里体验我的配置
+
+```bash
+docker-compose build --build-arg INSTALL_SOFTWARES=true
+docker-compose exec Qlinux zsh
+```
+
+### 5 更多
 
 ### docker
 

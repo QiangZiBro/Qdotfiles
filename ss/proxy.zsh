@@ -1,4 +1,6 @@
-
+function cg(){
+	curl -I www.google.com
+}
 function proxy(){
     if test "$(uname)" = "Darwin";then
         # mac branch
