@@ -40,6 +40,6 @@ source ~/.Qdotfiles/tmux/tmux.zsh
 # nvm
 source ~/.Qdotfiles/nvm/nvm.zsh
 
-if [ -f "~/.zsh_profile" ];then
-	source ~/.zsh_profile
+if [ -e "~/.zsh_profile" ];then
+	. ~/.zsh_profile
 fi
