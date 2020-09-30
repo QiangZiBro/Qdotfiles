@@ -27,7 +27,8 @@ if [[ -d ~/.zplug ]]; then
     fi
     zplug 'plugins/git', from:oh-my-zsh, if:'which git'
     zplug 'romkatv/powerlevel10k', as:theme, depth:1
-    # zplug "plugins/vi-mode", from:oh-my-zsh
+    [[ ! -f ~/.Qdotfiles/zsh/.p10k.zsh ]] || source ~/.Qdotfiles/zsh/.p10k.zsh
+	
     zplug 'zsh-users/zsh-autosuggestions'
     zplug 'zsh-users/zsh-completions', defer:2
     zplug 'zsh-users/zsh-history-substring-search'
@@ -39,6 +40,4 @@ if [[ -d ~/.zplug ]]; then
     
     zplug load
     
-    # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-    [[ ! -f ~/.Qdotfiles/zsh/.p10k.zsh ]] || source ~/.Qdotfiles/zsh/.p10k.zsh
 fi
