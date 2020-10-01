@@ -5,7 +5,10 @@ import os
 import json
 import argparse
 
-parser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser("""
+Example:
+    python update_ss.py -i "8.8.8.8" -p 1234 -r -d
+""")
 
 parser.add_argument("-i","--ip", type=str, default="")
 parser.add_argument("-p","--port", type=str, default="")
@@ -52,8 +55,8 @@ if OK and args.remote:
 
     if args.docker_restart:
         cmd = """
-        ssh -o ConnectTimeout=5 l1 \"cd ~/.Qdotfiles && docker-compose restart "
-        ssh -o ConnectTimeout=5 l2 \"cd ~/.Qdotfiles && docker-compose restart "
+        ssh -o ConnectTimeout=5 l1 \"cd ~/.Qdotfiles && docker-compose restart " &
+        ssh -o ConnectTimeout=5 l2 \"cd ~/.Qdotfiles && docker-compose restart " &
         wait
         """
         os.system(cmd)
