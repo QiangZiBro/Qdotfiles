@@ -11,6 +11,7 @@ parser.add_argument("-i","--ip", type=str, default="")
 parser.add_argument("-p","--port", type=str, default="")
 parser.add_argument("-f","--json_file", type=str, default="export.json")
 parser.add_argument("-r","--remote", default=False, action="store_true")
+parser.add_argument("-d","--docker_restart", default=False, action="store_true")
 args = parser.parse_args()
 
 json_file = args.json_file
@@ -39,7 +40,7 @@ for c in data["configs"]:
             write(c)
             break
 if not OK:
-    print(f"I did't find any configuration in your {json_file} file")
+    print("I did't find any configuration in your file")
 
 if OK and args.remote:
     cmd = """
@@ -49,3 +50,10 @@ if OK and args.remote:
     """
     os.system(cmd)
 
+    if args.docker_restart:
+        cmd = """
+        ssh -o ConnectTimeout=5 l1 \"cd ~/.Qdotfiles && docker-compose restart "
+        ssh -o ConnectTimeout=5 l2 \"cd ~/.Qdotfiles && docker-compose restart "
+        wait
+        """
+        os.system(cmd)
