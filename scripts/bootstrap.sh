@@ -85,6 +85,7 @@ check_project(){
 setup_config(){
     # zshrc
     cp zsh/.zshrc ~
+	cp_file_if_exists zsh/.zsh_profile ~
 
     # nvim
     mkdir -p ~/.config/nvim && cp neovim/init.vim ~/.config/nvim
