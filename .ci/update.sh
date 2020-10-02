@@ -51,7 +51,7 @@ pre_check(){
 		grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | grep -Ev '172.*.0.1'`
 	echo INFO:updating in $IP
 	echo TESTING:
-	echo ACTION:$ACTION, MESSAGE:$MESSAGE, DESTINATION:$DESTINATION, PULL_ALL:$PULL_ALL
+	echo ACTION:$ACTION, UPDATE:$UPDATE,  MESSAGE:$MESSAGE, DESTINATION:$DESTINATION, PULL_ALL:$PULL_ALL
 	#source  ~/.Qdotfiles/ss/proxy.zsh
 	#proxy start
 	cd ~/.Qdotfiles
