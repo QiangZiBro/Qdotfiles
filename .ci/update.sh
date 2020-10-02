@@ -68,8 +68,8 @@ github_update(){
         git pull origin $DESTINATION
         bash ~/.Qdotfiles/scripts/backup.sh
         git add -A && git commit -m "$MESSAGE"
-        git push origin $DESTINATION "$DAEMON"
-		git push gitlab $DESTINATION "$DAEMON"
+        git push origin "$DESTINATION" "$DAEMON"
+		git push gitlab "$DESTINATION" "$DAEMON"
 		wait
     
     elif [ "$ACTION" = "pull" ];then
