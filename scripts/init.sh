@@ -29,6 +29,7 @@ source ~/.Qdotfiles/ss/proxy.zsh
 # zsh
 source ~/.Qdotfiles/zsh/aliases.zsh
 source ~/.Qdotfiles/zsh/theme.zsh
+source_if_exists ~/.zsh_profile
 
 # zlua
 source ~/.Qdotfiles/zlua/zlua.zsh
@@ -55,9 +56,7 @@ source ~/.Qdotfiles/tmux/tmux.zsh
 # nvm
 source ~/.Qdotfiles/nvm/nvm.zsh
 
-if [ -e ~/.zsh_profile ];then
-	. ~/.zsh_profile
-fi
+
 
 # 整理 PATH，删除重复路径
 if [ -n "$PATH" ]; then
