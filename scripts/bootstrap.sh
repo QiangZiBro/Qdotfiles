@@ -60,14 +60,17 @@ pre_set(){
     unameOut="$(uname -s)"
     case "${unameOut}" in
         Linux*)
-			sudo mkdir -p /usr/softwares/
-			sudo chmod 777 -R /usr/softwares/
+			if [ ! -d /usr/softwares ];then
+				echo INFO:Creating directory in /usr/softwares/, may need sudo priviledge
+				sudo mkdir -p /usr/softwares/
+				sudo chmod 777 -R /usr/softwares/
+			fi
             ;;
         Darwin*)
             mkdir -p ~/applications/ 
             ;;
         *)
-            echo "Not supported"
+            echo "System not supported, support [mac|linux], abort!"
             exit 0
     esac
 }
