@@ -2,6 +2,8 @@ IP=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' |\
 	grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | grep -Ev '172.*.0.1'`
 echo updating in $IP
 
+source ~/.Qdotfiles/ss/proxy.zsh
+proxy start
 
 cd $(dirname $0)/..
 main(){
