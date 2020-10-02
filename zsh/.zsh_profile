@@ -7,6 +7,9 @@ common_aliases () {
     alias cz="cd ~/.Qdotfiles/zsh/"
     alias cq="cd ~/.Qdotfiles/"
     alias unproxy='http_proxy="" https_proxy=""'
+	alias qupdate="/bin/bash ~/.Qdotfiles/.ci/update.sh update"
+	alias qpull="/bin/bash ~/.Qdotfiles/.ci/update.sh pull"
+	alias qpush="/bin/bash ~/.Qdotfiles/.ci/update.sh push"
 }
 mac_aliases () {
     alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
