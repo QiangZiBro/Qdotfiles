@@ -1,4 +1,7 @@
-
+#---------------------------------------------------------------------------------
+# Lazy man script
+# Author: QiangZiBro
+#---------------------------------------------------------------------------------
 CLEAR='\033[0m'
 RED='\033[0;31m'
 
@@ -22,7 +25,7 @@ Usage 3:
 Usage 4: git add + commit + push + origin pull + bootstrap
 	.ci/update.sh update
 
-Usage 5: use multi processes
+Usage 5[TODO]: use multi processes
 	.ci/update.sh [command] -d
 
 EOF
@@ -76,9 +79,9 @@ github_update(){
 		git pull origin $DESTINATION
 		/bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
 		if [ -n "$PULL_ALL" ];then
-			ssh l1 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull \
+			ssh -o ConnectTimeout=3 l1 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull \
 				-t \"$DESTINATION\" "
-            ssh l2 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull \
+            ssh -o ConnectTimeout=3 l2 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull \
 				-t \"$DESTINATION\" "
 			wait
         fi
