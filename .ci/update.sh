@@ -84,8 +84,8 @@ github_update(){
 if [ -n "$UPDATE" ];then 
 	~/.Qdotfiles/.ci/update.sh push
 	~/.Qdotfiles/.ci/update.sh pull -a
-    ssh l1 "/bin/bash /home/qiangzibro/.Qdotfiles/scripts/bootstrap.sh"
-    ssh l2 "/bin/bash /home/qiangzibro/.Qdotfiles/scripts/bootstrap.sh"
+    #ssh l1 "/bin/bash /home/qiangzibro/.Qdotfiles/scripts/bootstrap.sh"
+    #ssh l2 "/bin/bash /home/qiangzibro/.Qdotfiles/scripts/bootstrap.sh"
 elif [ -z "$ACTION" ];
 	then usage "Action (push|pull) is not set";
 else
