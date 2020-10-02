@@ -53,8 +53,8 @@ pre_check(){
 	echo INFO:updating in $IP
 	echo ACTION:$ACTION, UPDATE:$UPDATE,  MESSAGE:$MESSAGE, DESTINATION:$DESTINATION, PULL_ALL:$PULL_ALL
 	echo "#--------------------------------------------"
-	#source  ~/.Qdotfiles/ss/proxy.zsh
-	#proxy start
+	source  ~/.Qdotfiles/ss/proxy.zsh
+	proxy start
 	cd ~/.Qdotfiles
 }
 
