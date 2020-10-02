@@ -74,6 +74,7 @@ github_update(){
     
     elif [ "$ACTION" = "pull" ];then
         git pull origin $DESTINATION
+		/bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
         if [ -n "$PULL_ALL" ];then
             ssh l1 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull \
 				-t \"$DESTINATION\" \
@@ -91,8 +92,6 @@ pre_check
 if [ -n "$UPDATE" ];then 
 	.ci/update.sh push
 	.ci/update.sh pull -a
-    ssh l1 "/bin/bash /home/qiangzibro/.Qdotfiles/scripts/bootstrap.sh"
-    ssh l2 "/bin/bash /home/qiangzibro/.Qdotfiles/scripts/bootstrap.sh"
 elif [ -z "$ACTION" ];
 	then usage "Action (push|pull) is not set";
 else
