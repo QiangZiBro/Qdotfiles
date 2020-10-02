@@ -44,17 +44,17 @@ if [ -n "$HELP" ];then usage "Lazy man script"; fi
 if [ -z "$MESSAGE" ]; then MESSAGE='update from ci';fi
 if [ -z "$DESTINATION" ]; then DESTINATION='master';fi
 
-echo TESTING:
-echo ACTION:$ACTION, MESSAGE:$MESSAGE, DESTINATION:$DESTINATION, PULL_ALL:$PULL_ALL
 
 pre_check(){
 	# 如果有网络问题使用这个
 	IP=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' |\
 		grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | grep -Ev '172.*.0.1'`
 	echo INFO:updating in $IP
-	source  ~/.Qdotfiles/ss/proxy.zsh
-	proxy start
-	cd $(dirname $0)/..
+	echo TESTING:
+	echo ACTION:$ACTION, MESSAGE:$MESSAGE, DESTINATION:$DESTINATION, PULL_ALL:$PULL_ALL
+	#source  ~/.Qdotfiles/ss/proxy.zsh
+	#proxy start
+	cd ~/.Qdotfiles
 }
 
 github_update(){
@@ -81,9 +81,10 @@ github_update(){
     fi
 }
 
+pre_check
 if [ -n "$UPDATE" ];then 
-	~/.Qdotfiles/.ci/update.sh push
-	~/.Qdotfiles/.ci/update.sh pull -a
+	.ci/update.sh push
+	.ci/update.sh pull -a
     #ssh l1 "/bin/bash /home/qiangzibro/.Qdotfiles/scripts/bootstrap.sh"
     #ssh l2 "/bin/bash /home/qiangzibro/.Qdotfiles/scripts/bootstrap.sh"
 elif [ -z "$ACTION" ];
