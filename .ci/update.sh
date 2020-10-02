@@ -68,8 +68,8 @@ github_update(){
         git pull origin $DESTINATION
         bash ~/.Qdotfiles/scripts/backup.sh
         git add -A && git commit -m "$MESSAGE"
-        git push origin $DESTINATION $DAEMON
-		git push gitlab $DESTINATION $DAEMON
+        git push origin $DESTINATION "$DAEMON"
+		git push gitlab $DESTINATION "$DAEMON"
 		wait
     
     elif [ "$ACTION" = "pull" ];then
@@ -77,9 +77,9 @@ github_update(){
 		/bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
 		if [ -n "$PULL_ALL" ];then
 			ssh l1 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull \
-				-t \"$DESTINATION\" " $DAEMON
+				-t \"$DESTINATION\" " "$DAEMON"
             ssh l2 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull \
-				-t \"$DESTINATION\" " $DAEMON
+				-t \"$DESTINATION\" " "$DAEMON"
 			wait
         fi
     fi
