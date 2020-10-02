@@ -18,6 +18,10 @@ Usage 2: push to specified destination
 
 Usage 3: 
    .ci/update.sh pull [-a]
+
+Usage 4: git add + commit + push + origin pull + bootstrap
+	.ci/update.sh update
+
 EOF
 
   exit 1
@@ -27,6 +31,7 @@ EOF
 while [[ "$#" > 0 ]]; do case $1 in
   push) ACTION="push";shift;;
   pull) ACTION="pull";shift;;
+  update) UPDATE=1;shift;;
   -h|--help) HELP=1; shift;;
   -m|--message) MESSAGE="$2"; shift;shift;;
   -t|--destination) DESTINATION="$2";shift;shift;;
@@ -36,7 +41,6 @@ esac; done
 
 # verify paams
 if [ -n "$HELP" ];then usage "Lazy man script"; fi
-if [ -z "$ACTION" ]; then usage "Action (push|pull) is not set"; fi;
 if [ -z "$MESSAGE" ]; then MESSAGE='update from ci';fi
 if [ -z "$DESTINATION" ]; then DESTINATION='master';fi
 
@@ -44,6 +48,7 @@ echo TESTING:
 echo ACTION:$ACTION, MESSAGE:$MESSAGE, DESTINATION:$DESTINATION, PULL_ALL:$PULL_ALL
 
 pre_check(){
+	# 如果有网络问题使用这个
 	IP=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' |\
 		grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | grep -Ev '172.*.0.1'`
 	echo INFO:updating in $IP
@@ -52,7 +57,7 @@ pre_check(){
 	cd $(dirname $0)/..
 }
 
-main(){
+github_update(){
     if [ "$ACTION" = "push" ];then
         git pull origin $DESTINATION
         bash ~/.Qdotfiles/scripts/backup.sh
@@ -76,4 +81,13 @@ main(){
     fi
 }
 
-main "$@"
+if [ -n "$UPDATE" ];then 
+	~/.Qdotfiles/.ci/update.sh push
+	~/.Qdotfiles/.ci/update.sh pull -a
+    ssh l1 "/bin/bash /home/qiangzibro/.Qdotfiles/scripts/bootstrap.sh"
+    ssh l2 "/bin/bash /home/qiangzibro/.Qdotfiles/scripts/bootstrap.sh"
+elif [ -z "$ACTION" ];
+	then usage "Action (push|pull) is not set";
+else
+	github_update "$@"
+fi
