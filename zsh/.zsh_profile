@@ -1,11 +1,33 @@
 #!/bin/bash
+common_aliases () {
+    alias ei="nvim ~/.Qdotfiles/scripts/init.sh"
+    alias fm="ranger"
+    alias sb="source ~/.zshrc"
+    alias eb="nvim ~/.zshrc"
+    alias cz="cd ~/.Qdotfiles/zsh/"
+    alias cq="cd ~/.Qdotfiles/"
+    alias unproxy='http_proxy="" https_proxy=""'
+}
+mac_aliases () {
+    alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+    alias meshlab="/Applications/meshlab.app/Contents/MacOS/meshlab"
+    alias meshlabserver="/Applications/meshlab.app/Contents/MacOS/meshlabserver"
+}
+linux_aliases () {
+    alias hello="world"
+}
+
+common_aliases
+
 # 系统特有的环境变量
 if test "$(uname)" = "Darwin"
 then
-	echo 
+	mac_aliases
 
 elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
 then
+	linux_aliases
+
 	#CUDA
 	if [ -d "/usr/local/cuda-11.1/bin" ];then
 		export PATH=/usr/local/cuda-11.1/bin${PATH:+:${PATH}}
