@@ -73,13 +73,12 @@ github_update(){
 		wait
     
     elif [ "$ACTION" = "pull" ];then
-        git pull origin $DESTINATION
+		git pull origin $DESTINATION
 		/bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
-        if [ -n "$PULL_ALL" ];then
-            ssh l1 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull \
+		if [ -n "$PULL_ALL" ];then
+			ssh l1 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull \
 				-t \"$DESTINATION\" \
 				" $DAEMON
-
             ssh l2 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull \
 				-t \"$DESTINATION\" \
 				" $DAEMON
