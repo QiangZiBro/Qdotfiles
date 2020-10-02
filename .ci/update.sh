@@ -49,9 +49,10 @@ pre_check(){
 	# 如果有网络问题使用这个
 	IP=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' |\
 		grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | grep -Ev '172.*.0.1'`
+	echo "#--------------------------------------------"
 	echo INFO:updating in $IP
-	echo TESTING:
 	echo ACTION:$ACTION, UPDATE:$UPDATE,  MESSAGE:$MESSAGE, DESTINATION:$DESTINATION, PULL_ALL:$PULL_ALL
+	echo "#--------------------------------------------"
 	#source  ~/.Qdotfiles/ss/proxy.zsh
 	#proxy start
 	cd ~/.Qdotfiles
