@@ -34,6 +34,7 @@ local_backup(){
 	cp_file_if_exists ~/.gitconfig git
 	cp_file_if_exists ~/.gitmessage git
 	cp_file_if_exists ~/.git-credentials git
+	cp_file_if_exists ~/.zsh_profile zsh
 	proxy start
 
 	# ssh
