@@ -7,7 +7,7 @@ RED='\033[0;31m'
 
 function usage() {
   if [ -n "$1" ]; then
-    echo "${RED}☺️ $1${CLEAR}\n";
+    echo -e "${RED}☺️ $1${CLEAR}\n"
   fi
 
 cat << EOF
