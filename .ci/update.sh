@@ -1,27 +1,72 @@
-IP=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' |\
-	grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | grep -Ev '172.*.0.1'`
-echo updating in $IP
+#---------------------------------------------------------------------------------
+#	Lazy man script
+# Usage 1: add + commit + push
+#	.ci/update.sh push -m ${commit message}
+#
+# Usage 2: push to specified destination
+#	.ci/update.sh push -t "HEAD"
+#	.ci/update.sh push -t "$DESTINATION"
+#	.ci/update.sh push -t "dev:dev"
+#
+# Usage 3: 
+#	.ci/update.sh pull [-a]
+#
+#---------------------------------------------------------------------------------
 
-source  ~/.Qdotfiles/ss/proxy.zsh
-proxy start
+set -ex
+CLEAR='\033[0m'
+RED='\033[0;31m'
 
-cd $(dirname $0)/..
+function usage() {
+  if [ -n "$1" ]; then
+    echo -e "${RED}☺️ $1${CLEAR}\n";
+  fi
+  echo "Usage: $0 [-n number-of-people] [-s section-id] [-c cache-file]"
+  echo "  -n, --number-of-people   The number of people"
+  echo ""
+  echo "Example: "
+  exit 1
+}
+
+# parse params
+while [[ "$#" > 0 ]]; do case $1 in
+  push) ACTION="push";shift;;
+  pull) ACTION="pull";shift;;
+  -m|--message) MESSAGE="$2"; shift;shift;;
+  -t|--destination) DESTINATION="$2";shift;shift;;
+  -a|--pull_all) PULL_ALL=1;shift;;
+  *) usage "Unknown parameter passed: $1"; shift; shift;;
+esac; done
+
+# verify paams
+if [ -z "$ACTION" ]; then usage "Action (push|pull) is not set"; fi;
+if [ -z "$MESSAGE" ]; then MESSAGE='update from ci';fi
+if [ -z "$DESTINATION" ]; then DESTINATION='master';fi
+
+echo TESTING:
+echo ACTION:$ACTION, MESSAGE:$MESSAGE, DESTINATION:$DESTINATION, PULL_ALL:$PULL_ALL
+
+pre_check(){
+	IP=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' |\
+		grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | grep -Ev '172.*.0.1'`
+	echo INFO:updating in $IP
+	source  ~/.Qdotfiles/ss/proxy.zsh
+	proxy start
+	cd $(dirname $0)/..
+}
+
 main(){
-    if [ "$1" = "push" ];then
-        git pull origin master
+    if [ "$ACTION" = "push" ];then
+        git pull origin $DESTINATION
         bash ~/.Qdotfiles/scripts/backup.sh
-        if [ -n "$2" ];then
-            git add -A && git commit -m "$2"
-        else
-            git add -A && git commit -m 'update from ci'
-        fi
-        git push origin master &
-		git push gitlab master &
+        git add -A && git commit -m "$MESSAGE"
+        git push origin $DESTINATION &
+		git push gitlab $DESTINATION &
 		wait
     
-    elif [ "$1" = "pull" ];then
-        git pull origin master
-        if [ "$2" = "all" ];then
+    elif [ "$ACTION" = "pull" ];then
+        git pull origin $DESTINATION
+        if [ -n "$PULL_ALL" ];then
             ssh l1 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull" &# ssh执行远程脚本
             ssh l2 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull" &# ssh执行远程脚本
 			wait
