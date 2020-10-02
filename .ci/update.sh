@@ -1,29 +1,25 @@
-#---------------------------------------------------------------------------------
-#	Lazy man script
-# Usage 1: add + commit + push
-#	.ci/update.sh push -m ${commit message}
-#
-# Usage 2: push to specified destination
-#	.ci/update.sh push -t "HEAD"
-#	.ci/update.sh push -t "$DESTINATION"
-#	.ci/update.sh push -t "dev:dev"
-#
-# Usage 3: 
-#	.ci/update.sh pull [-a]
-#
-#---------------------------------------------------------------------------------
 
 CLEAR='\033[0m'
 RED='\033[0;31m'
 
 function usage() {
   if [ -n "$1" ]; then
-    echo -e "${RED}☺️ $1${CLEAR}\n";
+    echo "${RED}☺️ $1${CLEAR}\n";
   fi
-  echo "Usage: $0 [-n number-of-people] [-s section-id] [-c cache-file]"
-  echo "  -n, --number-of-people   The number of people"
-  echo ""
-  echo "Example: "
+
+cat << EOF
+Usage 1: add + commit + push
+   .ci/update.sh push -m "do something"
+
+Usage 2: push to specified destination
+   .ci/update.sh push -t "HEAD"
+   .ci/update.sh push -t "master"
+   .ci/update.sh push -t "dev:dev"
+
+Usage 3: 
+   .ci/update.sh pull [-a]
+EOF
+
   exit 1
 }
 
@@ -31,6 +27,7 @@ function usage() {
 while [[ "$#" > 0 ]]; do case $1 in
   push) ACTION="push";shift;;
   pull) ACTION="pull";shift;;
+  -h|--help) HELP=1; shift;;
   -m|--message) MESSAGE="$2"; shift;shift;;
   -t|--destination) DESTINATION="$2";shift;shift;;
   -a|--pull_all) PULL_ALL=1;shift;;
@@ -38,6 +35,7 @@ while [[ "$#" > 0 ]]; do case $1 in
 esac; done
 
 # verify paams
+if [ -n "$HELP" ];then usage "Lazy man script"; fi
 if [ -z "$ACTION" ]; then usage "Action (push|pull) is not set"; fi;
 if [ -z "$MESSAGE" ]; then MESSAGE='update from ci';fi
 if [ -z "$DESTINATION" ]; then DESTINATION='master';fi
