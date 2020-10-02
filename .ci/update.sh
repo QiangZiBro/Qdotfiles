@@ -22,6 +22,9 @@ Usage 3:
 Usage 4: git add + commit + push + origin pull + bootstrap
 	.ci/update.sh update
 
+Usage 5: use multi process
+	.ci/update.sh [command] -d
+
 EOF
 
   exit 1
@@ -36,6 +39,7 @@ while [[ "$#" > 0 ]]; do case $1 in
   -m|--message) MESSAGE="$2"; shift;shift;;
   -t|--destination) DESTINATION="$2";shift;shift;;
   -a|--pull_all) PULL_ALL=1;shift;;
+  -d|--daemon) DAEMON="&";shift;;
   *) usage "Unknown parameter passed: $1"; shift; shift;;
 esac; done
 
@@ -64,8 +68,8 @@ github_update(){
         git pull origin $DESTINATION
         bash ~/.Qdotfiles/scripts/backup.sh
         git add -A && git commit -m "$MESSAGE"
-        git push origin $DESTINATION &
-		git push gitlab $DESTINATION &
+        git push origin $DESTINATION $DAEMON
+		git push gitlab $DESTINATION $DAEMON
 		wait
     
     elif [ "$ACTION" = "pull" ];then
@@ -73,11 +77,11 @@ github_update(){
         if [ -n "$PULL_ALL" ];then
             ssh l1 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull \
 				-t \"$DESTINATION\" \
-				" &
+				" $DAEMON
 
             ssh l2 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull \
 				-t \"$DESTINATION\" \
-				" &
+				" $DAEMON
 			wait
         fi
     fi
