@@ -64,8 +64,13 @@ main(){
     elif [ "$ACTION" = "pull" ];then
         git pull origin $DESTINATION
         if [ -n "$PULL_ALL" ];then
-            ssh l1 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull" &# ssh执行远程脚本
-            ssh l2 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull" &# ssh执行远程脚本
+            ssh l1 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull \
+				-t \"$DESTINATION\" \
+				" &
+
+            ssh l2 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull \
+				-t \"$DESTINATION\" \
+				" &
 			wait
         fi
     fi
