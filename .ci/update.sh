@@ -47,7 +47,7 @@ while [[ "$#" > 0 ]]; do case $1 in
 esac; done
 
 # verify paams
-if [ -n "$HELP" ];then usage "Lazy man script"; fi
+if [ -n "$HELP" ];then usage "Qdotfiles updater"; fi
 if [ -z "$MESSAGE" ]; then MESSAGE='update from ci';fi
 if [ -z "$DESTINATION" ]; then DESTINATION='master';fi
 
