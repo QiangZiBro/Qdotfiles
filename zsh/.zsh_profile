@@ -1,4 +1,7 @@
 #!/bin/bash
+qdot(){
+	/bin/bash ~/.Qdotfiles/.ci/update.sh "$@"
+}
 common_aliases () {
     alias ei="nvim ~/.Qdotfiles/scripts/init.sh"
     alias fm="ranger"
