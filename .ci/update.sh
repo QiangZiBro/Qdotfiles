@@ -22,7 +22,7 @@ Usage 3:
 Usage 4: git add + commit + push + origin pull + bootstrap
 	.ci/update.sh update
 
-Usage 5: use multi process
+Usage 5: use multi processes
 	.ci/update.sh [command] -d
 
 EOF
