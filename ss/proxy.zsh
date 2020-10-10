@@ -22,3 +22,8 @@ function proxy(){
         echo "Wrong parameter!Usage: proxy [start|stop]"
     fi
 }
+
+function change_ss(){
+	cd ~/.Qdotfiles/ss
+	python update_ss.py "$@"
+}
