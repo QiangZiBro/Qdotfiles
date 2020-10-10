@@ -5,16 +5,16 @@ import os
 import json
 import argparse
 
-parser = argparse.ArgumentParser("""
-Example:
-    python update_ss.py -i "8.8.8.8" -p 1234 -r -d
+parser = argparse.ArgumentParser(description="""
+Find ss configure --> Upload to server --> Restart docker on remote
 """)
 
-parser.add_argument("-i","--ip", type=str, default="")
-parser.add_argument("-p","--port", type=str, default="")
-parser.add_argument("-f","--json_file", type=str, default="export.json")
-parser.add_argument("-r","--remote", default=False, action="store_true")
-parser.add_argument("-d","--docker_restart", default=False, action="store_true")
+parser.add_argument("-i","--ip", type=str, required=True,help="Remote ss server ip address")
+parser.add_argument("-p","--port", type=str, default="", help="Remote ss server ip Port")
+parser.add_argument("-f","--file", type=str, default="export.json", help="Export file,\
+        should in ss directory")
+parser.add_argument("-r","--remote", default=False, action="store_true",help="Update ss file to remote")
+parser.add_argument("-d","--docker_restart", default=False, action="store_true",help="Restart docker after update ss file")
 args = parser.parse_args()
 
 json_file = args.json_file
