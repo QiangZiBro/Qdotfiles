@@ -9,6 +9,7 @@ common_aliases () {
     alias eb="nvim ~/.zshrc"
     alias cz="cd ~/.Qdotfiles/zsh/"
     alias cq="cd ~/.Qdotfiles/"
+	alias cr="cd ~/.config/ranger/"
     alias unproxy='http_proxy="" https_proxy=""'
 	alias qupdate="/bin/bash ~/.Qdotfiles/.ci/update.sh update"
 	alias qpull="/bin/bash ~/.Qdotfiles/.ci/update.sh pull"
