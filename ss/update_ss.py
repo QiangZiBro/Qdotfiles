@@ -17,7 +17,7 @@ parser.add_argument("-r","--remote", default=False, action="store_true",help="Up
 parser.add_argument("-d","--docker_restart", default=False, action="store_true",help="Restart docker after update ss file")
 args = parser.parse_args()
 
-json_file = args.json_file
+json_file = args.file
 ip = args.ip
 port = args.port
 
