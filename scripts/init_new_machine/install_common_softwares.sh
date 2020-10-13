@@ -9,5 +9,5 @@ then
      # linux installation branch
     echo linux install
     sudo apt install -y git zsh ranger curl tree \
-		make htop nodejs tmux
+		make htop nodejs tmux snapd
 fi
