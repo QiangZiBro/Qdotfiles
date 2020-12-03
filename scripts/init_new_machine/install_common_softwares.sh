@@ -5,6 +5,7 @@ then
 
 elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
 then
-    sudo apt install -y git zsh ranger curl tree \
-		make htop nodejs tmux snapd
+	softwares="git zsh ranger curl tree make htop nodejs tmux snapd"
+	echo "Hi handsome boy! I will install some very common softwares you may need such as $softwares"
+    sudo apt install -y $softwares
 fi
