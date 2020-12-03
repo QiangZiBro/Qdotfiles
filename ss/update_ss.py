@@ -49,6 +49,7 @@ if OK and args.remote:
     cmd = """
     scp -o ConnectTimeout=5 ss.json l1:~/.Qdotfiles/ss/ &
     scp -o ConnectTimeout=5 ss.json l2:~/.Qdotfiles/ss/ &
+    scp -o ConnectTimeout=5 ss.json l3:~/.Qdotfiles/ss/ &
     wait
     """
     os.system(cmd)
@@ -57,6 +58,7 @@ if OK and args.remote:
         cmd = """
         ssh -o ConnectTimeout=5 l1 \"cd ~/.Qdotfiles && docker-compose restart " &
         ssh -o ConnectTimeout=5 l2 \"cd ~/.Qdotfiles && docker-compose restart " &
+        ssh -o ConnectTimeout=5 l3 \"cd ~/.Qdotfiles && docker-compose restart " &
         wait
         """
         os.system(cmd)
