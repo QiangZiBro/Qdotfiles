@@ -8,8 +8,14 @@
 
 cd "$(dirname $0)"/..
 
-bash scripts/init_new_machine/install_common_softwares.sh
+if test "$(expr substr $(uname -s) 1 5)" = "Linux"
+then
+	# will install three kind of softwares
+	bash scripts/init_new_machine/install_common_softwares.sh
+	bash scripts/init_new_machine/install_develop_softwares.sh
+fi
 
+# TODO: setup the proxy
 for i in docker zsh neovim tmux
 do
     echo installing $i
@@ -20,5 +26,3 @@ do
 		bash $i/install.sh
 	fi
 done
-
-#wait
