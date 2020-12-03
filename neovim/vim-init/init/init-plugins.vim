@@ -16,7 +16,7 @@
 if !exists('g:bundle_group')
 	let g:bundle_group = ['basic', 'tags', 'enhanced', 'filetypes', 'textobj']
 	let g:bundle_group += ['tags', 'airline', 'nerdtree', 'ale', 'echodoc']
-	let g:bundle_group += ['leaderf', 'coc']
+	let g:bundle_group += ['leaderf']
 endif
 
 
@@ -541,51 +541,6 @@ endif
 "		noremap <m-n> :CtrlPBuffer<cr>
 "	endif
 "endif
-
-
-"----------------------------------------------------------------------
-" coc.nvim
-"----------------------------------------------------------------------
-if index(g:bundle_group, 'coc') >= 0
-	Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	set hidden
-	set updatetime=100
-	" Don't pass messages to |ins-completion-menu|.
-	set shortmess+=c
-	
-	" Always show the signcolumn, otherwise it would shift the text each time
-	" diagnostics appear/become resolved.
-	if has("patch-8.1.1564")
-	  " Recently vim can merge signcolumn and number column into one
-	  set signcolumn=number
-	else
-	  set signcolumn=yes
-	endif
-	" Use tab for trigger completion with characters ahead and navigate.
-	" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-	" other plugin before putting this into your config.
-	inoremap <silent><expr> <TAB>
-		  \ pumvisible() ? "\<C-n>" :
-		  \ <SID>check_back_space() ? "\<TAB>" :
-		  \ coc#refresh()
-	inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-	function! s:check_back_space() abort
-	  let col = col('.') - 1
-	  return !col || getline('.')[col - 1]  =~# '\s'
-	endfunction
-	" Use `[g` and `]g` to navigate diagnostics
-	" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-	nmap <silent> [g <Plug>(coc-diagnostic-prev)
-	nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-	" GoTo code navigation.
-	nmap <silent> gd <Plug>(coc-definition)
-	nmap <silent> gy <Plug>(coc-type-definition)
-	nmap <silent> gi <Plug>(coc-implementation)
-	nmap <silent> gr <Plug>(coc-references)
-endif
-
 
 "----------------------------------------------------------------------
 " 结束插件安装
