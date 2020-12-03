@@ -83,6 +83,8 @@ github_update(){
 				-t \"$DESTINATION\" "
             ssh -o ConnectTimeout=3 l2 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull \
 				-t \"$DESTINATION\" "
+            ssh -o ConnectTimeout=3 l3 "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull \
+				-t \"$DESTINATION\" "
 			wait
         fi
     fi
