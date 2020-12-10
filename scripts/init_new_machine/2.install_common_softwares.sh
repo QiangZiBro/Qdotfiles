@@ -5,7 +5,7 @@ then
 
 elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
 then
-	softwares="git zsh ranger curl tree make htop nodejs tmux snapd docker docker.io docker-compose"
+	softwares="git vim zsh ranger curl tree make htop nodejs tmux snapd docker docker.io docker-compose"
 	echo "Hi handsome boy! I will install some very common softwares you may need such as $softwares"
     sudo apt install -y $softwares
 fi
