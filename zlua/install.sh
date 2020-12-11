@@ -12,7 +12,7 @@ then
  	
 elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
     then
-        zlua_dir=/usr/softwares/z.lua
+        zlua_dir=/usr/local/softwares/z.lua
         if [ ! -d $zlua_dir ]
         then
             sudo apt-get install lua5.3
