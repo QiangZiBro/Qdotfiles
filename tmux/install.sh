@@ -16,7 +16,7 @@ then
 	fi
 	git clone https://github.com/tmux/tmux.git --depth 1 /tmp/tmux
 	cd /tmp/tmux
-	#git checkout 3.0a
+	git checkout 3.0a
 	sh autogen.sh
 	./configure && make
 	sudo make install
