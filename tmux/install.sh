@@ -14,7 +14,7 @@ then
 	if [ -e /tmp/tmux ];then
 		rm -rf /tmp/tmux
 	fi
-	git clone https://github.com/tmux/tmux.git /tmp/tmux
+	git clone https://github.com/tmux/tmux.git --depth 1 /tmp/tmux
 	cd /tmp/tmux
 	#git checkout 3.0a
 	sh autogen.sh
