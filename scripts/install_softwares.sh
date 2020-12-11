@@ -16,7 +16,7 @@ cd "$(dirname $0)"/..
 #fi
 
 # TODO: setup the proxy
-for i in docker zsh neovim tmux
+for i in docker zsh neovim tmux homebrew
 do
     echo installing $i
 	if [ "$1" = "-q" ];
