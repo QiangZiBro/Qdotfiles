@@ -1,4 +1,5 @@
 #!/bin/bash
+version="3.0a"
 
 set -e
 if test "$(uname)" = "Darwin"
@@ -8,18 +9,24 @@ then
 
 elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
 then
-	#https://gist.github.com/joelrich/2f6fa444649adaae8b8499e7b3a5769e
-	sudo apt update
-	sudo apt install -y build-essential autoconf automake pkg-config libevent-dev libncurses5-dev bison byacc
-	if [ -e /tmp/tmux ];then
-		rm -rf /tmp/tmux
+	if [ ! -f /usr/local/bin/tmux ];then
+		if [ `tmux -V` != "tmux ${version}" ];then
+			#https://gist.github.com/joelrich/2f6fa444649adaae8b8499e7b3a5769e
+			sudo apt update
+			sudo apt install -y build-essential autoconf automake pkg-config libevent-dev libncurses5-dev bison byacc
+			if [ -e /tmp/tmux ];then
+				rm -rf /tmp/tmux
+			fi
+			git clone https://github.com/tmux/tmux.git --depth 1 /tmp/tmux
+			cd /tmp/tmux
+			git checkout "$version"
+			sh autogen.sh
+			./configure && make
+			sudo make install
+		else
+			echo "Tmux ${version} already exists, do nothing"
+		fi
 	fi
-	git clone https://github.com/tmux/tmux.git --depth 1 /tmp/tmux
-	cd /tmp/tmux
-	git checkout 3.0a
-	sh autogen.sh
-	./configure && make
-	sudo make install
 fi
 
 # tmux plug manager
