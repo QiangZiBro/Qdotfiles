@@ -30,7 +30,7 @@
 
         # install, I want to install as multi-user 
 	    echo install conda
-        sudo bash $conda_linux -p /usr/softwares/miniconda3 -b -u
+        sudo bash $conda_linux -p /usr/local/softwares/miniconda3 -b -u
     fi
 #fi
 
