@@ -1,4 +1,6 @@
 #!/bin/bash
+# 请在这里添加要创建的用户
+USERS="qiangzibro daxiongpro haochen "
 setup_groups(){
     echo "🌝 Create user groups..."
 
@@ -30,10 +32,10 @@ create_user(){
 
 create_users() {
     echo "🌝 Creating users..."
-    for user in qiangzibro daxiongpro haochen
+    for user in "${USERS}"
     do
         create_user $user
     done
 }
 setup_groups
-create_users
+create_users 
