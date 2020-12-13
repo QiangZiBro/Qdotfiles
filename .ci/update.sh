@@ -86,7 +86,7 @@ github_update(){
 		git pull origin $DESTINATION
 		/bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
 		if [ -n "$PULL_ALL" ];then
-			for server in $SERVERS
+			for server in "$SERVERS"
 			do
 				update_remote_dotfiles	"${server}" "${DESTINATION}"
 			done
