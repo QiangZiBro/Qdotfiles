@@ -3,9 +3,11 @@
 # Author: QiangZiBro
 #---------------------------------------------------------------------------------
 SERVERS="l0 l1 l2 l3 l4"
+
+
+
 CLEAR='\033[0m'
 RED='\033[0;31m'
-
 update_remote_dotfiles(){
 	echo remote:$1, $2
 	ssh -o ConnectTimeout=3 "$1" "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull \
