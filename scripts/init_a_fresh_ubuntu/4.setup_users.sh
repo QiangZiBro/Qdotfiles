@@ -32,7 +32,7 @@ create_user(){
 
 create_users() {
     echo "🌝 Creating users..."
-    for user in "${USERS}"
+    for user in ${USERS}
     do
         create_user $user
     done
