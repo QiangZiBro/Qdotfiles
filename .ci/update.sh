@@ -2,7 +2,7 @@
 # Lazy man script
 # Author: QiangZiBro
 #---------------------------------------------------------------------------------
-SREVERS="l0 l1 l2 l3"
+SERVERS="l0 l1 l2 l3"
 CLEAR='\033[0m'
 RED='\033[0;31m'
 
