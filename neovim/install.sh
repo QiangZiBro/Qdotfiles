@@ -6,7 +6,7 @@ elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
 then
 	# Use neovim for all users
 	if [ ! -f /usr/local/bin/nvim ];then
-		cd /usr/softwares
+		cd /usr/local/softwares/
 		wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage 
 		chmod 777 ./nvim.appimage
 		./nvim.appimage --appimage-extract
