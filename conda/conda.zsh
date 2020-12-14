@@ -35,3 +35,13 @@ fi
 }
 
 _set_env
+
+
+function conda_mv(){
+	if [ -z "$1" ] || [ -z "$2" ];then
+		echo "Usage: conda_mv old new"
+	else
+		conda create --name $2 --clone $1 -y
+		conda remove --name $1 --all -y 
+	fi
+}
