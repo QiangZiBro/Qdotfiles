@@ -2,7 +2,7 @@
 # Lazy man script
 # Author: QiangZiBro
 #---------------------------------------------------------------------------------
-SERVERS="l0 l1 l2 l3 l4"
+SERVERS="l0 l1 l2 l3 l4 l5"
 
 
 
