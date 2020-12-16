@@ -5,6 +5,9 @@ import os
 import json
 import argparse
 
+MACHINES = ["l{}".format(i) for i in range(6)]
+
+
 parser = argparse.ArgumentParser(description="""
 Find ss configure --> Upload to server --> Restart docker on remote
 """)
@@ -45,20 +48,14 @@ for c in data["configs"]:
 if not OK:
     print("I did't find any configuration in your file")
 
-if OK and args.remote:
-    cmd = """
-    scp -o ConnectTimeout=5 ss.json l1:~/.Qdotfiles/ss/ &
-    scp -o ConnectTimeout=5 ss.json l2:~/.Qdotfiles/ss/ &
-    scp -o ConnectTimeout=5 ss.json l3:~/.Qdotfiles/ss/ &
-    wait
-    """
+
+def excute(template, machines):
+    cmds = [template.format(m) for m in machines] + ["wait"]
+    cmd = " \n ".join(cmds)
     os.system(cmd)
 
+if OK and args.remote:
+    excute('scp -o ConnectTimeout=5 ss.json {}:~/.Qdotfiles/ss/ &', MACHINES)
+
     if args.docker_restart:
-        cmd = """
-        ssh -o ConnectTimeout=5 l1 \"cd ~/.Qdotfiles && docker-compose restart " &
-        ssh -o ConnectTimeout=5 l2 \"cd ~/.Qdotfiles && docker-compose restart " &
-        ssh -o ConnectTimeout=5 l3 \"cd ~/.Qdotfiles && docker-compose restart " &
-        wait
-        """
-        os.system(cmd)
+        excute('ssh -o ConnectTimeout=5 l0 \"cd ~/.Qdotfiles && docker-compose restart " &', MACHINES)
