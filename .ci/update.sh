@@ -55,7 +55,7 @@ while [[ "$#" > 0 ]]; do case $1 in
   *) usage "Unknown parameter passed: $1"; shift; shift;;
 esac; done
 
-# verify paams
+# verify params
 if [ -n "$HELP" ];then usage "Qdotfiles updater"; fi
 if [ -z "$MESSAGE" ]; then MESSAGE='update from ci';fi
 if [ -z "$DESTINATION" ]; then DESTINATION='master';fi
