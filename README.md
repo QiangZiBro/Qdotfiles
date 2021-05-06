@@ -192,3 +192,4 @@ dce Qlinux zsh
 
 [3] [Speed Up Oh-My-Zsh](https://bennycwong.github.io/post/speeding-up-oh-my-zsh/)
 
+
