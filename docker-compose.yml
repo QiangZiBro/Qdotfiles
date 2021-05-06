@@ -12,3 +12,5 @@ services:
             - "8999:8999"
         volumes:
             - "~/.Qdotfiles/:/home/qiangzibro/.Qdotfiles/"
+        restart: always
+
