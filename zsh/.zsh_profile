@@ -1,4 +1,13 @@
 #!/bin/bash
+
+show_gpu()
+{
+	for i in "$1"
+		do
+			echo "$i" &&  ssh $i "nvidia-smi"
+		done
+
+}
 qdot(){
 	/bin/bash ~/.Qdotfiles/.ci/update.sh "$@"
 }
