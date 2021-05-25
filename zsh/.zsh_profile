@@ -2,7 +2,7 @@
 
 show_gpu()
 {
-	for i in "$1"
+	for i in "$@"
 		do
 			echo "$i" &&  ssh $i "nvidia-smi"
 		done
