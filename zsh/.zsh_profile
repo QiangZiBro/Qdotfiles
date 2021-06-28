@@ -2,11 +2,16 @@
 
 show_gpu()
 {
-	for i in "$@"
-		do
-			echo "$i" &&  ssh $i "nvidia-smi"
-		done
+	machines=${@:-'l0 l1 l2 l4 l5'}
+	pssh -i -H "$machines" "cd ~/caps3d && nvidia-smi | grep % "
+}
 
+
+caps()
+{
+	cmd=${1:-'ls'}
+	machines=${2:-'l0 l1 l2 l4 l5'}
+	pssh -i -H "$machines" "cd ~/caps3d && $cmd"
 }
 qdot(){
 	/bin/bash ~/.Qdotfiles/.ci/update.sh "$@"
