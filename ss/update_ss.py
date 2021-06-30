@@ -5,7 +5,7 @@ import os
 import json
 import argparse
 
-MACHINES = ["l{}".format(i) for i in range(6)]
+MACHINES = ["l{}".format(i) for i in [0, 1, 2, 4, 5,]]
 
 
 parser = argparse.ArgumentParser(description="""
@@ -58,4 +58,4 @@ if OK and args.remote:
     excute('scp -o ConnectTimeout=5 ss.json {}:~/.Qdotfiles/ss/ &', MACHINES)
 
     if args.docker_restart:
-        excute('ssh -o ConnectTimeout=5 l0 \"cd ~/.Qdotfiles && docker-compose restart " &', MACHINES)
+        excute('ssh -o ConnectTimeout=5 {} \"cd ~/.Qdotfiles && docker-compose restart " &', MACHINES)
