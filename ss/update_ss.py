@@ -5,7 +5,7 @@ import os
 import json
 import argparse
 
-MACHINES = ["l{}".format(i) for i in [0, 1, 2, 4, 5,]]
+MACHINES = ["l{}".format(i) for i in [0, 1, 2, 3, 4, 5, 6]]
 
 
 parser = argparse.ArgumentParser(description="""
