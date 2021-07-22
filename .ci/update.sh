@@ -2,7 +2,7 @@
 # Lazy man script
 # Author: QiangZiBro
 #---------------------------------------------------------------------------------
-SERVERS="l0 l1 l2 l3 l4 l5"
+SERVERS="l0 l1 l2 l3 l4 l5 l6"
 
 
 
@@ -90,7 +90,7 @@ github_update(){
 		if [ -n "$PULL_ALL" ];then
 			for server in $SERVERS
 			do
-				update_remote_dotfiles	"${server}" "${DESTINATION}"
+				update_remote_dotfiles	"${server}" "${DESTINATION}" &
 			done
 			wait
         fi
