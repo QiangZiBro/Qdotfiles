@@ -10,15 +10,16 @@ show_gpu()
 caps()
 {
 	cmd=${1:-'ls'}
-	machines=${2:-'l0 l1 l2 l4 l5'}
+	machines=${2:-'l0 l1 l4 l5'}
 	pssh -i -H "$machines" "cd ~/caps3d && $cmd"
 }
 
 capsup()
 {
 	m=${1:-'l0'}
-	b=${2:-'dev'}
-	caps "git push origin ${b}" $m && caps "git pull origin ${b}"
+	o=${2:-'origin'}
+	b=${3:-'dev'}
+	caps "git push ${o} ${b}" $m && caps "git pull ${o} ${b}"
 }
 qdot(){
 	/bin/bash ~/.Qdotfiles/.ci/update.sh "$@"
