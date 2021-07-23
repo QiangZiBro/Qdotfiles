@@ -24,6 +24,8 @@ function proxy(){
         echo git config --global https.proxy https://127.0.0.1:$PROXY_PORT
 	elif [ "$1" = "which" ];then
 		cat ~/.Qdotfiles/ss/ss.json
+	elif [ "$1" = "test" ];then
+		cg
     else
         echo "Wrong parameter!Usage: proxy [start|stop]"
     fi
