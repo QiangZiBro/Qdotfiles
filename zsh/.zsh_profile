@@ -1,12 +1,4 @@
 #!/bin/bash
-
-show_gpu()
-{
-	machines=${@:-'l0 l1 l2 l4 l5'}
-	pssh -i -H "$machines" "cd ~/caps3d && nvidia-smi | grep % "
-}
-
-
 caps()
 {
 	cmd=${1:-'ls'}
@@ -21,6 +13,7 @@ capsup()
 	b=${3:-'dev'}
 	caps "git push ${o} ${b}" $m && caps "git pull ${o} ${b}"
 }
+
 qdot(){
 	/bin/bash ~/.Qdotfiles/.ci/update.sh "$@"
 }
