@@ -13,7 +13,7 @@ function proxy(){
     if [ "$1" = "start" ]; then
         export http_proxy="127.0.0.1:$PROXY_PORT"
         export https_proxy="127.0.0.1:$PROXY_PORT"
-        git config --global https.proxy https://127.0.0.1:$PROXY_PORT
+        #git config --global https.proxy https://127.0.0.1:$PROXY_PORT
     elif [ "$1" = "stop" ]; then
         export http_proxy=""
         export https_proxy=""
@@ -21,7 +21,7 @@ function proxy(){
 	elif [ "$1" = "cmd" ];then
         echo export http_proxy="http://127.0.0.1:$PROXY_PORT"
         echo export https_proxy="https://127.0.0.1:$PROXY_PORT"
-        echo git config --global https.proxy https://127.0.0.1:$PROXY_PORT
+        #echo git config --global https.proxy https://127.0.0.1:$PROXY_PORT
 	elif [ "$1" = "which" ];then
 		cat ~/.Qdotfiles/ss/ss.json
 	elif [ "$1" = "test" ];then
