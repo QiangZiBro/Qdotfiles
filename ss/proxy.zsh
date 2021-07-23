@@ -1,5 +1,5 @@
 function cg(){
-	curl -I --silent www.google.com | head -n 1 
+	curl -I --silent www.google.com | head -n 1 | awk -F' ' '{print $2}'
 }
 function proxy(){
     if test "$(uname)" = "Darwin";then
