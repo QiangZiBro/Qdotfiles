@@ -1,5 +1,5 @@
 function cg(){
-	curl -I www.google.com
+	curl -I --silent www.google.com | head -n 1 
 }
 function proxy(){
     if test "$(uname)" = "Darwin";then
