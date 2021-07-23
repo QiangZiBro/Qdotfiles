@@ -9,6 +9,7 @@ function proxy(){
 	fi
 
 	if [ "$1" = "start" ]; then
+		PROXY_PORT="${2:-${PROXY_PORT}}"
 		export http_proxy="127.0.0.1:$PROXY_PORT"
 		export https_proxy="127.0.0.1:$PROXY_PORT"
 		# I found that setting http/https proxy directly works for git
