@@ -27,7 +27,7 @@ function proxy(){
 	elif [ "$1" = "test" ];then
 		cg
     else
-        echo "Wrong parameter!Usage: proxy [start|stop]"
+        echo "Wrong parameter!Usage: proxy [start|stop|cmd|which|test]"
     fi
 }
 
