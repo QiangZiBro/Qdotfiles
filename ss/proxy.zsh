@@ -26,6 +26,8 @@ function proxy(){
 		cat ~/.Qdotfiles/ss/ss.json
 	elif [ "$1" = "test" ];then
 		cg
+	elif [ "$1" = "set" ];then
+		change_ss "${@:2}"
     else
         echo "Wrong parameter!Usage: proxy [start|stop|cmd|which|test]"
     fi
