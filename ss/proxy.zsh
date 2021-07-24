@@ -1,5 +1,15 @@
+function _access_url()
+{
+	1=${1:-google}
+	timeout 2 curl -I --silent www.$1.com | head -n 1 | awk -F' ' '{print $2}'
+}
+
 function cg(){
-	curl -I --silent www.google.com | head -n 1 | awk -F' ' '{print $2}'
+	BAIDU_RESULT=`_access_url baidu`
+	echo "Baidu: $BAIDU_RESULT"
+
+	GOOGLE_RESULT=`_access_url google`
+	echo "Google: $GOOGLE_RESULT"
 }
 function proxy(){
     if test "$(uname)" = "Darwin";then
