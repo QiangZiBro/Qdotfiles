@@ -1,8 +1,8 @@
 downloads
 .DS_Store
-ss.json
-export.json
 target
+
+# Secret files
 ssh/config
 git/.git-credentials
-
+ss/*.json
