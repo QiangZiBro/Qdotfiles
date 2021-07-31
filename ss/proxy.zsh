@@ -43,7 +43,7 @@ function proxy(){
 	elif [ "$1" = "set" ];then
 		change_ss "${@:2}"
 	else
-		echo "Wrong parameter!Usage: proxy [start|stop|cmd|which|test]"
+		echo "Wrong parameter!Usage: proxy [start|stop|cmd|set|which|test]"
 	fi
 }
 
