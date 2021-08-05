@@ -53,7 +53,7 @@ source ~/.Qdotfiles/docker/docker.zsh
 source ~/.Qdotfiles/tmux/tmux.zsh
 
 # nvm
-source ~/.Qdotfiles/nvm/nvm.zsh
+# source ~/.Qdotfiles/nvm/nvm.zsh
 
 
 
