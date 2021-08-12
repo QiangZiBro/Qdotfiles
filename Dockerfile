@@ -35,8 +35,8 @@ RUN export uid=1000 gid=1000 pswd=password &&\
 #------------------------------------------------------------------------------
 #Change to china source, install privoxy and shadowsocks and fix ssl bug
 COPY .pip /root/.pip
-RUN python3 -m pip install shadowsocks &&\
-    sed -i "s|cleanup|reset|g"  /opt/conda/lib/python3.7/site-packages/shadowsocks/crypto/openssl.py
+# RUN python3 -m pip install shadowsocks &&\
+#     sed -i "s|cleanup|reset|g"  /opt/conda/lib/python3.7/site-packages/shadowsocks/crypto/openssl.py
 
 
 #------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ RUN cd /home/$USER/.Qdotfiles &&\
 #------------------------------------------------------------------------------
 #  Install softwares, below are things that maybe frequently modified
 #------------------------------------------------------------------------------
-ARG INSTALL_SOFTWARES=true
+ARG INSTALL_SOFTWARES=false
 RUN if [ ${INSTALL_SOFTWARES} = true ]; then\
         bash ~/.Qdotfiles/scripts/cproxy daemon &&\
         export https_proxy="127.0.0.1:${PRIVOXY_PORT}" && export http_proxy="127.0.0.1:${PRIVOXY_PORT}" &&\
