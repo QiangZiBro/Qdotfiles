@@ -1,3 +1,4 @@
+# https://docs.github.com/en/actions/guides/publishing-docker-images
 name: Publish Docker image
 
 on:
