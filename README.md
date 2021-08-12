@@ -19,7 +19,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/QiangZiBro/Qdotfiles/mas
 
 ## Feature
 
-### Synchronizing  support for multi-servers
+### Synchronizing support for multi-servers
 
 You can synchronize multiple servers by including ssh configuration in`_config.ini` 
 
@@ -90,6 +90,10 @@ proxy set "116.163.14.9:45472" [-rd]
 ```
 
 
+
+### Other
+
+- Setting various of softwares/configuration for a multi-users ubuntu system [here](scripts/init_a_fresh_ubuntu)
 
 ## Acknowledgement
 
