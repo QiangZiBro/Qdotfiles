@@ -21,9 +21,15 @@ function proxy(){
 		PROXY_PORT="${2:-${PROXY_PORT}}"
 		export http_proxy="127.0.0.1:$PROXY_PORT"
 		export https_proxy="127.0.0.1:$PROXY_PORT"
+		# docker pull proxy needs this
+		# https://docs.docker.com/config/daemon/systemd/#httphttps-proxy
+		export HTTP_PROXY="127.0.0.1:$PROXY_PORT"
+		export HTTPS_PROXY="127.0.0.1:$PROXY_PORT"
 	elif [ "$1" = "off" ]; then
 		export http_proxy=""
 		export https_proxy=""
+		export HTTP_PROXY=""
+		export HTTPS_PROXY=""
 
 	elif [ "$1" = "up" ]; then
 		cd ~/.Qdotfiles
