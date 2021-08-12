@@ -46,6 +46,30 @@ Http/https proxy is very important for developers, especially when there’s net
 proxy install
 ```
 
+To get command line run in your computer, first ensure your `docker` and `docker-compose` are setup correctly
+
+```bash
+bash docker/install.sh
+```
+
+And then using command below, which builds the container in the first time and run container forever in your computer
+
+```bash
+proxy up
+# equals 
+# docker-compose up -d
+```
+
+To get the ss service stop, run
+
+```bash
+proxy down
+# equals 
+# docker-compose down
+```
+
+
+
 - Usages
 
 ```bash

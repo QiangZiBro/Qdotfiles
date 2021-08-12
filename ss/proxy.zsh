@@ -5,9 +5,8 @@ function _access_url()
 }
 
 function cg(){
-	BAIDU_RESULT=`_access_url baidu`
+	BAIDU_RESULT=`_access_url baidu` 
 	echo "Baidu: $BAIDU_RESULT"
-
 	GOOGLE_RESULT=`_access_url google`
 	echo "Google: $GOOGLE_RESULT"
 }
@@ -22,20 +21,25 @@ function proxy(){
 		PROXY_PORT="${2:-${PROXY_PORT}}"
 		export http_proxy="127.0.0.1:$PROXY_PORT"
 		export https_proxy="127.0.0.1:$PROXY_PORT"
+	elif [ "$1" = "off" ]; then
+		export http_proxy=""
+		export https_proxy=""
+
+	elif [ "$1" = "up" ]; then
+		cd ~/.Qdotfiles
+		docker-compose up -d
+		cd - > /dev/null
+	elif [ "$1" = "down" ]; then
+		cd ~/.Qdotfiles
+		docker-compose down
+		cd - > /dev/null
 	elif [ "$1" = "hstart" ]; then
 		PROXY_PORT="${2:-${PROXY_PORT}}"
 		export http_proxy="http://127.0.0.1:$PROXY_PORT"
 		export https_proxy="https://127.0.0.1:$PROXY_PORT"
-		# I found that setting http/https proxy directly works for git
-		#git config --global https.proxy https://127.0.0.1:$PROXY_PORT
-	elif [ "$1" = "off" ]; then
-		export http_proxy=""
-		export https_proxy=""
-		git config --global https.proxy ''
 	elif [ "$1" = "cmd" ];then
 		echo export http_proxy="127.0.0.1:$PROXY_PORT"
 		echo export https_proxy="127.0.0.1:$PROXY_PORT"
-		#echo git config --global https.proxy https://127.0.0.1:$PROXY_PORT
 	elif [ "$1" = "which" ];then
 		cat ~/.Qdotfiles/ss/ss.json
 	elif [ "$1" = "test" ];then
@@ -43,7 +47,7 @@ function proxy(){
 	elif [ "$1" = "set" ];then
 		change_ss "${@:2}"
 	else
-		echo "Wrong parameter!Usage: proxy [start|stop|cmd|set|which|test]"
+		echo "Usage: proxy [on|off|up|down|cmd|set|which|test]"
 	fi
 }
 
