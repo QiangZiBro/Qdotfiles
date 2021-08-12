@@ -81,7 +81,6 @@ github_update(){
         bash ~/.Qdotfiles/scripts/backup.sh
         git add -A && git commit -m "$MESSAGE"
         git push origin "$DESTINATION"
-		git push gitlab "$DESTINATION" 
 		wait
     
     elif [ "$ACTION" = "pull" ];then
