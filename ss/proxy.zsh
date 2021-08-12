@@ -50,4 +50,5 @@ function proxy(){
 function change_ss(){
 	cd ~/.Qdotfiles/ss
 	python update_ss.py "$@"
+	cd - > /dev/null
 }
