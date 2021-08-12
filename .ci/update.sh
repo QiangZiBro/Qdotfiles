@@ -2,7 +2,7 @@
 # Lazy man script
 # Author: QiangZiBro
 #---------------------------------------------------------------------------------
-SERVERS="l0 l1 l2 l3 l4 l5 l6"
+SERVERS=$(grep servers ~/.Qdotfiles/_config.ini | cut -d' ' -f2-)
 
 
 
