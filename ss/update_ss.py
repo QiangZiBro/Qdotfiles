@@ -14,7 +14,7 @@ def get_machines():
     with open("../_config.ini") as f:
         for line in f:
             if line.startswith("servers"):
-                line.replace("\n", "")
+                line = line.replace("\n", "")
                 return line.split(" ")[1:]
     return []
 MACHINES = get_machines()
