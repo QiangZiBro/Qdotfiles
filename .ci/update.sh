@@ -71,7 +71,7 @@ pre_check(){
 	echo http_proxy:$http_proxy
 	echo "#--------------------------------------------"
 	source  ~/.Qdotfiles/ss/proxy.zsh
-	proxy start
+	proxy on
 	cd ~/.Qdotfiles
 }
 

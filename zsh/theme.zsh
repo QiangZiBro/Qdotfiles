@@ -20,7 +20,7 @@ export LESS_TERMCAP_so=$'\E[1m\E[33m\E[44m'
 # curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 # zplug configruation
 if [[ -d ~/.zplug ]]; then
-	proxy start
+	proxy on
     export ZPLUG_HOME=~/.zplug
     if [[ -d "${ZPLUG_HOME}" ]]; then
       source "${ZPLUG_HOME}/init.zsh"

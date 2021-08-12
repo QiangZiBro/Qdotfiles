@@ -30,12 +30,12 @@ local_backup(){
 	# git 
 	# 备份之前关闭了代理
 	source ss/proxy.zsh
-	proxy stop 
+	proxy off 
 	cp_file_if_exists ~/.gitconfig git
 	cp_file_if_exists ~/.gitmessage git
 	cp_file_if_exists ~/.git-credentials git
 	cp_file_if_exists ~/.zsh_profile zsh
-	proxy start
+	proxy on
 
 	# ssh
 	cp ~/.ssh/config ssh
