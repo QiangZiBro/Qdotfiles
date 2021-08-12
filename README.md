@@ -27,6 +27,17 @@ You can synchronize multiple servers by rewrite files`_config.ini`
 servers l0 l1 l2 l3 l4 l5 l6
 ```
 
+> **Note:** What’s things followed by servers?
+>
+> They are from your ssh configuration file `~/.ssh/config`, for each config, has a format like:
+>
+> > Host l0
+> > HostName 10.xx.xx.xx
+> > Port 22
+> > User qiangzibro
+>
+> If you don’t know how to config this, check [this](https://zhuanlan.zhihu.com/p/191627275) out!
+
 then we can manage multiple servers based on this file, e.g., update Qdotfiles of all servers from github:
 
 ```bash
