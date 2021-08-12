@@ -50,7 +50,7 @@ while [[ "$#" > 0 ]]; do case $1 in
   -h|--help) HELP=1; shift;;
   -m|--message) MESSAGE="$2"; shift;shift;;
   -t|--destination) DESTINATION="$2";shift;shift;;
-  -a|--pull_all) PULL_ALL=1;shift;;
+  -r|--pull_all) PULL_ALL=1;shift;;
   -d|--daemon) DAEMON="&";shift;;
   *) usage "Unknown parameter passed: $1"; shift; shift;;
 esac; done

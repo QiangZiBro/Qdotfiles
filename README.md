@@ -19,20 +19,21 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/QiangZiBro/Qdotfiles/mas
 
 ## Feature
 
-### Synchronizing and management support for multi-servers
+### Synchronizing  support for multi-servers
 
-Synchronizing configurations and installations from many softwares between mac laptop and linux servers using one repo. Each software owns a directory in root directory of the project, `install.sh` and `*.zsh` represent installation and software-wise comands.
+You can synchronize multiple servers by rewrite files`_config.ini`
 
-```bash
-# Update to github
-qdot push 
-# Update configuration from github
-# Optional arg:
-# -a : update all servers
-qdot pull [-a]
+```ini
+servers l0 l1 l2 l3 l4 l5 l6
 ```
 
+then we can manage multiple servers based on this file, e.g., update Qdotfiles of all servers from github:
 
+```bash
+qdot pull -r
+```
+
+Each software owns a directory in root directory of the project, `install.sh` and `*.zsh` represent installation and software-wise comands.
 
 ### Command line http/https proxy
 

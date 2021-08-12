@@ -10,7 +10,15 @@ import os
 import json
 import argparse
 
-MACHINES = ["l{}".format(i) for i in [0, 1, 2, 3, 4, 5, 6]]
+def get_machines():
+    with open("../_config.ini") as f:
+        for line in f:
+            if line.startswith("servers"):
+                line.replace("\n", "")
+                return line.split(" ")[1:]
+    return []
+MACHINES = get_machines()
+print(MACHINES)
 
 
 parser = argparse.ArgumentParser(description="""
