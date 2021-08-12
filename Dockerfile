@@ -69,4 +69,4 @@ RUN if [ ${INSTALL_SOFTWARES} = true ]; then\
         bash ~/.Qdotfiles/scripts/install_softwares.sh \
     ;fi
 
-#CMD [".Qdotfiles/scripts/cproxy"]
+CMD [".Qdotfiles/scripts/cproxy"]
