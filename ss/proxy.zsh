@@ -18,7 +18,7 @@ function proxy(){
 		PROXY_PORT=8999
 	fi
 
-	if [ "$1" = "start" ]; then
+	if [ "$1" = "on" ]; then
 		PROXY_PORT="${2:-${PROXY_PORT}}"
 		export http_proxy="127.0.0.1:$PROXY_PORT"
 		export https_proxy="127.0.0.1:$PROXY_PORT"
@@ -28,13 +28,13 @@ function proxy(){
 		export https_proxy="https://127.0.0.1:$PROXY_PORT"
 		# I found that setting http/https proxy directly works for git
 		#git config --global https.proxy https://127.0.0.1:$PROXY_PORT
-	elif [ "$1" = "stop" ]; then
+	elif [ "$1" = "off" ]; then
 		export http_proxy=""
 		export https_proxy=""
 		git config --global https.proxy ''
 	elif [ "$1" = "cmd" ];then
-		echo export http_proxy="http://127.0.0.1:$PROXY_PORT"
-		echo export https_proxy="https://127.0.0.1:$PROXY_PORT"
+		echo export http_proxy="127.0.0.1:$PROXY_PORT"
+		echo export https_proxy="127.0.0.1:$PROXY_PORT"
 		#echo git config --global https.proxy https://127.0.0.1:$PROXY_PORT
 	elif [ "$1" = "which" ];then
 		cat ~/.Qdotfiles/ss/ss.json
