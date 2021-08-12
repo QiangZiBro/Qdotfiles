@@ -1,7 +1,7 @@
 <p align="center">
   <h3 align="center">QiangZiBro的dotfiles</h3>
   <p align="center">
-   Developing tools and dotfiles of QiangZiBro, have fun!
+   Development tools and dotfiles of QiangZiBro, have fun!
   </br>
     <a href="README_zh.md">ZH</a>|<a href="README.md">EN</a>
   </p>
