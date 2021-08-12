@@ -27,12 +27,16 @@ function proxy(){
 
 	elif [ "$1" = "up" ]; then
 		cd ~/.Qdotfiles
-		docker-compose up -d
+		docker-compose up -d --remove-orphans
 		cd - > /dev/null
 	elif [ "$1" = "down" ]; then
 		cd ~/.Qdotfiles
-		docker-compose down
+		docker-compose down --remove-orphans
 		cd - > /dev/null
+	elif [ "$1" = "restart" ]; then
+		cd ~/.Qdotfiles
+		docker-compose restart
+	 	cd - > /dev/null
 	elif [ "$1" = "hstart" ]; then
 		PROXY_PORT="${2:-${PROXY_PORT}}"
 		export http_proxy="http://127.0.0.1:$PROXY_PORT"
