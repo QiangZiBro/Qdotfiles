@@ -18,9 +18,9 @@ qdot(){
 	~/.Qdotfiles/scripts/qdot "$@"
 }
 common_aliases () {
+	alias q="qdot"
     alias ei="nvim ~/.Qdotfiles/scripts/init.sh"
     alias fm="ranger"
-    alias sb="source ~/.zshrc"
     alias eb="nvim ~/.zshrc"
     alias cz="cd ~/.Qdotfiles/zsh/"
     alias cq="cd ~/.Qdotfiles/"
