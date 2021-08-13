@@ -6,10 +6,7 @@
     <a href="README_zh.md">ZH</a>|<a href="README.md">EN</a>
   </p>
 </p>
-
-## Install
-
-Let everything done, this will clone the repository and set up the softwares’ config of QiangZiBro
+Wanna have a try? Just copy this command to your terminal, it will help you clone the repo, make some directories to put softwares, and finally setup your computer.
 
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/QiangZiBro/Qdotfiles/master/scripts/bootstrap.sh)"
@@ -18,6 +15,13 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/QiangZiBro/Qdotfiles/mas
 > **Longterm usage advice:**
 >
 > Fork this repo, change name `QiangZiBro` to your github username above, and fetch from upstream when there’s update.
+>
+> **Test on**
+>
+> - Mac
+> - Ubuntu18.04/20.04
+
+
 
 ## Feature
 
