@@ -15,12 +15,25 @@ update_remote_dotfiles(){
 }
 
 function usage() {
-  if [ -n "$1" ]; then
-    echo -e "${RED}☺️ $1${CLEAR}\n"
-  fi
+if [ -n "$1" ]; then
+  echo "${RED}☺️ $1${CLEAR}\n"
+fi
 
 cat << EOF
- qdot [push|pull] [-rvm]
+
+qdot COMMAND [OPTIONS]
+
+COMMAND:
+  push: add and commit current change to remote git server
+  pull: pull from remote server and bootstrap
+  update: [TODO]
+  b/bootstrap
+
+OPTIONS:
+  -r
+  -m
+  -t
+
 Usage 1: add + commit + push
    qdot push -m "do something"
 
@@ -40,13 +53,14 @@ Usage 5[TODO]: use multi processes
 
 EOF
 
-  exit 1
+exit 1
 }
 
 # parse params
 while [[ "$#" > 0 ]]; do case $1 in
   push) ACTION="push";shift;;
   pull) ACTION="pull";shift;;
+  b|bootstrap) ACTION="bootstrap";shift;;
   update) UPDATE=1;shift;;
   -h|--help) HELP=1; shift;;
   -v|--verbose) VERBOSE=1; shift;;
@@ -95,6 +109,8 @@ github_update(){
 			done
 			wait
         fi
+	elif [ "$ACTION" = "bootstrap" -o "$ACTION" = "b" ];then
+		/bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
     fi
 }
 if [ -n "$VERBOSE" ];then

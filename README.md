@@ -91,6 +91,27 @@ proxy set "116.163.14.9:45472" [-rd]
 
 
 
+### Command line support to manage dotfiles
+
+```bash
+qdot COMMAND [OPTIONS]
+Usage 1: add + commit + push
+   qdot push -m "do something"
+
+Usage 2: push to specified destination
+   qdot push -t "HEAD"
+   qdot push -t "master"
+   qdot push -t "dev:dev"
+
+Usage 3: update from github (for all remote servers[-r]) and setup
+   qdot pull [-r]
+
+Usage 4: git add + commit + push + origin pull + bootstrap
+	qdot update
+```
+
+
+
 ### Other
 
 - Setting various of softwares/configuration for a multi-users ubuntu system [here](scripts/init_a_fresh_ubuntu)
