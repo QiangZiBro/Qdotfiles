@@ -15,8 +15,9 @@ update_remote_dotfiles(){
 }
 
 function usage() {
+
 if [ -n "$1" ]; then
-  echo "${RED}☺️ $1${CLEAR}\n"
+  echo -e "${RED}☺️ $1${CLEAR}\n"
 fi
 
 cat << EOF
