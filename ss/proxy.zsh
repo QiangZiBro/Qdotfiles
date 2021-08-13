@@ -39,11 +39,11 @@ function proxy(){
 		cd ~/.Qdotfiles
 		docker-compose down --remove-orphans
 		cd - > /dev/null
-	elif [ "$1" = "restart" ]; then
+	elif [ "$1" = "restart" ] || [ "$1" = "r" ]; then
 		cd ~/.Qdotfiles
 		docker-compose restart
 	 	cd - > /dev/null
-	elif [ "$1" = "hstart" ]; then
+	elif [ "$1" = "onn" ]; then
 		PROXY_PORT="${2:-${PROXY_PORT}}"
 		export http_proxy="http://127.0.0.1:$PROXY_PORT"
 		export https_proxy="https://127.0.0.1:$PROXY_PORT"
