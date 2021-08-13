@@ -4,10 +4,9 @@
 #	1. 本配置文件按修改频率从高到低，对应从前到后排列
 #	2. 如果直接使用我的配置文件，请进行对应修改！！！
 #---------------------------------------------------------------------------------
+[include]
+        path = ~/.gitconfig.local
 
-[user]
-  name = QiangZiBro
-  email = qiangzibro@gmail.com
 
 [http]
 	sslVerify = false
