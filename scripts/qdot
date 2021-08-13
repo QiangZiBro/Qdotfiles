@@ -48,6 +48,7 @@ while [[ "$#" > 0 ]]; do case $1 in
   pull) ACTION="pull";shift;;
   update) UPDATE=1;shift;;
   -h|--help) HELP=1; shift;;
+  -v|--verbose) VERBOSE=1; shift;;
   -m|--message) MESSAGE="$2"; shift;shift;;
   -t|--destination) DESTINATION="$2";shift;shift;;
   -r|--pull_all) PULL_ALL=1;shift;;
@@ -95,8 +96,10 @@ github_update(){
         fi
     fi
 }
-
+if [ -n "$VERBOSE" ];then
 pre_check
+fi
+
 if [ -n "$UPDATE" ];then 
 	qdot push
 	qdot pull -a
