@@ -15,7 +15,7 @@ capsup()
 }
 
 qdot(){
-	/bin/bash ~/.Qdotfiles/.ci/update.sh "$@"
+	~/.Qdotfiles/scripts/qdot "$@"
 }
 common_aliases () {
     alias ei="nvim ~/.Qdotfiles/scripts/init.sh"

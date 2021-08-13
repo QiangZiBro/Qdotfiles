@@ -10,7 +10,7 @@ CLEAR='\033[0m'
 RED='\033[0;31m'
 update_remote_dotfiles(){
 	echo remote:$1, $2
-	ssh -o ConnectTimeout=3 "$1" "/bin/bash /home/qiangzibro/.Qdotfiles/.ci/update.sh pull \
+	ssh -o ConnectTimeout=3 "$1" "/bin/bash /home/qiangzibro/.Qdotfiles/scripts/qdot pull \
 		-t \"$2\" "
 }
 
@@ -21,21 +21,21 @@ function usage() {
 
 cat << EOF
 Usage 1: add + commit + push
-   .ci/update.sh push -m "do something"
+   qdot push -m "do something"
 
 Usage 2: push to specified destination
-   .ci/update.sh push -t "HEAD"
-   .ci/update.sh push -t "master"
-   .ci/update.sh push -t "dev:dev"
+   qdot push -t "HEAD"
+   qdot push -t "master"
+   qdot push -t "dev:dev"
 
 Usage 3: 
-   .ci/update.sh pull [-a]
+   qdot pull [-a]
 
 Usage 4: git add + commit + push + origin pull + bootstrap
-	.ci/update.sh update
+	qdot update
 
 Usage 5[TODO]: use multi processes
-	.ci/update.sh [command] -d
+	qdot [command] -d
 
 EOF
 
@@ -98,8 +98,8 @@ github_update(){
 
 pre_check
 if [ -n "$UPDATE" ];then 
-	.ci/update.sh push
-	.ci/update.sh pull -a
+	qdot push
+	qdot pull -a
 elif [ -z "$ACTION" ];
 	then usage "Action (push|pull) is not set";
 else
