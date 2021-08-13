@@ -7,7 +7,7 @@ services:
             args:
                 - INSTALL_SOFTWARES=fasle
                 - PRIVOXY_PORT=8999
-        image: qiangzibro/qlinux:master
+        image: qiangzibro/qlinux:latest
         ports:
             - "8999:8999"
         volumes:
