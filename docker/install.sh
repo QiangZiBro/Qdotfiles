@@ -18,20 +18,27 @@ sudo apt-get update
 sudo apt-get install -y nvidia-docker2
 }
 
-if test "$(uname)" = "Darwin"
+if test ! $(which docker)
 then
-     # mac installation branch
-    echo mac install
+  
+  if test "$(uname)" = "Darwin"
+  then
+  	 brew cask install docker
+  
+  elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
+  then
+  	sudo apt install -y docker docker.io
+	pip install docker-compose
+  	_docker_gpu
+  fi
+fi
 
-elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
+if test "$(expr substr $(uname -s) 1 5)" = "Linux"
 then
-     # linux installation branch
-    echo linux install
-	sudo apt install -y docker docker.io docker-compose 
-	_docker_gpu
-	_docker_proxy
-
-	sudo systemctl daemon-reload
-	sudo systemctl restart docker
-
+  	#_docker_proxy
+  	GROUPNAME=docker
+    getent group $GROUPNAME 2>&1 >/dev/null && echo "INFO: $GROUPNAME already exists"|| groupadd $GROUPNAME
+  	sudo usermod -aG docker $USER
+  	sudo systemctl daemon-reload
+  	sudo systemctl restart docker
 fi
