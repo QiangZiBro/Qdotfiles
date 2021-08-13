@@ -6,3 +6,5 @@ target
 ssh/config
 git/.git-credentials
 ss/*.json
+
+.idea
