@@ -24,10 +24,10 @@ cat << EOF
 qdot COMMAND [OPTIONS]
 
 COMMAND:
-  push: add and commit current change to remote git server
-  pull: pull from remote server and bootstrap
+  p|push: add and commit current change to remote git server
+  pl|pull: pull from remote server and bootstrap
   update: [TODO]
-  b/bootstrap
+  b|bootstrap
 
 OPTIONS:
   -r
