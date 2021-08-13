@@ -15,7 +15,9 @@ Let everything done, this will clone the repository and set up the softwares’ 
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/QiangZiBro/Qdotfiles/master/scripts/bootstrap.sh)"
 ```
 
-
+> **Longterm usage advice:**
+>
+> Fork this repo, change name `QiangZiBro` to your github username above, and fetch from upstream when there’s update.
 
 ## Feature
 
