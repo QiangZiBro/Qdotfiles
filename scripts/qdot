@@ -64,7 +64,7 @@ while [[ "$#" > 0 ]]; do case $1 in
   p|push) ACTION="push";shift;;
   pl|pull) ACTION="pull";shift;;
   b|bootstrap) ACTION="bootstrap";shift;;
-  bc|backup) ACTION="backup";shift;;
+  bc|backup) ACTION="BACKUP";shift;;
   update) UPDATE=1;shift;;
   -h|--help) HELP=1; shift;;
   -v|--verbose) VERBOSE=1; shift;;
@@ -132,4 +132,4 @@ elif [ -z "$ACTION" ];
 else
 	github_update "$@"
 fi
-cd -
+cd - > /dev/null
