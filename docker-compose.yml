@@ -11,6 +11,6 @@ services:
         ports:
             - "8999:8999"
         volumes:
-            - "~/.Qdotfiles/:/home/qiangzibro/.Qdotfiles/"
+            - "~/.Qdotfiles/:/home/user/.Qdotfiles/"
         restart: always
 
