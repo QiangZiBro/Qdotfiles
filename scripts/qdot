@@ -58,8 +58,8 @@ exit 1
 
 # parse params
 while [[ "$#" > 0 ]]; do case $1 in
-  push) ACTION="push";shift;;
-  pull) ACTION="pull";shift;;
+  p|push) ACTION="push";shift;;
+  pl|pull) ACTION="pull";shift;;
   b|bootstrap) ACTION="bootstrap";shift;;
   update) UPDATE=1;shift;;
   -h|--help) HELP=1; shift;;
