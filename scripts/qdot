@@ -3,7 +3,6 @@
 # Lazy man script
 # Author: QiangZiBro
 #---------------------------------------------------------------------------------
-
 SERVERS=$(grep servers ~/.Qdotfiles/_config.ini | cut -d' ' -f2-)
 
 
@@ -106,14 +105,15 @@ github_update(){
     
     elif [ "$ACTION" = "pull" ];then
 		git pull origin $DESTINATION
-		/bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
 		if [ -n "$PULL_ALL" ];then
+			echo after
 			for server in $SERVERS
 			do
 				update_remote_dotfiles	"${server}" "${DESTINATION}" &
 			done
 			wait
         fi
+		/bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
 	elif [ "$ACTION" = "bootstrap" -o "$ACTION" = "b" ];then
 		/bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
 	elif [ "$ACTION" = "BACKUP" -o "$ACTION" = "b" ];then
