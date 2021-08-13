@@ -95,19 +95,17 @@ proxy set "116.163.14.9:45472" [-rd]
 
 ```bash
 qdot COMMAND [OPTIONS]
-Usage 1: add + commit + push
-   qdot push -m "do something"
 
-Usage 2: push to specified destination
-   qdot push -t "HEAD"
-   qdot push -t "master"
-   qdot push -t "dev:dev"
+COMMAND:
+  push: add and commit current change to remote git server
+  pull: pull from remote server and bootstrap
+  update: [TODO]
+  b/bootstrap
 
-Usage 3: update from github (for all remote servers[-r]) and setup
-   qdot pull [-r]
-
-Usage 4: git add + commit + push + origin pull + bootstrap
-	qdot update
+OPTIONS:
+  -r
+  -m
+  -t
 ```
 
 
