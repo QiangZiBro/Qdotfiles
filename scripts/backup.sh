@@ -38,7 +38,7 @@ local_backup(){
 	proxy on
 
 	# ssh
-	cp ~/.ssh/config ssh
+	cp_file_if_exists ~/.ssh/config ssh
 }
 
 
