@@ -77,12 +77,15 @@ pre_set(){
 
 check_project(){
     # initialization for the dotfiles project
-    PROJECT_PATH=~/.Qdotfiles
-    if [ ! -d "$PROJECT_PATH" ]; then
-        git clone https://github.com/QiangZibro/Qdotfiles  $PROJECT_PATH
-        mkdir -p $PROJECT_PATH/downloads
+    QDOTFILES=~/.Qdotfiles
+    if [ ! -d "$QDOTFILES" ]; then
+        git clone https://github.com/QiangZibro/Qdotfiles  $QDOTFILES
+        mkdir -p $QDOTFILES/downloads
+	else
+		cd $QDOTFILES
+		git pull 
     fi
-    cd $PROJECT_PATH
+    cd $QDOTFILES
 }
 
 setup_config(){
