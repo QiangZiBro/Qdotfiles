@@ -20,6 +20,7 @@ function usage() {
   fi
 
 cat << EOF
+ qdot [push|pull] [-rvm]
 Usage 1: add + commit + push
    qdot push -m "do something"
 
@@ -28,8 +29,8 @@ Usage 2: push to specified destination
    qdot push -t "master"
    qdot push -t "dev:dev"
 
-Usage 3: 
-   qdot pull [-a]
+Usage 3: update from github (for all remote servers[-r]) and setup
+   qdot pull [-r]
 
 Usage 4: git add + commit + push + origin pull + bootstrap
 	qdot update
