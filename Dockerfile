@@ -13,7 +13,7 @@ COPY apt/sources.list /etc/apt/sources.list
 RUN apt-get update --fix-missing -qqy && apt-get update  -qqy &&\
     apt-get install -y --no-install-recommends \
         # some basic softwares 
-        sudo privoxy curl git procps 
+        sudo privoxy curl git procps zsh
         #    rm -rf /var/lib/apt/lists/*
 
 # 2.create user
