@@ -23,6 +23,8 @@ source_if_exists(){
     fi
 }
 
+QDOTFILES="~/.Qdotfiles"
+
 # ss
 source ~/.Qdotfiles/ss/proxy.zsh
 
@@ -54,7 +56,6 @@ source ~/.Qdotfiles/tmux/tmux.zsh
 
 # nvm
 # source ~/.Qdotfiles/nvm/nvm.zsh
-
 
 
 # 整理 PATH，删除重复路径
