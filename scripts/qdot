@@ -31,6 +31,7 @@ COMMAND:
   pl|pull: pull from remote server and bootstrap
   update: [TODO]
   b|bootstrap
+  bc|backup
 
 OPTIONS:
   -r
@@ -64,6 +65,7 @@ while [[ "$#" > 0 ]]; do case $1 in
   p|push) ACTION="push";shift;;
   pl|pull) ACTION="pull";shift;;
   b|bootstrap) ACTION="bootstrap";shift;;
+  bc|backup) ACTION="backup";shift;;
   update) UPDATE=1;shift;;
   -h|--help) HELP=1; shift;;
   -v|--verbose) VERBOSE=1; shift;;
@@ -114,6 +116,8 @@ github_update(){
         fi
 	elif [ "$ACTION" = "bootstrap" -o "$ACTION" = "b" ];then
 		/bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
+	elif [ "$ACTION" = "BACKUP" -o "$ACTION" = "b" ];then
+		/bin/bash ~/.Qdotfiles/scripts/backup.sh
     fi
 }
 if [ -n "$VERBOSE" ];then
