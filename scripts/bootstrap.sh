@@ -81,9 +81,9 @@ check_project(){
     if [ ! -d "$QDOTFILES" ]; then
         git clone https://github.com/QiangZibro/Qdotfiles  $QDOTFILES
         mkdir -p $QDOTFILES/downloads
-	else
-		cd $QDOTFILES
-		git pull 
+	#else
+	#	cd $QDOTFILES
+	#	git pull 
     fi
     cd $QDOTFILES
 }
