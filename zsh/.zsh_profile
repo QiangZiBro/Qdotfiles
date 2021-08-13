@@ -19,6 +19,7 @@ qdot(){
 }
 common_aliases () {
     alias ei="nvim ~/.Qdotfiles/scripts/init.sh"
+	alias q="qdot"
     alias fm="ranger"
     alias sb="source ~/.zshrc"
     alias eb="nvim ~/.zshrc"
