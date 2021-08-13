@@ -115,7 +115,8 @@ main(){
     pre_set
     check_project
     setup_config
-	exec /bin/zsh
+	cd /tmp && exec zsh
+	cd -
 }
 
 main
