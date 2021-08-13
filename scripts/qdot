@@ -66,7 +66,7 @@ pre_check(){
 	IP=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' |\
 		grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | grep -Ev '172.*.0.1'`
 	echo "#--------------------------------------------"
-	echo INFO:updating in $IP
+	echo INFO:updating in `hostname`$IP
 	echo ACTION:$ACTION, UPDATE:$UPDATE,  MESSAGE:$MESSAGE, DESTINATION:$DESTINATION, PULL_ALL:$PULL_ALL
 	echo http_proxy:$http_proxy
 	echo "#--------------------------------------------"
