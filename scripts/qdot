@@ -92,7 +92,6 @@ pre_check(){
 	echo "#--------------------------------------------"
 	source  ~/.Qdotfiles/ss/proxy.zsh
 	proxy on
-	cd ~/.Qdotfiles
 }
 
 github_update(){
@@ -120,6 +119,8 @@ github_update(){
 		/bin/bash ~/.Qdotfiles/scripts/backup.sh
     fi
 }
+
+cd ~/.Qdotfiles
 if [ -n "$VERBOSE" ];then
 pre_check
 fi
@@ -132,3 +133,4 @@ elif [ -z "$ACTION" ];
 else
 	github_update "$@"
 fi
+cd -
