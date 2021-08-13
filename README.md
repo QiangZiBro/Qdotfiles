@@ -93,22 +93,17 @@ proxy set "116.163.14.9:45472" [-rd]
 
 ### Command line support to manage dotfiles
 
+We have a command named `qdot` or `q` to premote things to be done instantly, you can use a single command setup config in this repo to your computer
+
 ```bash
-qdot COMMAND [OPTIONS]
-
-COMMAND:
-  push: add and commit current change to remote git server
-  pull: pull from remote server and bootstrap
-  update: [TODO]
-  b/bootstrap
-
-OPTIONS:
-  -r
-  -m
-  -t
+q b # qdot bootstrap
 ```
 
+or use  `push`  or  `pull`  to remote git server
 
+```bash
+q [push|pull] [-m message -t <refspec>]
+```
 
 ### Other
 
