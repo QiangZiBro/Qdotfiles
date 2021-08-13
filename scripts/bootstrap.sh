@@ -115,6 +115,7 @@ main(){
     pre_set
     check_project
     setup_config
+	exec zsh
 }
 
 main
