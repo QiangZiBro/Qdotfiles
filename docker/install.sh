@@ -37,8 +37,8 @@ if test "$(expr substr $(uname -s) 1 5)" = "Linux"
 then
   	#_docker_proxy
   	GROUPNAME=docker
-    getent group $GROUPNAME 2>&1 >/dev/null && echo "INFO: $GROUPNAME already exists"|| groupadd $GROUPNAME
-  	sudo usermod -aG docker $USER
+    getent group $GROUPNAME 2>&1 >/dev/null || groupadd $GROUPNAME
+	sudo usermod -aG docker $(whoami)
   	sudo systemctl daemon-reload
   	sudo systemctl restart docker
 fi
