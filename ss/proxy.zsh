@@ -10,6 +10,15 @@ function cg(){
 	GOOGLE_RESULT=`_access_url google`
 	echo "Google: $GOOGLE_RESULT"
 }
+function _proxy_help(){
+cat << EOF
+Usage: proxy [on|off|up|down|cmd|set|which|test]
+Command:
+ - on/off: set http/https proxy port
+ - up/down/restart: set docker based service of command line proxy
+ - set: select one from all ss configurations which are in ~/.Qdotfiles/ss/export.json
+EOF
+}
 function proxy(){
 	if test "$(uname)" = "Darwin";then
 		PROXY_PORT=1087
@@ -57,7 +66,8 @@ function proxy(){
 	elif [ "$1" = "set" ];then
 		change_ss "${@:2}"
 	else
-		echo "Usage: proxy [on|off|up|down|cmd|set|which|test]"
+
+		_proxy_help
 	fi
 }
 
