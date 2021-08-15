@@ -66,7 +66,6 @@ function proxy(){
 	elif [ "$1" = "set" ];then
 		change_ss "${@:2}"
 	else
-
 		_proxy_help
 	fi
 }
