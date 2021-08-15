@@ -12,7 +12,7 @@ function cg(){
 }
 function _proxy_help(){
 cat << EOF
-Usage: proxy [on|off|up|down|cmd|set|which|test]
+Usage: proxy [on|off|up|down|restart|cmd|set|which|test]
 Command:
  - on/off: set http/https proxy port
  - up/down/restart: set docker based service of command line proxy
