@@ -28,6 +28,7 @@ qdot COMMAND [OPTIONS]
 COMMAND:
   p|push: add and commit current change to remote git server
   pl|pull: pull from remote server and bootstrap
+  n|new: copy ~/.Qdotfiles to current place
   update: [TODO]
   b|bootstrap
   bc|backup
@@ -65,6 +66,7 @@ while [[ "$#" > 0 ]]; do case $1 in
   pl|pull) ACTION="pull";shift;;
   b|bootstrap) ACTION="bootstrap";shift;;
   bc|backup) ACTION="BACKUP";shift;;
+  n|new) ACTION="COPY";shift;;
   update) UPDATE=1;shift;;
   -h|--help) HELP=1; shift;;
   -v|--verbose) VERBOSE=1; shift;;
@@ -116,6 +118,10 @@ github_update(){
 		/bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
 	elif [ "$ACTION" = "BACKUP" -o "$ACTION" = "b" ];then
 		/bin/bash ~/.Qdotfiles/scripts/backup.sh
+	elif [ "$ACTION" = "COPY" -o "$ACTION" = "b" ];then
+		echo "WARNING: You're copying Qdotfiles, which may contain"
+		echo "sensitive files!"
+		cp -r ~/.Qdotfiles .
     fi
 }
 
