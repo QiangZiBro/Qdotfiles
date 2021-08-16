@@ -115,14 +115,15 @@ github_update(){
         fi
 		cd - > /dev/null
 		/bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
-	elif [ "$ACTION" = "bootstrap" -o "$ACTION" = "b" ];then
+	elif [ "$ACTION" = "bootstrap" ];then
 		/bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
-	elif [ "$ACTION" = "BACKUP" -o "$ACTION" = "b" ];then
+	elif [ "$ACTION" = "BACKUP" ];then
 		/bin/bash ~/.Qdotfiles/scripts/backup.sh
-	elif [ "$ACTION" = "COPY" -o "$ACTION" = "b" ];then
+	elif [ "$ACTION" = "COPY"  ];then
 		echo "WARNING: You're copying Qdotfiles, which may contain"
 		echo "sensitive files!"
 		cp -r ~/.Qdotfiles .
+		echo "check it out: ./.Qdotfiles"
     fi
 }
 
