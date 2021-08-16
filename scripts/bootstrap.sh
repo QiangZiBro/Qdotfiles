@@ -1,5 +1,11 @@
 #!/bin/bash
 set -e
+if [ `whoami` != "root" ];then
+	SUDO=
+else
+	SUDO=sudo
+fi
+
 
 setup_color() {
 	# Only use colors if connected to a terminal
@@ -62,8 +68,8 @@ pre_set(){
         Linux*)
 			if [ ! -d /usr/local/softwares/ ];then
 				echo INFO:Creating directory in /usr/local/softwares/, may need sudo priviledge
-				sudo mkdir -p /usr/local/softwares/
-				sudo chmod 777 -R /usr/local/softwares/
+				$SUDO mkdir -p /usr/local/softwares/
+				$SUDO chmod 777 -R /usr/local/softwares/
 			fi
             ;;
         Darwin*)
