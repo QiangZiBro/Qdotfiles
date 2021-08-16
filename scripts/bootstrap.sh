@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-if [ `whoami` != "root" ];then
+if [ `whoami` = "root" ];then
 	SUDO=
 else
 	SUDO=sudo
