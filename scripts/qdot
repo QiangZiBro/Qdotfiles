@@ -114,6 +114,7 @@ github_update(){
 			wait
         fi
 		/bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
+		cd - > /dev/null
 	elif [ "$ACTION" = "bootstrap" -o "$ACTION" = "b" ];then
 		/bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
 	elif [ "$ACTION" = "BACKUP" -o "$ACTION" = "b" ];then
