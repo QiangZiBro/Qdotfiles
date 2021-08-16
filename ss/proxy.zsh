@@ -62,8 +62,13 @@ function proxy(){
 		export http_proxy="http://127.0.0.1:$PROXY_PORT"
 		export https_proxy="https://127.0.0.1:$PROXY_PORT"
 	elif [ "$1" = "cmd" ];then
+		echo "Command to open http/s proxy"
 		echo export http_proxy="127.0.0.1:$PROXY_PORT"
 		echo export https_proxy="127.0.0.1:$PROXY_PORT"
+		echo
+		echo "Command to close http/s proxy"
+		echo export http_proxy=
+		echo export https_proxy=
 	elif [ "$1" = "which" ];then
 		cat ~/.Qdotfiles/ss/ss.json
 	elif [ "$1" = "test" ];then
