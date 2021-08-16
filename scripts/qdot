@@ -113,7 +113,6 @@ github_update(){
 			done
 			wait
         fi
-		cd - > /dev/null
 		/bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
 	elif [ "$ACTION" = "bootstrap" ];then
 		/bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
