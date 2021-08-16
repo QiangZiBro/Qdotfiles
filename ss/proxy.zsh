@@ -1,8 +1,9 @@
 function _access_url()
 {
 	1=${1:-google}
-	result=$(curl -m 2 -I --silent www.$1.com | head -n 1 | awk -F' ' '{print $2}')
-	if [ $result = "200" ];then
+	result=$(curl -m 4 -I --silent www.$1.com | head -n 1 | awk -F' ' '{print $2}')
+	result=${result:-"Empty result"}
+	if [ $result -eq "200" ];then
 		echo "${1}:200 OK"😎
 	else
 		echo "${1}:${result}"😭
@@ -12,8 +13,8 @@ function _access_url()
 }
 
 function cg(){
-	_access_url baidu
-    _access_url google
+	_access_url baidu 
+	_access_url google 
 }
 function _proxy_help(){
 cat << EOF
