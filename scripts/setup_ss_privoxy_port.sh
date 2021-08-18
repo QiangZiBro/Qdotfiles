@@ -6,8 +6,8 @@ PRIVOXY_PORT_IN_FILES="docker-compose.yml scripts/cproxy ss/proxy.zsh privoxy/co
 
 read -p "ss port [default 1080]:" SS_PORT
 SS_PORT=${SS_PORT:-1080}
-read -p "privoxy port [default 9090]:" PRIVOXY_PORT
-PRIVOXY_PORT=${PRIVOXY_PORT:-9090}
+read -p "privoxy port [default 8999]:" PRIVOXY_PORT
+PRIVOXY_PORT=${PRIVOXY_PORT:-8999}
 
 echo SS_PORT:"$SS_PORT", PRIVOXY_PORT:"$PRIVOXY_PORT"
 
@@ -19,10 +19,10 @@ while true; do
             then
             
                 sed -i '' "s|1080|$SS_PORT|g" $SS_PORT_IN_FILES
-                sed -i '' "s|9090|$PRIVOXY_PORT|g" $PRIVOXY_PORT_IN_FILES
+                sed -i '' "s|8999|$PRIVOXY_PORT|g" $PRIVOXY_PORT_IN_FILES
             else
                 sed -i "s|1080|$SS_PORT|g" $SS_PORT_IN_FILES
-                sed -i "s|9090|$PRIVOXY_PORT|g" $PRIVOXY_PORT_IN_FILES
+                sed -i "s|8999|$PRIVOXY_PORT|g" $PRIVOXY_PORT_IN_FILES
             fi
             break;;
         [Nn]* ) exit;;
