@@ -19,7 +19,7 @@ function cg(){
 }
 function _proxy_help(){
 cat << EOF
-Usage: proxy [on|off|up|down|restart|cmd|set|which|test]
+Usage: proxy [on|off|up|down|status|restart|cmd|set|which|test]
 Command:
  - on/off: set http/https proxy port
  - up/down/restart: set docker based service of command line proxy
@@ -47,6 +47,22 @@ function proxy(){
 		export HTTP_PROXY=""
 		export HTTPS_PROXY=""
 
+	elif [ "$1" = "status" ]; then
+		echo "--------------"
+		echo "Proxy setting"
+		echo "--------------"
+		echo http_proxy="${http_proxy}"
+		echo https_proxy="${https_proxy}"
+		echo HTTP_PROXY="${HTTP_PROXY}"
+		echo HTTPS_PROXY="${HTTPS_PROXY}"
+		echo "--------------"
+		echo "Service status"
+		echo "--------------"
+		lsof -i:9090
+		echo "--------------"
+		echo "Network test"
+		echo "--------------"
+		proxy test
 	elif [ "$1" = "up" ]; then
 		cd ~/.Qdotfiles
 		docker-compose up -d --remove-orphans
