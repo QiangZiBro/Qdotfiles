@@ -42,6 +42,16 @@ function proxy(){
 			PROXY_PORT=$MAC_PROXY_PORT ;;
 		l*|linux)
 			PROXY_PORT=$LINUX_PROXY_PORT ;;
+		-h|--help)
+			echo "proxy on [OPTIONS]"
+			echo "Usage: set http/https proxy port"
+			echo ""
+			echo "OPTIONS"
+			echo "  mac"
+			echo "  linux"
+			echo "  any portnumber"
+			echo "  -h|--help: show this message"
+			;;
 		*)
 			PROXY_PORT=${2:-${PROXY_PORT}}
 			;;
