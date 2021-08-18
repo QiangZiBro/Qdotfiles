@@ -84,7 +84,8 @@ if __name__ == "__main__":
     else:
         source="/Users/mac/Library/Application Support/ShadowsocksX-NG/ss-local-config.json"
         if os.path.exists(source):
-            print("Find current config of ShadowsocksX-NG-R8")
+            print("Find config file in:")
+            print(source)
             shutil.copy(source, PREFIX+"/ss.json")
             # TODO: Could be better
             with open(PREFIX+"/ss.json") as json_data:
