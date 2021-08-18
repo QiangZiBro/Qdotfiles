@@ -8,6 +8,7 @@ Contact: qiangzibro@gmail.com
 """
 import os
 import json
+import shutil
 import argparse
 
 def get_machines():
@@ -33,16 +34,19 @@ def parse_args():
         python update_ss.py 116.163.14.9:45472 -rd
     """)
 
-    parser.add_argument("ip", type=str, help="Remote ss server ip address with port")
+    parser.add_argument("ip", nargs="?", type=str, help="Remote ss server ip address with port")
     parser.add_argument("-f","--file", type=str, default="export.json", help="Export file,\
             should in ss directory")
     parser.add_argument("-r","--remote", default=False, action="store_true",help="Update ss file to remote")
     parser.add_argument("-d","--docker_restart", default=False, action="store_true",help="Restart docker after update ss file")
     args = parser.parse_args()
     json_file = args.file
-    split = args.ip.split(":")
-    ip = split[0]
-    port = split[-1] if ":" in args.ip else ""
+    if args.ip:
+        split = args.ip.split(":")
+        ip = split[0]
+        port = split[-1] if ":" in args.ip else ""
+    else:
+        ip=port=None
     return ip,port,json_file,args
 
 def write(c):
@@ -65,7 +69,6 @@ def parse_config():
         print("I did't find any configuration in your file")
         return None
 
-
 def excute(template, machines):
     cmds = [template.format(m) for m in machines] + ["wait"]
     cmd = " \n ".join(cmds)
@@ -76,7 +79,26 @@ if __name__ == "__main__":
     MACHINES = get_machines()
     PREFIX=os.path.expanduser("~/.Qdotfiles/ss")
     ip,port,json_file,args = parse_args()
-    config = parse_config()
+    if ip:
+        config = parse_config()
+    else:
+        source="/Users/mac/Library/Application Support/ShadowsocksX-NG/ss-local-config.json"
+        if os.path.exists(source):
+            print("Find current config of ShadowsocksX-NG-R8")
+            shutil.copy(source, PREFIX+"/ss.json")
+            # TODO: Could be better
+            with open(PREFIX+"/ss.json") as json_data:
+                c = json.load(json_data)
+                print("--------------------------------------------------")
+                print(json.dumps(c, indent=4, sort_keys=True))
+                print("--------------------------------------------------")
+            # TODO: Could be better
+            config=True
+
+        else:
+            print("Didn't find anyting useful configs in your computer, nothing to do")
+            exit(1)
+
     if config and args.remote:
         excute('scp -o ConnectTimeout=5 ss.json {}:~/.Qdotfiles/ss/ &', MACHINES)
         if args.docker_restart:
