@@ -11,42 +11,45 @@ import json
 import argparse
 
 def get_machines():
-    with open("../_config.ini") as f:
+    """stupid way to parse servers"""
+    with open("../.env") as f:
         for line in f:
-            if line.startswith("servers"):
-                line = line.replace("\n", "")
+            if line.startswith("SERVERS"):
+                line=line.replace('"',"")
+                line=line.replace("'","")
+                line=line.replace("\n","")
+                line=line.split("=")[-1]
                 return line.split(" ")[1:]
     return []
-MACHINES = get_machines()
-print(MACHINES)
 
 
-parser = argparse.ArgumentParser(description="""
-Find ss configure --> Upload to server --> Restart docker on remote
-Example:
-1. get the config file
-    python update_ss.py 116.163.14.9:45472
-2. upload ss file to remove Qdotfiles [-r] and restart remote services [-d]
-    python update_ss.py 116.163.14.9:45472 -rd
-""")
+def parse_args():
+    parser = argparse.ArgumentParser(description="""
+    Find ss configure --> Upload to server --> Restart docker on remote
+    Example:
+    1. get the config file
+        python update_ss.py 116.163.14.9:45472
+    2. upload ss file to remove Qdotfiles [-r] and restart remote services [-d]
+        python update_ss.py 116.163.14.9:45472 -rd
+    """)
 
-parser.add_argument("ip", type=str, help="Remote ss server ip address with port")
-parser.add_argument("-f","--file", type=str, default="export.json", help="Export file,\
-        should in ss directory")
-parser.add_argument("-r","--remote", default=False, action="store_true",help="Update ss file to remote")
-parser.add_argument("-d","--docker_restart", default=False, action="store_true",help="Restart docker after update ss file")
-args = parser.parse_args()
-
-json_file = args.file
-split = args.ip.split(":")
-ip = split[0]
-port = split[-1] if ":" in args.ip else ""
+    parser.add_argument("ip", type=str, help="Remote ss server ip address with port")
+    parser.add_argument("-f","--file", type=str, default="export.json", help="Export file,\
+            should in ss directory")
+    parser.add_argument("-r","--remote", default=False, action="store_true",help="Update ss file to remote")
+    parser.add_argument("-d","--docker_restart", default=False, action="store_true",help="Restart docker after update ss file")
+    args = parser.parse_args()
+    json_file = args.file
+    split = args.ip.split(":")
+    ip = split[0]
+    port = split[-1] if ":" in args.ip else ""
+    return ip,port,json_file,args
 
 def write(c):
-    with open('ss.json', 'w') as outfile:
+    with open(f'{PREFIX}/ss.json', 'w') as outfile:
         json.dump(c, outfile, indent=4)
     print("----------------------------------------------------------------------------------")
-    print(c)
+    print(json.dumps(c, indent=4, sort_keys=True))
     print("----------------------------------------------------------------------------------")
 
 
@@ -69,8 +72,12 @@ def excute(template, machines):
     os.system(cmd)
     
 
-config = parse_config()
-if config and args.remote:
-    excute('scp -o ConnectTimeout=5 ss.json {}:~/.Qdotfiles/ss/ &', MACHINES)
-    if args.docker_restart:
-        excute('ssh -o ConnectTimeout=5 {} \"cd ~/.Qdotfiles && docker-compose restart " &', MACHINES)
+if __name__ == "__main__":
+    MACHINES = get_machines()
+    PREFIX=os.path.expanduser("~/.Qdotfiles/ss")
+    ip,port,json_file,args = parse_args()
+    config = parse_config()
+    if config and args.remote:
+        excute('scp -o ConnectTimeout=5 ss.json {}:~/.Qdotfiles/ss/ &', MACHINES)
+        if args.docker_restart:
+            excute('ssh -o ConnectTimeout=5 {} \"cd ~/.Qdotfiles && docker-compose restart " &', MACHINES)
