@@ -82,7 +82,11 @@ function proxy(){
 		proxy test
 	elif [ "$1" = "up" ]; then
 		cd ~/.Qdotfiles
-		docker-compose up -d --remove-orphans
+		if [ "$2" = "-v" ]; then
+			docker-compose up --remove-orphans
+		else
+			docker-compose up -d --remove-orphans
+		fi
 		cd - > /dev/null
 	elif [ "$1" = "down" ]; then
 		cd ~/.Qdotfiles
