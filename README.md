@@ -1,11 +1,12 @@
 <p align="center">
   <h3 align="center">QiangZiBro的dotfiles</h3>
   <p align="center">
-   Development tools and dotfiles of QiangZiBro, have fun!
+   Development tools and dotfiles of QiangZiBro, supporting mac and ubuntu in the same time.
   </br>
     <a href="README_zh.md">ZH</a>|<a href="README.md">EN</a>
   </p>
 </p>
+
 Wanna have a try? Just copy this command to your terminal, it will help you clone the repo, make some directories to put softwares, and finally setup your computer.
 
 ```bash
@@ -16,10 +17,6 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/QiangZiBro/Qdotfiles/mas
 >
 > Fork this repo, change name `QiangZiBro` to your github username above, and fetch from upstream when there’s update.
 >
-> **Test on**
->
-> - Mac
-> - Ubuntu18.04/20.04
 
 
 
@@ -118,11 +115,21 @@ q [push|pull] [-m message -t <refspec>]
 
 - Setting various of softwares/configuration for a multi-users ubuntu system [here](scripts/init_a_fresh_ubuntu)
 
-## News
+
+
+## Updates
 
 - 2021-08-18 
-  - Using `proxy set`  to find ss config file automatically if you have [ShadowsocksX-NG](https://github.com/shadowsocks/ShadowsocksX-NG) installed on your mac.
+
+  - Use `.env` to maintain config with docker and this project
+
+  - Use `proxy set`  to find ss config file automatically if you have [ShadowsocksX-NG](https://github.com/shadowsocks/ShadowsocksX-NG) installed on your mac.
+
   -  `proxy on (mac|linux|9090)` to set port
+
+  - `qtool ip` to get current machine’s ip quickly 
+
+    
 
 ## Acknowledgement
 
