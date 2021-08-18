@@ -86,10 +86,12 @@ if __name__ == "__main__":
         if os.path.exists(source):
             print("Find config file in:")
             print(source)
-            shutil.copy(source, PREFIX+"/ss.json")
             # TODO: Could be better
-            with open(PREFIX+"/ss.json") as json_data:
+            with open(source) as json_data:
                 c = json.load(json_data)
+                del c["local_port"]
+                del c["local_address"]
+                write(c)
                 print("--------------------------------------------------")
                 print(json.dumps(c, indent=4, sort_keys=True))
                 print("--------------------------------------------------")
