@@ -3,9 +3,7 @@
 # Lazy man script
 # Author: QiangZiBro
 #---------------------------------------------------------------------------------
-SERVERS=$(grep servers ~/.Qdotfiles/_config.ini | cut -d' ' -f2-)
-
-
+source ~/.Qdotfiles/.env
 
 CLEAR='\033[0m'
 RED='\033[0;31m'
