@@ -30,7 +30,7 @@ function proxy(){
 	if test "$(uname)" = "Darwin";then
 		PROXY_PORT=1087
 	elif test "$(expr substr $(uname -s) 1 5)" = "Linux";then
-		PROXY_PORT=8999
+		PROXY_PORT=9090
 	fi
 
 	if [ "$1" = "on" ]; then
