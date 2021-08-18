@@ -57,10 +57,6 @@ function proxy(){
 		echo HTTP_PROXY="${HTTP_PROXY}"
 		echo HTTPS_PROXY="${HTTPS_PROXY}"
 		echo "--------------"
-		echo "Service status"
-		echo "--------------"
-		docker ps | grep $PROXY_PORT
-		echo "--------------"
 		echo "Network test"
 		echo "--------------"
 		proxy test
