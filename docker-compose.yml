@@ -1,15 +1,15 @@
 version: '3'
 services:
-    ${SERVICE}: 
+    Qlinux: 
         build: 
             context: .
             dockerfile: Dockerfile
             args:
                 - INSTALL_SOFTWARES=fasle
-                - PRIVOXY_PORT=8999
+                - "PRIVOXY_PORT=${PRIVOXY_PORT}"
         image: qiangzibro/qlinux:latest
         ports:
-            - "8999:8999"
+            - "${PRIVOXY_PORT}:8999"
         volumes:
             - "~/.Qdotfiles/:/home/user/.Qdotfiles/"
         restart: always
