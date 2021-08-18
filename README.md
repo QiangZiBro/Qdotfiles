@@ -47,11 +47,6 @@ Http/https proxy is very important for developers, especially when there’s net
 
 - Install
 
-- [ ] A one-key setup command is in plan in the future, which will be like this:
-
-```bash
-proxy install
-```
 
 To get command line run in your computer, first ensure your `docker` and `docker-compose` are setup correctly
 
@@ -86,9 +81,17 @@ proxy on
 proxy off
 # Test accessibility to Baidu and Google
 proxy test
+```
 
-# Change ss proxy config assuming you've already got a
-# file incluing all ss configuration
+Find ss config file automatically if you have [ShadowsocksX-NG](https://github.com/shadowsocks/ShadowsocksX-NG) installed on your mac.
+
+```bash
+proxy set
+```
+
+Change ss proxy config assuming you've already got a file incluing all ss configuration
+
+```bash
 # Optional args:
 # -r : upload ss file to remote
 # -d : restart docker after update ss file
@@ -114,6 +117,12 @@ q [push|pull] [-m message -t <refspec>]
 ### Other
 
 - Setting various of softwares/configuration for a multi-users ubuntu system [here](scripts/init_a_fresh_ubuntu)
+
+## News
+
+- 2021-08-18 
+  - Using `proxy set`  to find ss config file automatically if you have [ShadowsocksX-NG](https://github.com/shadowsocks/ShadowsocksX-NG) installed on your mac.
+  -  `proxy on (mac|linux|9090)` to set port
 
 ## Acknowledgement
 
