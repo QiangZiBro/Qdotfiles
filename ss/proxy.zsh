@@ -28,14 +28,25 @@ Command:
 EOF
 }
 function proxy(){
+	MAC_PROXY_PORT=1087
+	LINUX_PROXY_PORT=8999
 	if test "$(uname)" = "Darwin";then
-		PROXY_PORT=1087
+		PROXY_PORT=$MAC_PROXY_PORT
 	elif test "$(expr substr $(uname -s) 1 5)" = "Linux";then
-		PROXY_PORT=8999
+		PROXY_PORT=$LINUX_PROXY_PORT
 	fi
 
 	if [ "$1" = "on" ]; then
-		PROXY_PORT="${2:-${PROXY_PORT}}"
+		case $2 in 
+		m*|mac)
+			PROXY_PORT=$MAC_PROXY_PORT ;;
+		l*|linux)
+			PROXY_PORT=$LINUX_PROXY_PORT ;;
+		"");;
+		*)
+			echo "Wrong parameter [$2] for proxy on"
+			exit 1 ;;
+		esac
 		export http_proxy="127.0.0.1:$PROXY_PORT"
 		export https_proxy="127.0.0.1:$PROXY_PORT"
 		# docker pull proxy needs this
