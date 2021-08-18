@@ -4,9 +4,10 @@ function _access_url()
 
 	start=$SECONDS
 	result=$(curl -m 3 -I --silent www.$1.com | head -n 1 | awk -F' ' '{print $2}')
+	result=${result:-None}
 	dur=$(( SECONDS - start ))
 
-	if [ $result -eq "200" ];then
+	if [ $result = "200" ];then
 		printf "[%.2f s] %-6s:200 OK✅\n" $dur $1
 	else
 		printf "[%.2f s] %-6s:${result}🚫\n" $dur $1
