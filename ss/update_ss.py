@@ -52,6 +52,8 @@ def parse_args():
 def write(c):
     with open(f'{PREFIX}/ss.json', 'w') as outfile:
         json.dump(c, outfile, indent=4)
+
+def print_json(c):
     print("----------------------------------------------------------------------------------")
     print(json.dumps(c, indent=4, sort_keys=True))
     print("----------------------------------------------------------------------------------")
@@ -64,6 +66,7 @@ def parse_config():
         if (port and str(c["server"]) == ip and str(c["server_port"]) == port) \
                 or (port == "" and str(c["server"]) == ip):
             write(c)
+            print_json(c)
             return c
     else:
         print("I did't find any configuration in your file")
@@ -92,9 +95,7 @@ if __name__ == "__main__":
                 del c["local_port"]
                 del c["local_address"]
                 write(c)
-                print("--------------------------------------------------")
-                print(json.dumps(c, indent=4, sort_keys=True))
-                print("--------------------------------------------------")
+                print_json(c)
             # TODO: Could be better
             config=True
 
