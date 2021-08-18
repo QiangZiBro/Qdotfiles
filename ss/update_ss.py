@@ -28,8 +28,8 @@ def parse_args():
     parser = argparse.ArgumentParser(description="""
     Find ss configure --> Upload to server --> Restart docker on remote
     Example:
-    1. get the config file
-        proxy set (ip:port)
+    1. get the config file   
+        proxy set (ip:port)   
     2. upload ss file to remove Qdotfiles [-r] and restart remote services [-d]
         proxy set (ip:port) -rd
     """)
