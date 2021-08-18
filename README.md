@@ -40,7 +40,7 @@ Each software owns a directory in root directory of the project, `install.sh` an
 
 ### Command line http/https proxy
 
-Http/https proxy is very important for developers, especially when there’s network limitation. The uses `ss+privoxy+docker+docker-compose` to let terminal users ultize http/https proxy easily. 
+Http/https proxy is very important for developers, especially when there’s network limitation. We use `ss+privoxy+docker+docker-compose` to let terminal users ultize http/https proxy easily. 
 
 - Install
 
