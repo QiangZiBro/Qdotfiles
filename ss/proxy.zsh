@@ -59,7 +59,7 @@ function proxy(){
 		echo "--------------"
 		echo "Service status"
 		echo "--------------"
-		lsof -i:9090
+		docker ps | grep $PROXY_PORT
 		echo "--------------"
 		echo "Network test"
 		echo "--------------"
