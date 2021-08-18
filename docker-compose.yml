@@ -9,7 +9,7 @@ services:
                 - "PRIVOXY_PORT=${PRIVOXY_PORT}"
         image: qiangzibro/qlinux:latest
         ports:
-            - "${PRIVOXY_PORT}:8999"
+            - "${PRIVOXY_PORT}:9090"
         volumes:
             - "~/.Qdotfiles/:/home/user/.Qdotfiles/"
         restart: always
