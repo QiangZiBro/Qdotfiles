@@ -42,10 +42,9 @@ function proxy(){
 			PROXY_PORT=$MAC_PROXY_PORT ;;
 		l*|linux)
 			PROXY_PORT=$LINUX_PROXY_PORT ;;
-		"");;
 		*)
-			echo "Wrong parameter [$2] for proxy on"
-			exit 1 ;;
+			PROXY_PORT=${2:-${PROXY_PORT}}
+			;;
 		esac
 		export http_proxy="127.0.0.1:$PROXY_PORT"
 		export https_proxy="127.0.0.1:$PROXY_PORT"
