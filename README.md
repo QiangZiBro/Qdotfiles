@@ -27,10 +27,10 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/QiangZiBro/Qdotfiles/mas
 
 ### Synchronizing support for multi-servers
 
-You can synchronize multiple servers by including ssh configuration in`_config.ini` 
+You can synchronize multiple servers by including ssh configuration in`.env` 
 
-```ini
-servers l0 l1 l2 l3 l4 l5 l6
+```
+SERVERS="l0 l1 l2 l3 l4 l5 l6"
 ```
 
 then you can manage multiple servers based on this file, e.g., update Qdotfiles of all servers from github:
