@@ -29,9 +29,9 @@ def parse_args():
     Find ss configure --> Upload to server --> Restart docker on remote
     Example:
     1. get the config file
-        python update_ss.py 116.163.14.9:45472
+        proxy set (ip:port)
     2. upload ss file to remove Qdotfiles [-r] and restart remote services [-d]
-        python update_ss.py 116.163.14.9:45472 -rd
+        proxy set (ip:port) -rd
     """)
 
     parser.add_argument("ip", nargs="?", type=str, help="Remote ss server ip address with port")
