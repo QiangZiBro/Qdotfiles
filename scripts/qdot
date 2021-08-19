@@ -26,7 +26,7 @@ COMMAND:
   p|push: add and commit current change to remote git server
   pl|pull: pull from remote server and bootstrap
   n|new: copy ~/.Qdotfiles to current place
-  update: [TODO]
+  update: push local changes to git server and update all remote servers
   b|bootstrap
   bc|backup
 
@@ -99,7 +99,7 @@ fi
 
 if [ "$COMMAND" = "UPDATE" ];then
 	qdot push
-	qdot pull -a
+	qdot pull -r
 
 elif [ "$COMMAND" = "PUSH" ];then
 	cd ~/.Qdotfiles
