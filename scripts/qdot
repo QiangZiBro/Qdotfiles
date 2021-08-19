@@ -3,6 +3,7 @@
 # Lazy man script
 # Author: QiangZiBro
 #---------------------------------------------------------------------------------
+set -ex
 source ~/.Qdotfiles/.env
 
 CLEAR='\033[0m'
@@ -13,8 +14,7 @@ update_remote_dotfiles(){
 		-t \"$2\" "
 }
 
-function usage() {
-
+usage() {
 if [ -n "$1" ]; then
   echo -e "${RED}☺️ $1${CLEAR}\n"
 fi
@@ -111,7 +111,6 @@ elif [ "$COMMAND" = "PUSH" ];then
 	wait
 	cd - > /dev/null
 
-
 elif [ "$COMMAND" = "PULL" ];then
 	cd ~/.Qdotfiles
 	git pull origin $DESTINATION
@@ -129,6 +128,8 @@ elif [ "$COMMAND" = "BACKUP" ];then
 	/bin/bash ~/.Qdotfiles/scripts/backup.sh
 elif [ "$COMMAND" = "COPY"  ];then
 	cp -r ~/.Qdotfiles .
-	echo "WARNING: You're copying Qdotfiles"
-	echo "       check it out: ./.Qdotfiles"
+	cd .Qdotfiles
+	git clean -xfd
+	rm -rf .git
+	cd ..
 fi
