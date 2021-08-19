@@ -60,9 +60,9 @@ exit 1
 
 # parse params
 while [[ "$#" > 0 ]]; do case $1 in
-  p|push) COMMAND="push";shift;;
-  pl|pull) COMMAND="pull";shift;;
-  b|bootstrap) COMMAND="bootstrap";shift;;
+  p|push) COMMAND="PUSH";shift;;
+  pl|pull) COMMAND="PULL";shift;;
+  b|bootstrap) COMMAND="BOOTSTRAP";shift;;
   bc|backup) COMMAND="BACKUP";shift;;
   n|new) COMMAND="COPY";shift;;
   update) COMMAND="UPDATE";shift;;
@@ -87,7 +87,7 @@ verbose_info(){
 		grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | grep -Ev '172.*.0.1'`
 	echo "#--------------------------------------------"
 	echo INFO:updating in `hostname`$IP
-	echo COMMAND:$COMMAND, COMMAND:$COMMAND,  MESSAGE:$MESSAGE, DESTINATION:$DESTINATION, PULL_ALL:$PULL_ALL
+	echo COMMAND:$COMMAND,  MESSAGE:$MESSAGE, DESTINATION:$DESTINATION, PULL_ALL:$PULL_ALL
 	echo http_proxy:$http_proxy
 	echo "#--------------------------------------------"
 	source  ~/.Qdotfiles/ss/proxy.zsh
@@ -102,7 +102,7 @@ if [ "$COMMAND" = "UPDATE" ];then
 	qdot push
 	qdot pull -a
 
-elif [ "$COMMAND" = "push" ];then
+elif [ "$COMMAND" = "PUSH" ];then
 	cd ~/.Qdotfiles
 	git pull origin $DESTINATION
 	bash ~/.Qdotfiles/scripts/backup.sh
@@ -112,7 +112,7 @@ elif [ "$COMMAND" = "push" ];then
 	cd - > /dev/null
 
 
-elif [ "$COMMAND" = "pull" ];then
+elif [ "$COMMAND" = "PULL" ];then
 	cd ~/.Qdotfiles
 	git pull origin $DESTINATION
 	if [ -n "$PULL_ALL" ];then
@@ -123,7 +123,7 @@ elif [ "$COMMAND" = "pull" ];then
 		wait
 	fi
 	/bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
-elif [ "$COMMAND" = "bootstrap" ];then
+elif [ "$COMMAND" = "BOOTSTRAP" ];then
 	/bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
 elif [ "$COMMAND" = "BACKUP" ];then
 	/bin/bash ~/.Qdotfiles/scripts/backup.sh
