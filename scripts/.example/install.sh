@@ -1,15 +1,15 @@
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-	echo linux install
+  echo linux install
 elif [[ "$OSTYPE" == "darwin"* ]]; then
-	echo darwin install
+  echo darwin install
 elif [[ "$OSTYPE" == "cygwin" ]]; then
-	echo cygwin install
+  echo cygwin install
 elif [[ "$OSTYPE" == "msys" ]]; then
-	echo msys install
+  echo msys install
 elif [[ "$OSTYPE" == "win32" ]]; then
-	echo win32 install
+  echo win32 install
 elif [[ "$OSTYPE" == "freebsd"* ]]; then
-	echo freebsd install
+  echo freebsd install
 else
-	echo not supported for current system
+  echo not supported for current system
 fi

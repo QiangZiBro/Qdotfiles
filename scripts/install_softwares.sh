@@ -2,9 +2,8 @@
 # Install working softwares
 # Notes: Most of the softwares below needs command proxy,
 #		 which can used by docker
-# Args: 
+# Args:
 # -q : keep silent
-
 
 cd "$(dirname $0)"/..
 
@@ -16,13 +15,11 @@ cd "$(dirname $0)"/..
 #fi
 
 # TODO: setup the proxy
-for i in docker zsh neovim tmux homebrew
-do
-    echo installing $i
-	if [ "$1" = "-q" ];
-	then
-		bash $i/install.sh 2>&1 > /dev/null 
-	else
-		bash $i/install.sh
-	fi
+for i in docker zsh neovim tmux homebrew; do
+  echo installing $i
+  if [ "$1" = "-q" ]; then
+    bash $i/install.sh 2>&1 >/dev/null
+  else
+    bash $i/install.sh
+  fi
 done

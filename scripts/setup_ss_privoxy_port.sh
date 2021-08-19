@@ -12,20 +12,20 @@ PRIVOXY_PORT=${PRIVOXY_PORT:-8999}
 echo SS_PORT:"$SS_PORT", PRIVOXY_PORT:"$PRIVOXY_PORT"
 
 while true; do
-    read -p "Are you sure? Y/n:" yn
-    case $yn in
-        [Yy]* ) 
-            if test "$(uname)" = "Darwin"
-            then
-            
-                sed -i '' "s|1080|$SS_PORT|g" $SS_PORT_IN_FILES
-                sed -i '' "s|8999|$PRIVOXY_PORT|g" $PRIVOXY_PORT_IN_FILES
-            else
-                sed -i "s|1080|$SS_PORT|g" $SS_PORT_IN_FILES
-                sed -i "s|8999|$PRIVOXY_PORT|g" $PRIVOXY_PORT_IN_FILES
-            fi
-            break;;
-        [Nn]* ) exit;;
-        * ) echo "Please answer yes or no.";;
-    esac
+  read -p "Are you sure? Y/n:" yn
+  case $yn in
+  [Yy]*)
+    if test "$(uname)" = "Darwin"; then
+
+      sed -i '' "s|1080|$SS_PORT|g" $SS_PORT_IN_FILES
+      sed -i '' "s|8999|$PRIVOXY_PORT|g" $PRIVOXY_PORT_IN_FILES
+    else
+      sed -i "s|1080|$SS_PORT|g" $SS_PORT_IN_FILES
+      sed -i "s|8999|$PRIVOXY_PORT|g" $PRIVOXY_PORT_IN_FILES
+    fi
+    break
+    ;;
+  [Nn]*) exit ;;
+  *) echo "Please answer yes or no." ;;
+  esac
 done
