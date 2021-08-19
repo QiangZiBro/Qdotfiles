@@ -8,3 +8,4 @@ git/.git-credentials
 ss/*.json
 
 .idea
+__pycache__
