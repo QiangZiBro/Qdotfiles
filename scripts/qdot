@@ -3,7 +3,6 @@
 # Lazy man script
 # Author: QiangZiBro
 #---------------------------------------------------------------------------------
-set -ex
 source ~/.Qdotfiles/.env
 
 CLEAR='\033[0m'
