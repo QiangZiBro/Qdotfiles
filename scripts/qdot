@@ -27,8 +27,8 @@ COMMAND:
   pl|pull: pull from remote server and bootstrap
   n|new: copy ~/.Qdotfiles to current place
   update: push local changes to git server and update all remote servers
-  b|bootstrap
-  bc|backup
+  b|bootstrap: get Qdotfiles setup in your system
+  bc|backup: backup files defined in scripts/backup.sh
 
 OPTIONS:
   -r
