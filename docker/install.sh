@@ -21,17 +21,15 @@ sudo apt-get install -y nvidia-docker2
 if test ! $(which docker)
 then
   if [[ "$OSTYPE" == "darwin"* ]]; then
-  then
   	 brew cask install docker
 	 pip install docker-compose
   elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  then
   	sudo apt install -y docker docker.io
 	pip install docker-compose
   	_install_nvidia_docker
   fi
 else
-  echo You have installed docker on your computer
+  echo You have installed docker on your computer, which is in:
   command -v docker
 fi
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
