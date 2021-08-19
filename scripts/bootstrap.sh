@@ -140,4 +140,3 @@ main(){
 }
 
 main
-echo "Done. Note that some of these changes require a logout/restart to take effect."
