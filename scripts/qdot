@@ -11,14 +11,14 @@ update_remote_dotfiles(){
 	echo remote:$1, $2
 	ssh -o ConnectTimeout=3 "$1" "/bin/bash /home/qiangzibro/.Qdotfiles/scripts/qdot pull \
 		-t \"$2\" "
-}
+	}
 
 usage() {
-if [ -n "$1" ]; then
-  echo -e "${RED}☺️ $1${CLEAR}\n"
-fi
+	if [ -n "$1" ]; then
+		echo -e "${RED}☺️ $1${CLEAR}\n"
+	fi
 
-cat << EOF
+	cat << EOF
 
 qdot COMMAND [OPTIONS]
 
@@ -59,19 +59,19 @@ exit 1
 
 # parse params
 while [[ "$#" > 0 ]]; do case $1 in
-  p|push) COMMAND="PUSH";shift;;
-  pl|pull) COMMAND="PULL";shift;;
-  b|bootstrap) COMMAND="BOOTSTRAP";shift;;
-  bc|backup) COMMAND="BACKUP";shift;;
-  n|new) COMMAND="COPY";shift;;
-  update) COMMAND="UPDATE";shift;;
-  -h|--help) HELP=1; shift;;
-  -v|--verbose) VERBOSE=1; shift;;
-  -m|--message) MESSAGE="$2"; shift;shift;;
-  -t|--destination) DESTINATION="$2";shift;shift;;
-  -r|--pull_all) PULL_ALL=1;shift;;
-  -d|--daemon) DAEMON="&";shift;;
-  *) usage "Unknown parameter passed: $1"; shift; shift;;
+	p|push) COMMAND="PUSH";shift;;
+	pl|pull) COMMAND="PULL";shift;;
+	b|bootstrap) COMMAND="BOOTSTRAP";shift;;
+	bc|backup) COMMAND="BACKUP";shift;;
+	n|new) COMMAND="COPY";shift;;
+	update) COMMAND="UPDATE";shift;;
+	-h|--help) HELP=1; shift;;
+	-v|--verbose) VERBOSE=1; shift;;
+	-m|--message) MESSAGE="$2"; shift;shift;;
+	-t|--destination) DESTINATION="$2";shift;shift;;
+	-r|--pull_all) PULL_ALL=1;shift;;
+	-d|--daemon) DAEMON="&";shift;;
+	*) usage "Unknown parameter passed: $1"; shift; shift;;
 esac; done
 
 # verify params
@@ -84,17 +84,17 @@ verbose_info(){
 	# 如果有网络问题使用这个
 	IP=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' |\
 		grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | grep -Ev '172.*.0.1'`
-	echo "#--------------------------------------------"
-	echo INFO:updating in `hostname`$IP
-	echo COMMAND:$COMMAND,  MESSAGE:$MESSAGE, DESTINATION:$DESTINATION, PULL_ALL:$PULL_ALL
-	echo http_proxy:$http_proxy
-	echo "#--------------------------------------------"
-	source  ~/.Qdotfiles/ss/proxy.zsh
-	proxy on
-}
+			echo "#--------------------------------------------"
+			echo INFO:updating in `hostname`$IP
+			echo COMMAND:$COMMAND,  MESSAGE:$MESSAGE, DESTINATION:$DESTINATION, PULL_ALL:$PULL_ALL
+			echo http_proxy:$http_proxy
+			echo "#--------------------------------------------"
+			source  ~/.Qdotfiles/ss/proxy.zsh
+			proxy on
+		}
 
 if [ -n "$VERBOSE" ];then
-verbose_info
+	verbose_info
 fi
 
 if [ "$COMMAND" = "UPDATE" ];then
