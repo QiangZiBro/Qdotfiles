@@ -57,17 +57,6 @@ greeting(){
 	EOF
 	printf "$RESET"
 }
-insert_if_not_exists() {
-    # not useful anymore...
-    # if init.sh not in ~/.zsh, the add it
-    # insert_if_not_exists 'source ~/.Qdotfiles/scripts/init.sh' ~/.zshrc
-    content="$1"
-    file=$2
-    if ! grep -Fxq "$content" $file
-    then
-        echo "$content" >> $file
-    fi
-}
 
 cp_file_if_exists(){
     if [ -f "$1" -a -e $2 ];
