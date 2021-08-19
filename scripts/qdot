@@ -60,12 +60,12 @@ exit 1
 
 # parse params
 while [[ "$#" > 0 ]]; do case $1 in
-  p|push) ACTION="push";shift;;
-  pl|pull) ACTION="pull";shift;;
-  b|bootstrap) ACTION="bootstrap";shift;;
-  bc|backup) ACTION="BACKUP";shift;;
-  n|new) ACTION="COPY";shift;;
-  update) UPDATE=1;shift;;
+  p|push) COMMAND="push";shift;;
+  pl|pull) COMMAND="pull";shift;;
+  b|bootstrap) COMMAND="bootstrap";shift;;
+  bc|backup) COMMAND="BACKUP";shift;;
+  n|new) COMMAND="COPY";shift;;
+  update) COMMAND="UPDATE";shift;;
   -h|--help) HELP=1; shift;;
   -v|--verbose) VERBOSE=1; shift;;
   -m|--message) MESSAGE="$2"; shift;shift;;
@@ -81,60 +81,55 @@ if [ -z "$MESSAGE" ]; then MESSAGE='update from qdot push';fi
 if [ -z "$DESTINATION" ]; then DESTINATION='master';fi
 
 
-pre_check(){
+verbose_info(){
 	# 如果有网络问题使用这个
 	IP=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' |\
 		grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | grep -Ev '172.*.0.1'`
 	echo "#--------------------------------------------"
 	echo INFO:updating in `hostname`$IP
-	echo ACTION:$ACTION, UPDATE:$UPDATE,  MESSAGE:$MESSAGE, DESTINATION:$DESTINATION, PULL_ALL:$PULL_ALL
+	echo COMMAND:$COMMAND, COMMAND:$COMMAND,  MESSAGE:$MESSAGE, DESTINATION:$DESTINATION, PULL_ALL:$PULL_ALL
 	echo http_proxy:$http_proxy
 	echo "#--------------------------------------------"
 	source  ~/.Qdotfiles/ss/proxy.zsh
 	proxy on
 }
 
-github_update(){
-    if [ "$ACTION" = "push" ];then
-        git pull origin $DESTINATION
-        bash ~/.Qdotfiles/scripts/backup.sh
-        git add -A && git commit -m "$MESSAGE"
-        git push origin "$DESTINATION"
-		wait
-    
-    elif [ "$ACTION" = "pull" ];then
-		git pull origin $DESTINATION
-		if [ -n "$PULL_ALL" ];then
-			for server in `echo $SERVERS  | tr " " " "`
-			do
-				update_remote_dotfiles	"${server}" "${DESTINATION}" &
-			done
-			wait
-        fi
-		/bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
-	elif [ "$ACTION" = "bootstrap" ];then
-		/bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
-	elif [ "$ACTION" = "BACKUP" ];then
-		/bin/bash ~/.Qdotfiles/scripts/backup.sh
-	elif [ "$ACTION" = "COPY"  ];then
-		echo "WARNING: You're copying Qdotfiles, which may contain"
-		echo "sensitive files!"
-		cp -r ~/.Qdotfiles .
-		echo "check it out: ./.Qdotfiles"
-    fi
-}
-
-cd ~/.Qdotfiles
 if [ -n "$VERBOSE" ];then
-pre_check
+verbose_info
 fi
 
-if [ -n "$UPDATE" ];then 
+if [ "$COMMAND" = "UPDATE" ];then
 	qdot push
 	qdot pull -a
-elif [ -z "$ACTION" ];
-	then usage "Action (push|pull) is not set";
-else
-	github_update "$@"
+
+elif [ "$COMMAND" = "push" ];then
+	cd ~/.Qdotfiles
+	git pull origin $DESTINATION
+	bash ~/.Qdotfiles/scripts/backup.sh
+	git add -A && git commit -m "$MESSAGE"
+	git push origin "$DESTINATION"
+	wait
+	cd - > /dev/null
+
+
+elif [ "$COMMAND" = "pull" ];then
+	cd ~/.Qdotfiles
+	git pull origin $DESTINATION
+	if [ -n "$PULL_ALL" ];then
+		for server in `echo $SERVERS  | tr " " " "`
+		do
+			update_remote_dotfiles	"${server}" "${DESTINATION}" &
+		done
+		wait
+	fi
+	/bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
+elif [ "$COMMAND" = "bootstrap" ];then
+	/bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
+elif [ "$COMMAND" = "BACKUP" ];then
+	/bin/bash ~/.Qdotfiles/scripts/backup.sh
+elif [ "$COMMAND" = "COPY"  ];then
+	echo "WARNING: You're copying Qdotfiles, which may contain"
+	echo "sensitive files!"
+	cp -r ~/.Qdotfiles .
+	echo "check it out: ./.Qdotfiles"
 fi
-cd - > /dev/null
