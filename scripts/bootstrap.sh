@@ -30,11 +30,14 @@ greeting(){
     setup_color
 	printf "$GREEN"
 	cat <<-'EOF'
- ______________________________________
-/     你好，欢迎使用Qdotfiles！        \
-| Hello, Welcome to use Qdotfiles!      |
-\ Hola,¡bienvenido a usar Qdotfiles!   /
- -------------------------------------- 
+ __________________________________
+/          QiangZiBro              \
+| Hello, Welcome to use Qdotfiles!  |
+| Useful tools:                     |
+|   qdot -h                         | 
+|   proxy -h                        |
+\   qtool -h                        /
+ ----------------------------------
       \                    / \  //\
        \    |\___/|      /   \//  \\
             /0  0  \__  /    //  | \ \    
