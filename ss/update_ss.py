@@ -26,12 +26,7 @@ def get_machines():
 
 def parse_args():
     parser = argparse.ArgumentParser(description="""
-    Find ss configure --> Upload to server --> Restart docker on remote
-    Example:
-    1. get the config file   
-        proxy set (ip:port)   
-    2. upload ss file to remove Qdotfiles [-r] and restart remote services [-d]
-        proxy set (ip:port) -rd
+    Setting ss configuration based on rules
     """)
 
     parser.add_argument("ip", nargs="?", type=str, help="Remote ss server ip address with port")
@@ -50,6 +45,7 @@ def parse_args():
     return ip,port,json_file,args
 
 def write(c):
+    PREFIX = os.path.expanduser("~/.Qdotfiles/ss")
     with open(f'{PREFIX}/ss.json', 'w') as outfile:
         json.dump(c, outfile, indent=4)
 
@@ -80,7 +76,6 @@ def excute(template, machines):
 
 if __name__ == "__main__":
     MACHINES = get_machines()
-    PREFIX=os.path.expanduser("~/.Qdotfiles/ss")
     ip,port,json_file,args = parse_args()
     if ip:
         config = parse_config()
