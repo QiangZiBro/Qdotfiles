@@ -121,6 +121,12 @@ function proxy(){
 
 function change_ss(){
 	cd ~/.Qdotfiles/ss
-	python update_ss.py "$@"
+	PYTHON_VERSION=$(python -V | awk -F' ' '{print $2}' | awk -F'.' '{print $1}')
+	if command -v  python3  &> /dev/null
+	then
+		python3 update_ss.py "$@"
+	else
+		[[ $(PYTHON_VERSION) = "3" ]] && python update_ss.py "$@" || exit 1
+	fi
 	cd - > /dev/null
 }
