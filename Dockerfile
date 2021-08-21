@@ -9,7 +9,7 @@ ENV USER=user
 # Linux Environment
 #------------------------------------------------------------------------------
 # 1.change source
-RUN apt-get install -y --no-install-recommends \
+RUN apt update -y && apt-get install -y --no-install-recommends \
         sudo privoxy curl git procps zsh
 
 # 2.create user
