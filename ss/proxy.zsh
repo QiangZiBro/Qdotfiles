@@ -92,6 +92,10 @@ function proxy(){
 		cd ~/.Qdotfiles
 		docker-compose down --remove-orphans
 		cd - > /dev/null
+	elif [ "$1" = "in" ]; then
+		cd ~/.Qdotfiles
+		docker-compose exec Qlinux zsh
+		cd - > /dev/null
 	elif [ "$1" = "restart" ] || [ "$1" = "r" ]; then
 		cd ~/.Qdotfiles
 		docker-compose restart
