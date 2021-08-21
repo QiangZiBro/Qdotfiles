@@ -84,6 +84,9 @@ function proxy(){
 		cd ~/.Qdotfiles
 		if [ "$2" = "-v" ]; then
 			docker-compose up --remove-orphans
+		elif [ "$2" = "-h" ]; then
+			echo "proxy up [-vh]"
+			echo "-v show debug info"
 		else
 			docker-compose up -d --remove-orphans
 		fi
