@@ -10,9 +10,7 @@ ENV USER=user
 #------------------------------------------------------------------------------
 # 1.change source
 RUN apt-get install -y --no-install-recommends \
-        sudo privoxy curl git procps zsh \
-		&& apt clean \
-        && rm -rf /var/lib/apt/lists/*
+        sudo privoxy curl git procps zsh
 
 # 2.create user
 RUN export uid=1000 gid=1000 pswd=password &&\
