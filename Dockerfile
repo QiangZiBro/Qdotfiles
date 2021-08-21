@@ -9,17 +9,13 @@ ENV USER=user
 # Linux Environment
 #------------------------------------------------------------------------------
 # 1.change source
-COPY apt/sources.list /etc/apt/sources.list
-RUN apt-get update --fix-missing -qqy && apt-get update  -qqy &&\
-    apt-get install -y --no-install-recommends \
-        # some basic softwares 
-        sudo privoxy curl git procps zsh
-        #    rm -rf /var/lib/apt/lists/*
+RUN apt-get install -y --no-install-recommends \
+        sudo privoxy curl git procps zsh \
+		&& apt clean \
+        && rm -rf /var/lib/apt/lists/*
 
 # 2.create user
 RUN export uid=1000 gid=1000 pswd=password &&\
-    # may not be useful
-    # apt-get clean && \
     groupadd -g $gid $USER && \
     useradd -g $USER -G sudo -m -s /bin/bash $USER && \
     # -m : create home dir if not exists
@@ -61,10 +57,6 @@ ARG INSTALL_SOFTWARES=false
 RUN if [ ${INSTALL_SOFTWARES} = true ]; then\
         bash ~/.Qdotfiles/scripts/cproxy daemon &&\
         export https_proxy="127.0.0.1:${PRIVOXY_PORT}" && export http_proxy="127.0.0.1:${PRIVOXY_PORT}" &&\
-        # Your commands that need proxy, such as
-        # curl google.com &&\
-        # may not use sudo priviledge, so I comment below
-        # sudo -p password su &&\
         bash ~/.Qdotfiles/scripts/install_softwares.sh \
     ;fi
 
