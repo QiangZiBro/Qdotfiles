@@ -1,7 +1,7 @@
 #------------------------------------------------------------------------------
 # Python Environment
 #------------------------------------------------------------------------------
-FROM continuumio/miniconda3
+FROM python
 
 ENV USER=user
 
@@ -31,8 +31,9 @@ RUN export uid=1000 gid=1000 pswd=password &&\
 #------------------------------------------------------------------------------
 #Change to china source, install privoxy and shadowsocks and fix ssl bug
 COPY .pip /root/.pip
-RUN python3 -m pip install shadowsocks  &&\
-     sed -i "s|cleanup|reset|g"  /opt/conda/lib/python3.*/site-packages/shadowsocks/crypto/openssl.py
+RUN python3 -m pip install shadowsocks 
+# &&\
+#     sed -i "s|cleanup|reset|g"  /opt/conda/lib/python3.*/site-packages/shadowsocks/crypto/openssl.py
 
 
 #------------------------------------------------------------------------------
