@@ -7,7 +7,7 @@ services:
         image: ss-privoxy
         ports:
             - 8999:8999
-            - 1089:1080
+              #            - 1089:1080
         volumes:
             - "~/.Qdotfiles/:/root/.Qdotfiles/"
         restart: always
