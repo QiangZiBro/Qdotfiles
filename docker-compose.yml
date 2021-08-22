@@ -1,15 +1,27 @@
 version: '3'
 services:
-    Qlinux: 
-        build: 
+    ss-privoxy:
+        build:
             context: .
-            dockerfile: Dockerfile
-            args:
-                - INSTALL_SOFTWARES=fasle
-                - "PRIVOXY_PORT=${PRIVOXY_PORT}"
-        image: qiangzibro/qlinux:latest
+            dockerfile: Dockerfile-ss-privoxy
+        image: ss-privoxy
         ports:
-            - "${PRIVOXY_PORT}:8999"
+            - 8999:8999
+            - 1089:1080
         volumes:
-            - "~/.Qdotfiles/:/home/user/.Qdotfiles/"
+            - "~/.Qdotfiles/:/root/.Qdotfiles/"
         restart: always
+        #    Qlinux: 
+        #        build: 
+        #            context: .
+        #            dockerfile: Dockerfile
+        #            args:
+        #                - INSTALL_SOFTWARES=fasle
+        #                - "PRIVOXY_PORT=${PRIVOXY_PORT}"
+        #        image: qiangzibro/qlinux:latest
+        #        ports:
+        #            - "${PRIVOXY_PORT}:8999"
+        #        volumes:
+        #            - "~/.Qdotfiles/:/home/user/.Qdotfiles/"
+        #        restart: always
+        #
