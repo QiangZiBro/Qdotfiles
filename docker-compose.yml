@@ -3,11 +3,10 @@ services:
     ss-privoxy:
         build:
             context: .
-            dockerfile: Dockerfile-ss-privoxy
+            dockerfile: docker/Dockerfile-ss-privoxy
         image: ss-privoxy
         ports:
             - 8999:8999
-              #            - 1089:1080
         volumes:
             - "~/.Qdotfiles/:/root/.Qdotfiles/"
         restart: always
