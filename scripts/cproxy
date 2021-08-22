@@ -2,7 +2,7 @@
 #------------------------------------------------------------------------------
 # Configure the service. This script runs in docker container
 #------------------------------------------------------------------------------
-cat << "EOF"
+cat <<"EOF"
 INFO: All is done! Try blow:
     PROXY_PORT=8999
     export http_proxy=127.0.0.1:$PROXY_PORT
@@ -17,13 +17,13 @@ cd $(dirname $0)/..
 
 start=$1
 if [ "$start" = "daemon" ]; then
-    sslocal -c ss/ss.json 2>&1 >/dev/null &
-    sleep 2
+  sslocal -c ss/ss.json 2>&1 >/dev/null &
+  sleep 2
 
 elif [ "$start" = "down" ]; then
-    export http_proxy=
-    export https_proxy=
-    git config --global https.proxy ''
+  export http_proxy=
+  export https_proxy=
+  git config --global https.proxy ''
 else
-    sslocal -c ss/ss.json
+  sslocal -c ss/ss.json
 fi

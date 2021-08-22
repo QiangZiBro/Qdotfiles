@@ -1,19 +1,19 @@
-common () {
+common() {
 }
-linux () {
+linux() {
 }
 
-mac () {
+mac() {
 }
 
 common
-if test "$(uname)" = "Darwin"
-    # mac branch
-    mac
+if
+  test "$(uname)" = "Darwin"
+  # mac branch
+  mac
 then
-elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
-then
-    # linux branch
-    linux
+elif test "$(expr substr $(uname -s) 1 5)" = "Linux"; then
+  # linux branch
+  linux
 
 fi
