@@ -21,14 +21,8 @@ _install_nvidia_docker() {
 }
 
 if test ! $(which docker); then
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    brew cask install docker
-    pip install docker-compose
-  elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    sudo apt install -y docker docker.io
-    pip install docker-compose
-    _install_nvidia_docker
-  fi
+  curl -sSL https://get.docker.com/ | sh 
+  pip install docker-compose
 else
   echo You have installed docker on your computer, which is in:
   command -v docker
