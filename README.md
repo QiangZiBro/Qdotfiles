@@ -7,16 +7,34 @@
   </p>
 </p>
 
-Wanna have a try? Just copy this command to your terminal, it will help you clone the repo, make some directories to put softwares, and finally setup your computer.
+Wanna have a try? Just copy this command to your terminal, Qdotfiles will be installed and setup on your mac or linux.
 
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/QiangZiBro/Qdotfiles/master/scripts/bootstrap.sh)"
 ```
 
-> **Longterm usage advice:**
->
-> Fork this repo, change name `QiangZiBro` to your github username above, and fetch from upstream when there’s update.
->
+
+
+## Getting started
+
+Fork this repo, change name `QiangZiBro` to `your_github_username`  in below command
+
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/your_github_username/Qdotfiles/master/scripts/bootstrap.sh)"
+```
+
+Make changes, and commit to your repository
+
+```
+qdot backup 
+qdot push -m "changes" -t [master|dev|HEAD]
+```
+
+Proxy utilities in Qdotfiles
+
+```bash
+proxy [on|off|up|down|status|restart|cmd|set|which|test]
+```
 
 
 
