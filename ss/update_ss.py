@@ -87,6 +87,7 @@ if __name__ == "__main__":
             # TODO: Could be better
             with open(source) as json_data:
                 c = json.load(json_data)
+                c["local_port"] = 1080
                 #del c["local_port"]
                 #del c["local_address"]
                 write(c)
