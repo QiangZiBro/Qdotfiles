@@ -10,7 +10,7 @@
 Wanna have a try? Just copy this command to your terminal, Qdotfiles will be installed and setup on your mac or linux.
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/QiangZiBro/Qdotfiles/master/scripts/bootstrap.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/QiangZiBro/Qdotfiles/main/scripts/bootstrap.sh)"
 ```
 
 
@@ -20,14 +20,14 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/QiangZiBro/Qdotfiles/mas
 Fork this repo, change name `QiangZiBro` to `your_github_username`  in below command
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/your_github_username/Qdotfiles/master/scripts/bootstrap.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/your_github_username/Qdotfiles/main/scripts/bootstrap.sh)"
 ```
 
 Make changes, and commit to your repository
 
 ```
 qdot backup 
-qdot push -m "changes" -t [master|dev|HEAD]
+qdot push -m "changes" -t [main|dev|HEAD]
 ```
 
 Proxy utilities in Qdotfiles
