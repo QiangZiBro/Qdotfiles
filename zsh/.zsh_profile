@@ -7,7 +7,7 @@ qtool(){
 	hserver $@
   else
     echo "Usage:"
-    echo "  qtool [ip]"
+    echo "  qtool [ip|ps]"
   fi
 }
 hserver(){
