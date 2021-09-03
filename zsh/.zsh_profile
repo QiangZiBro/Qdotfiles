@@ -5,6 +5,13 @@ qtool(){
   elif [ "$1" = "hs" ];then
 	shift
 	hserver $@
+  elif [ "$1" = "get" ];then
+    if [ "$2" = "ssr-win" ];then
+      wget https://www.cordcloud.biz/ssr-download/ssr-win.7z
+	  7z x ssr-win.7z -ossr
+	elif [ "$2" = "-h" ];then
+	  echo "qtool get [ssr-win]"
+	fi
   else
     echo "Usage:"
     echo "  qtool [ip|ps]"
