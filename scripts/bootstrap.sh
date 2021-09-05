@@ -115,8 +115,6 @@ setup_config() {
 
   # python
   cp conda/.condarc ~
-  cp -r .pip ~
-
 }
 
 main() {
