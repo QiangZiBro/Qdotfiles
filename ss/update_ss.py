@@ -79,8 +79,11 @@ if __name__ == "__main__":
     MACHINES = get_machines()
     ip,port,json_file,args = parse_args()
     if ip:
+        # If ip is specified, look up it from the whole config file
         config = parse_config()
     else:
+        # Single config file may be stored in your shadowsocks software, so
+        # find it directly
         source="/Users/mac/Library/Application Support/ShadowsocksX-NG/ss-local-config.json"
         if os.path.exists(source):
             print("Find config file in:")
