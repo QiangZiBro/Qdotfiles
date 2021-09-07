@@ -1,5 +1,5 @@
 #!/bin/bash
-heic(){
+_heic(){
  _type=${1:-"png"}
  echo $_type
  for f in *.HEIC
@@ -17,7 +17,7 @@ qtool(){
 	if [ "$2" = "-h" ];then
 	  echo "qtool heic [png|jpg|jpeg]"
 	else
-	  heic $2
+	  _heic $2
 	fi
   elif [ "$1" = "get" ];then
     if [ "$2" = "ssr-win" ];then
