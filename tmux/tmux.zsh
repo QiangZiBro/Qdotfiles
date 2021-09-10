@@ -1,7 +1,7 @@
-tns(){
-    tmux new -s "$@"
+tns() {
+  tmux new -s "$@"
 }
 
-tat(){
-    tmux attach -t "$@"
+tat() {
+  tmux attach -t "$@"
 }
