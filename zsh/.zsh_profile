@@ -56,9 +56,6 @@ capsup()
 	caps "git push ${o} ${b}" $m && caps "git pull ${o} ${b}"
 }
 
-qdot(){
-	~/.Qdotfiles/scripts/qdot "$@"
-}
 common_aliases () {
     alias ei="nvim ~/.Qdotfiles/scripts/init.sh"
 	alias q="qdot"
@@ -81,7 +78,6 @@ linux_aliases () {
 
 common_aliases
 
-for d in ~/.Qdotfiles/bin; do PATH="$PATH:$d"; done
 # 系统特有的环境变量
 if test "$(uname)" = "Darwin"
 then

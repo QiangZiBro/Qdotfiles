@@ -1,5 +1,7 @@
 export EDITOR=nvim
 
+for d in ~/.Qdotfiles/bin; do PATH="$PATH:$d"; done
+
 if [ -d $HOME/.oh-my-zsh ];then
 	export ZSH=$HOME/.oh-my-zsh
 	plugins=(git)
