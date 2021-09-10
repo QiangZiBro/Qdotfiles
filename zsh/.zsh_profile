@@ -76,8 +76,8 @@ linux_aliases () {
 
 common_aliases
 
+for d in ~/.Qdotfiles/bin; do PATH="$PATH:$d"; done
 # 系统特有的环境变量
-export PATH=~/.Qdotfiles/bin${PATH:+:${PATH}}
 if test "$(uname)" = "Darwin"
 then
 	mac_aliases
