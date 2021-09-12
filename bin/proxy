@@ -1,10 +1,11 @@
-function _test_docker() {
+#!/bin/bash
+_test_docker() {
   if ! command -v conda &>/dev/null; then
     echo "You do not have docker installed or not set in your environment"
     exit 0
   fi
 }
-function _access_url() {
+_access_url() {
   1=${1:-google}
 
   start=$SECONDS
@@ -19,11 +20,11 @@ function _access_url() {
   fi
 }
 
-function cg() {
+cg() {
   _access_url baidu
   _access_url google
 }
-function _proxy_help() {
+_proxy_help() {
   cat <<EOF
 Usage: proxy [on|off|up|down|status|restart|cmd|set|which|test]
 Command:
@@ -32,7 +33,7 @@ Command:
  - set: select one from all ss configurations which are in ~/.Qdotfiles/ss/export.json
 EOF
 }
-function proxy() {
+proxy() {
   MAC_PROXY_PORT=1087
   LINUX_PROXY_PORT=8999
   if test "$(uname)" = "Darwin"; then
@@ -134,7 +135,7 @@ function proxy() {
   fi
 }
 
-function change_ss() {
+change_ss() {
   cd ~/.Qdotfiles/ss
   PYTHON_VERSION=$(python -V | awk -F' ' '{print $2}' | awk -F'.' '{print $1}')
   if command -v python3 &>/dev/null; then

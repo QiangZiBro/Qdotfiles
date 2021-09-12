@@ -22,49 +22,48 @@ EOF
 
   exit 1
 }
-_get_servers(){
-source ~/.Qdotfiles/.env && echo $SERVERS
+_get_servers() {
+  source ~/.Qdotfiles/.env && echo $SERVERS
 }
-_heic(){
- _type=${1:-"png"}
- echo $_type
- for f in *.HEIC
- do
-  sips -s format ${_type} "${f}" --out "${f%.*}.${_type}"
- done
+_heic() {
+  _type=${1:-"png"}
+  echo $_type
+  for f in *.HEIC; do
+    sips -s format ${_type} "${f}" --out "${f%.*}.${_type}"
+  done
 }
-hserver(){
-	port=${1-8080}
-	ip=`qtool ip`
-	python -m http.server $port --bind ${ip}
+hserver() {
+  port=${1-8080}
+  ip=$(qtool ip)
+  python -m http.server $port --bind ${ip}
 }
-qtool(){
-  if [ "$1" = "ip" ];then
-	if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+qtool() {
+  if [ "$1" = "ip" ]; then
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
       ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | grep -Ev '172.*.0.1'
-	elif [[ "$OSTYPE" == "darwin"* ]]; then
-	  ipconfig getifaddr en0
-	fi
-  elif [ "$1" = "hs" ];then
-	shift
-	hserver $@
-  elif [ "$1" = "heic" ];then
-	if [ "$2" = "-h" ];then
-	  echo "qtool heic [png|jpg|jpeg]"
-	else
-	  _heic $2
-	fi
-  elif [ "$1" = "get" ];then
-    if [ "$2" = "ssr-win" ];then
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+      ipconfig getifaddr en0
+    fi
+  elif [ "$1" = "hs" ]; then
+    shift
+    hserver $@
+  elif [ "$1" = "heic" ]; then
+    if [ "$2" = "-h" ]; then
+      echo "qtool heic [png|jpg|jpeg]"
+    else
+      _heic $2
+    fi
+  elif [ "$1" = "get" ]; then
+    if [ "$2" = "ssr-win" ]; then
       wget https://www.cordcloud.biz/ssr-download/ssr-win.7z
-	  7z x ssr-win.7z -ossr
-	elif [ "$2" = "-h" ];then
-	  echo "qtool get [ssr-win]"
-	fi
-  elif [ "$1" = "s" ];then 
-	  _get_servers
+      7z x ssr-win.7z -ossr
+    elif [ "$2" = "-h" ]; then
+      echo "qtool get [ssr-win]"
+    fi
+  elif [ "$1" = "s" ]; then
+    _get_servers
   else
-	  usage qtool
+    usage qtool
   fi
 }
 qtool "$@"
