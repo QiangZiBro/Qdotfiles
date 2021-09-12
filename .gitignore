@@ -10,3 +10,4 @@ ss/*.json
 .idea
 __pycache__
 *.pyo
+*build*
