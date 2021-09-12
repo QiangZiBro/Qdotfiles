@@ -27,16 +27,12 @@ if [[ -d ~/.zplug ]]; then
   zplug 'plugins/git', from:oh-my-zsh, if:'which git'
   zplug 'romkatv/powerlevel10k', as:theme, depth:1
   [[ ! -f ~/.Qdotfiles/zsh/.p10k.zsh ]] || source ~/.Qdotfiles/zsh/.p10k.zsh
-
   zplug 'zsh-users/zsh-autosuggestions'
   zplug 'zsh-users/zsh-completions', defer:2
   zplug 'zsh-users/zsh-history-substring-search'
   zplug 'zsh-users/zsh-syntax-highlighting', defer:2
-
   if ! zplug check; then
     zplug install
   fi
-
   zplug load
-
 fi
