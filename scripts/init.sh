@@ -59,6 +59,9 @@ source ~/.Qdotfiles/tmux/tmux.zsh
 
 # fuck
 command -V thefuck 2>&1 >/dev/null && eval $(thefuck --alias)
+
+# 命令补全
+source ~/.Qdotfiles/scripts/completion.sh
 # 整理 PATH，删除重复路径
 if [ -n "$PATH" ]; then
   old_PATH=$PATH:
