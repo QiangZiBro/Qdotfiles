@@ -25,9 +25,6 @@ source_if_exists() {
 
 QDOTFILES="~/.Qdotfiles"
 
-# ss
-source ~/.Qdotfiles/ss/proxy.zsh
-
 # zsh
 if [ -d $HOME/.oh-my-zsh ];then
         export ZSH=$HOME/.oh-my-zsh
