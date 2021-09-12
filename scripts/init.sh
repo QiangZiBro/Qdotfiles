@@ -29,6 +29,12 @@ QDOTFILES="~/.Qdotfiles"
 source ~/.Qdotfiles/ss/proxy.zsh
 
 # zsh
+if [ -d $HOME/.oh-my-zsh ];then
+        export ZSH=$HOME/.oh-my-zsh
+        plugins=(git)
+        ZSH_THEME="robbyrussell"
+        source $ZSH/oh-my-zsh.sh
+fi
 source ~/.Qdotfiles/zsh/theme.zsh
 source_if_exists ~/.zsh_profile
 
