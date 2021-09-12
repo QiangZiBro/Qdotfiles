@@ -23,7 +23,7 @@ cg() {
   _access_url google
 }
 _proxy_help() {
-  cat <<EOF
+cat <<EOF
 Usage: proxy [on|off|up|down|status|restart|cmd|set|which|test]
 Command:
  - on/off: set http/https proxy port
