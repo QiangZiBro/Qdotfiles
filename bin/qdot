@@ -5,13 +5,8 @@
 #---------------------------------------------------------------------------------
 source ~/.Qdotfiles/.env
 
-CLEAR='\033[0m'
-RED='\033[0;31m'
-update_remote_dotfiles() {
-  echo remote:$1, $2
-  ssh -o ConnectTimeout=3 "$1" "/bin/bash /home/qiangzibro/.Qdotfiles/scripts/qdot pull \
-		-t \"$2\" "
-}
+clear='\033[0m'
+red='\033[0;31m'
 
 usage() {
   if [ -n "$1" ]; then
@@ -57,6 +52,11 @@ EOF
   exit 1
 }
 
+update_remote_dotfiles() {
+  echo remote:$1, $2
+  ssh -o ConnectTimeout=3 "$1" "/bin/bash /home/qiangzibro/.Qdotfiles/scripts/qdot pull \
+		-t \"$2\" "
+}
 # parse params
 while [[ "$#" > 0 ]]; do case $1 in
   p | push)
