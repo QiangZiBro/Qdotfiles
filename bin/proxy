@@ -6,8 +6,6 @@ _test_docker() {
   fi
 }
 _access_url() {
-  1=${1:-google}
-
   start=$SECONDS
   result=$(curl -m 3 -I --silent www.$1.com | head -n 1 | awk -F' ' '{print $2}')
   result=${result:-None}
