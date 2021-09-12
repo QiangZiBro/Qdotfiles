@@ -11,3 +11,5 @@ ss/*.json
 __pycache__
 *.pyo
 *build*
+
+*.pyo
