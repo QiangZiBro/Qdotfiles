@@ -12,7 +12,11 @@ _heic(){
 }
 qtool(){
   if [ "$1" = "ip" ];then
-    ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | grep -Ev '172.*.0.1'
+	if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+      ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | grep -Ev '172.*.0.1'
+	elif [[ "$OSTYPE" == "darwin"* ]]; then
+	  ipconfig getifaddr en0
+	fi
   elif [ "$1" = "hs" ];then
 	shift
 	hserver $@
