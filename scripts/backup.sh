@@ -26,8 +26,6 @@ local_backup() {
   cp ~/.tmux.conf tmux
 
   # git
-  # 备份之前关闭了代理
-  source ss/proxy.zsh
   cp_file_if_exists ~/.gitconfig git
   cp_file_if_exists ~/.gitmessage git
   cp_file_if_exists ~/.git-credentials git

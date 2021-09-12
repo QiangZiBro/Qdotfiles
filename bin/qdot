@@ -130,8 +130,7 @@ verbose_info() {
   echo COMMAND:$COMMAND, MESSAGE:$MESSAGE, DESTINATION:$DESTINATION, PULL_ALL:$PULL_ALL
   echo http_proxy:$http_proxy
   echo "#--------------------------------------------"
-  source ~/.Qdotfiles/ss/proxy.zsh
-  proxy on
+  ~/.Qdotfiles/bin/proxy on
 }
 
 if [ -n "$VERBOSE" ]; then

@@ -78,7 +78,7 @@ docker-compose exec Qlinux zsh
 | eb    | nvim ~/.zshrc                     |
 | ei    | nvim ~/.Qdotfiles/scripts/init.sh |
 | cq    | cd ~/.Qdotfiles/                  |
-| proxy | [ss/proxy.zsh](ss/proxy.zsh)      |
+| proxy |                                   |
 
 ### 脚本功能
 
