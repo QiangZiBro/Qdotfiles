@@ -143,5 +143,3 @@ change_ss() {
   fi
   cd - >/dev/null
 }
-
-proxy "$@"
