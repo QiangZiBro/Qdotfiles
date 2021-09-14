@@ -57,3 +57,7 @@ then
 		eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 	fi
 fi
+
+if [ -f ~/.qscerets.zsh ]; then
+	source ~/.qscerets.zsh
+fi
