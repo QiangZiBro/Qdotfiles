@@ -35,7 +35,8 @@ fi
 source ~/.Qdotfiles/zsh/theme.zsh
 source_if_exists ~/.zsh_profile
 
-
+# ss
+source ~/.Qdotfiles/bin/proxy
 # zlua
 source ~/.Qdotfiles/zlua/zlua.zsh
 
