@@ -22,7 +22,8 @@ source_if_exists() {
     source "$file"
   fi
 }
-
+export PATH=$PATH:~/.Qdotfiles/git/custom
+export PATH=$PATH:~/.Qdotfiles/bin
 QDOTFILES="~/.Qdotfiles"
 
 # ss
