@@ -37,14 +37,9 @@ source_if_exists ~/.zsh_profile
 
 # ss
 source ~/.Qdotfiles/bin/proxy
-# zlua
-source ~/.Qdotfiles/zlua/zlua.zsh
 
 # github
 source ~/.Qdotfiles/git/aliases.zsh
-
-# ccat
-source ~/.Qdotfiles/ccat/ccat.zsh
 
 # conda
 source ~/.Qdotfiles/conda/conda.zsh
