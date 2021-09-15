@@ -168,5 +168,14 @@ elif [ "$COMMAND" = "BACKUP" ]; then
   /bin/bash ~/.Qdotfiles/scripts/backup.sh
 elif [ "$COMMAND" = "COPY" ]; then
   cd ~/.Qdotfiles
+  if test -d $DESTINATION; then
+    echo $DESTINATION exists, check it ~/.Qdotfiles/$DESTINATION
+    exit 0
+  fi
+
+  echo Creating software configuration for $DESTINATION ...
+  echo Hint: modify $DESTINATION/install.sh for installation
+  echo Hint: modify $DESTINATION/$DESTINATION.sh for configuration
   cp -r ~/.Qdotfiles/scripts/.example $DESTINATION
+  mv $DESTINATION/aliases.zsh $DESTINATION/$DESTINATION.zsh
 fi
