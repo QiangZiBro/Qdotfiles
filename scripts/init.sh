@@ -25,6 +25,9 @@ source_if_exists() {
 
 QDOTFILES="~/.Qdotfiles"
 
+# 命令补全
+source ~/.Qdotfiles/scripts/completion.sh
+
 # zsh
 if [ -d $HOME/.oh-my-zsh ];then
         export ZSH=$HOME/.oh-my-zsh
@@ -36,7 +39,7 @@ source ~/.Qdotfiles/zsh/theme.zsh
 source_if_exists ~/.zsh_profile
 
 # ss
-source ~/.Qdotfiles/bin/proxy
+source ~/.Qdotfiles/bin/proxy.zsh
 
 # github
 source ~/.Qdotfiles/git/aliases.zsh
@@ -56,8 +59,7 @@ source ~/.Qdotfiles/tmux/tmux.zsh
 # fuck
 command -V thefuck 2>&1 >/dev/null && eval $(thefuck --alias)
 
-# 命令补全
-source ~/.Qdotfiles/scripts/completion.sh
+
 # 整理 PATH，删除重复路径
 if [ -n "$PATH" ]; then
   old_PATH=$PATH:
