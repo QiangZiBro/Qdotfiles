@@ -5,38 +5,36 @@
 #	2. 如果直接使用我的配置文件，请进行对应修改！！！
 #---------------------------------------------------------------------------------
 [include]
-        path = ~/.gitconfig.local
-
+path = ~/.gitconfig.local
 
 [http]
-	sslVerify = false
+sslVerify = false
 
 [https]
-	proxy = 
-	sslVerify = false
-	lowSpeedLimit = 0
-	lowSpeedTime = 999999
+proxy =
+sslVerify = false
+lowSpeedLimit = 0
+lowSpeedTime = 999999
 
 [alias]
-	lastcommit = rev-parse HEAD
+lastcommit = rev-parse HEAD
 
 [core]
-  editor = nvim
-  pager = diff-so-fancy | less --tabs=4 -RFX
+editor = nvim
+pager = diff-so-fancy | less --tabs=4 -RFX
 
 [push]
-  default = current
+default = current
 
 [commit]
-  template = ~/.gitmessage
-
+template = ~/.gitmessage
 
 [color]
-  ui = true
+ui = true
 
 [github]
-	user = QiangZiBro
-	token = 
+user = QiangZiBro
+token =
 #---------------------------------------------------------------------------------
 # git免密登录
 #---------------------------------------------------------------------------------
@@ -45,7 +43,7 @@
 # 2.[不用做] 下面配置是运行下列语句的结果
 # git config --global credential.helper store
 [credential]
-	helper = store
+helper = store
 
 #---------------------------------------------------------------------------------
 # 配置文件结束
@@ -54,7 +52,7 @@
 #	2. 如果直接使用我的配置文件，请进行对应修改！！！
 #---------------------------------------------------------------------------------
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
+required = true
