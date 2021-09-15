@@ -1,19 +1,4 @@
 #!/bin/bash
-caps()
-{
-	cmd=${1:-'ls'}
-	machines=${2:-'l0 l1 l4 l5'}
-	pssh -i -H "$machines" "cd ~/caps3d && $cmd"
-}
-
-capsup()
-{
-	m=${1:-'l0'}
-	o=${2:-'origin'}
-	b=${3:-'dev'}
-	caps "git push ${o} ${b}" $m && caps "git pull ${o} ${b}"
-}
-
 common_aliases () {
     alias ei="nvim ~/.Qdotfiles/scripts/init.sh"
 	alias q="qdot"
