@@ -7,8 +7,6 @@ if ! command -v nvim 2>&1 >/dev/null; then
   elif test "$(expr substr $(uname -s) 1 5)" = "Linux"; then
     sudo apt install neovim
   fi
-else
-  echo nvim has been installed in your system!
 fi
 
 ## 安装vim插件管理器
