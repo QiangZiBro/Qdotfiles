@@ -37,16 +37,11 @@ if [ -d $HOME/.oh-my-zsh ];then
 fi
 source ~/.Qdotfiles/zsh/theme.zsh
 source_if_exists ~/.zsh_profile
-
-
 # github
 source ~/.Qdotfiles/git/aliases.zsh
 
 # conda
 source ~/.Qdotfiles/conda/conda.zsh
-
-# github
-source_if_exists ~/.Qdotfiles/git/outh.sh
 
 # docker
 source ~/.Qdotfiles/docker/docker.zsh
