@@ -23,9 +23,6 @@ _install_nvidia_docker() {
 if test ! $(which docker); then
   curl -sSL https://get.docker.com/ | sh 
   pip install docker-compose
-else
-  echo You have installed docker on your computer, which is in:
-  command -v docker
 fi
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   #_setting_docker_runtime_proxy
