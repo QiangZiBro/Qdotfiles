@@ -18,6 +18,7 @@ lowSpeedTime = 999999
 
 [alias]
 lastcommit = rev-parse HEAD
+last = checkout HEAD~1
 
 [core]
 editor = nvim
