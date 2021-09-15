@@ -64,7 +64,6 @@ cp_file_if_exists() {
 }
 
 pre_set() {
-  # get variables in mac or linux
   unameOut="$(uname -s)"
   case "${unameOut}" in
   Linux*)
@@ -82,6 +81,8 @@ pre_set() {
     exit 0
     ;;
   esac
+  # TODO: check the user is using zsh or not, if not, use set user to use zsh
+  # if not exists zsh, install zsh
 }
 
 check_project() {

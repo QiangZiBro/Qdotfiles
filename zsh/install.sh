@@ -1,6 +1,12 @@
 #!/bin/bash
 set -ex
 
+# TODO:
+# 1. check zsh is installed or not
+# 2. if not, install it
+# 3. install oh-my-zsh 
+# 4. install theme file
+
 if test "$(uname)" = "Darwin"; then
   # mac installation branch
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
