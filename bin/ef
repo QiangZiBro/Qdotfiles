@@ -1,2 +1,2 @@
 #!/bin/bash
-file=$(fzf --exit-0) && $EDITOR "$file"
+file=$(fzf --height 50% --preview 'cat {}'  --exit-0) && $EDITOR "$file"
