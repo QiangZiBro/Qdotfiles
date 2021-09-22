@@ -40,8 +40,6 @@ source ~/.Qdotfiles/zsh/theme.zsh
 source_if_exists ~/.zsh_profile
 # github
 source ~/.Qdotfiles/git/aliases.zsh
-
-source ~/.Qdotfiles/neovim/nvim.zsh
 # conda
 source ~/.Qdotfiles/conda/conda.zsh
 
