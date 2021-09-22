@@ -3,7 +3,7 @@ services:
   command-http-proxy:
     image: qiangzibro/qlinux:latest
     ports:
-        - 8999:8999
+        - ${HTTP_PROXY_PORT}:8999
     volumes:
         - "~/.Qdotfiles/:/root/.Qdotfiles/"
     restart: always
