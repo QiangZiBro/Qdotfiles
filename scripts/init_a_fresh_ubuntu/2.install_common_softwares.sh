@@ -5,7 +5,8 @@ if test "$(uname)" = "Darwin"; then
 elif test "$(expr substr $(uname -s) 1 5)" = "Linux"; then
   softwares="git vim zsh silversearcher-ag\
 		       ranger curl tree make htop nodejs npm\
-			   snapd docker docker.io docker-compose"
+			   snapd docker docker.io docker-compose\
+			   fzf"
   echo "Hi handsome user! I will install some very common softwares\
 		you may need such as $softwares"
 
