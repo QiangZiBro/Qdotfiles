@@ -59,7 +59,7 @@ Plug 'chrisbra/vim-diff-enhanced'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Coc的补全插件
-let g:coc_global_extensions = ['coc-json', 'coc-pyright', 'coc-vimlsp']
+let g:coc_global_extensions = ['coc-json', 'coc-pyright', 'coc-vimlsp', 'coc-sh']
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
 set encoding=utf-8
