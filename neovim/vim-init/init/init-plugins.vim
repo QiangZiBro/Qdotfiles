@@ -55,6 +55,11 @@ Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
 " Diff 增强，支持 histogram / patience 等更科学的 diff 算法
 Plug 'chrisbra/vim-diff-enhanced'
 
+" Coc补全
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Coc的补全插件
+let g:coc_global_extensions = ['coc-json', 'coc-pyright', 'coc-vimlsp']
 
 "----------------------------------------------------------------------
 " Dirvish 设置：自动排序并隐藏文件，同时定位到相关文件
@@ -149,6 +154,7 @@ endif
 " 增强插件
 "----------------------------------------------------------------------
 if index(g:bundle_group, 'enhanced') >= 0
+
 	" 在 vim 里打开ranger
 	Plug 'francoiscabrol/ranger.vim'
 	let g:NERDTreeHijackNetrw = 0 
@@ -159,9 +165,6 @@ if index(g:bundle_group, 'enhanced') >= 0
 
 	" 快速文件搜索
 	Plug 'junegunn/fzf'
-
-	" 给不同语言提供字典补全，插入模式下 c-x c-k 触发
-	Plug 'asins/vim-dict'
 
 	" 使用 :FlyGrep 命令进行实时 grep
 	Plug 'wsdjeg/FlyGrep.vim'
