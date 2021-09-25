@@ -1,6 +1,4 @@
 {
-	"prisma.prismaFmtBinPath": "",
-	"prismaLanguageServer.prismaFmtBinPath": "",
 	"coc.preferences.semanticTokensHighlights": false,
 	"coc.preferences.enableFloatHighlight": true,
 	"coc.preferences.snippetStatusText": "Ⓢ ",
@@ -8,7 +6,6 @@
 	"coc.preferences.messageLevel": "error",
 	"coc.source.around.firstMatch": false,
 	"coc.source.buffer.firstMatch": false,
-	"coc.source.syntax.firstMatch": false,
 	"suggest.detailMaxLength": 60,
 	"suggest.noselect": true,
 	"suggest.enablePreselect": false,
@@ -228,18 +225,5 @@
 	"diagnostic-languageserver.formatFiletypes": {
 		"elixir": "mix_format",
 		"eelixir": "mix_format"
-	},
-	"languageserver": {
-		"bash": {
-			"command": "bash-language-server",
-			"args": [
-				"start"
-			],
-			"filetypes": [
-				"sh",
-				"zsh"
-			],
-			"ignoredRootPaths": []
-		}
 	}
 }
