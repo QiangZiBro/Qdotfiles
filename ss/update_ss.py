@@ -8,7 +8,6 @@ Contact: qiangzibro@gmail.com
 """
 import os
 import json
-import shutil
 import argparse
 
 
@@ -26,15 +25,14 @@ def get_machines():
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(
-        description="""
+    parser = argparse.ArgumentParser(description="""
     Setting ss configuration based on rules
-    """
-    )
+    """)
 
-    parser.add_argument(
-        "ip", nargs="?", type=str, help="Remote ss server ip address with port"
-    )
+    parser.add_argument("ip",
+                        nargs="?",
+                        type=str,
+                        help="Remote ss server ip address with port")
     parser.add_argument(
         "-f",
         "--file",
@@ -89,9 +87,8 @@ def parse_config():
     with open(json_file) as json_data:
         data = json.load(json_data)
     for c in data["configs"]:
-        if (port and str(c["server"]) == ip and str(c["server_port"]) == port) or (
-            port == "" and str(c["server"]) == ip
-        ):
+        if (port and str(c["server"]) == ip and str(c["server_port"])
+                == port) or (port == "" and str(c["server"]) == ip):
             write(c)
             print_json(c)
             return c
@@ -130,11 +127,14 @@ if __name__ == "__main__":
             config = True
 
         else:
-            print("Didn't find anyting useful configs in your computer, nothing to do")
+            print(
+                "Didn't find anyting useful configs in your computer, nothing to do"
+            )
             exit(1)
 
     if config and args.remote:
-        excute("scp -o ConnectTimeout=5 ss.json {}:~/.Qdotfiles/ss/ &", MACHINES)
+        excute("scp -o ConnectTimeout=5 ss.json {}:~/.Qdotfiles/ss/ &",
+               MACHINES)
         if args.docker_restart:
             excute(
                 'ssh -o ConnectTimeout=5 {} "cd ~/.Qdotfiles && docker-compose restart " &',
