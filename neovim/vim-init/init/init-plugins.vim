@@ -206,6 +206,7 @@ if index(g:bundle_group, 'enhanced') >= 0
 
 	" 在 vim 里打开ranger
 	Plug 'francoiscabrol/ranger.vim'
+	autocmd TermClose term://.//*:ranger* bprevious | bwipeout! #
 	let g:NERDTreeHijackNetrw = 0 
 	let g:ranger_replace_netrw = 0 
 
