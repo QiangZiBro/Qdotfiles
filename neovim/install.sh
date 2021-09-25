@@ -11,7 +11,7 @@ fi
 
 ## check node and to latest
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  sudo apt install -y nodejs
+  sudo apt install -y nodejs npm
   sudo npm cache clean -f
   sudo npm install -g n
   sudo n latest
