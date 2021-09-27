@@ -1,6 +1,6 @@
 #!/bin/bash
 _test_docker() {
-  if ! command -v conda &>/dev/null; then
+  if ! command -v docker &>/dev/null; then
     echo "You do not have docker installed or not set in your environment"
     exit 0
   fi
