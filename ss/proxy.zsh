@@ -73,7 +73,26 @@ proxy() {
     export https_proxy=""
     export HTTP_PROXY=""
     export HTTPS_PROXY=""
-
+  elif [ "$1" = "ons" ]; then
+	PORT=1080
+    case $2 in
+    -h | --help)
+      echo "proxy on [OPTIONS]"
+      echo "Usage: set socks proxy port"
+      echo ""
+      echo "OPTIONS"
+      echo "  any portnumber"
+      echo "  -h|--help: show this message"
+      ;;
+    *)
+      PORT=${2:-${PORT}}
+      ;;
+    esac
+    export http_proxy="socks5://127.0.0.1:$PORT"
+    export https_proxy="socks5://127.0.0.1:$PORT"
+    export HTTP_PROXY="socks5://127.0.0.1:$PORT"
+    export HTTPS_PROXY="socks5://127.0.0.1:$PORT"
+ 
   elif [ "$1" = "status" ]; then
     _test_docker
     echo "--------------"
