@@ -60,6 +60,8 @@ qtool() {
     elif [ "$2" = "-h" ]; then
       echo "qtool get [ssr-win]"
     fi
+  elif [ "$1" = "fs" ]; then
+	  sudo fail2ban-client status $2
   elif [ "$1" = "s" ]; then
     _get_servers
   else
