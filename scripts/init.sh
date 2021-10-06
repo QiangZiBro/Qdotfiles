@@ -46,6 +46,8 @@ source ~/.Qdotfiles/conda/conda.zsh
 # docker
 source ~/.Qdotfiles/docker/docker.zsh
 
+source ~/.Qdotfiles/neovim/editor.sh
+
 # tmux
 source ~/.Qdotfiles/tmux/tmux.zsh
 
