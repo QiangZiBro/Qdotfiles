@@ -22,7 +22,7 @@ last = checkout HEAD~1
 
 [core]
 editor = nvim
-pager = diff-so-fancy | less --tabs=4 -RFX
+#pager = diff-so-fancy | less --tabs=4 -RFX
 
 [push]
 default = current
