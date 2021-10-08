@@ -1,4 +1,7 @@
 #!/bin/bash
+MAC_PROXY_PORT=1087
+LINUX_PROXY_PORT=8999
+
 _test_docker() {
   if ! command -v docker &>/dev/null; then
     echo "You do not have docker installed or not set in your environment"
@@ -31,9 +34,64 @@ Command:
  - set: select one from all ss configurations which are in ~/.Qdotfiles/ss/export.json
 EOF
 }
+_parse_on(){
+	PORT=1087
+	HTTP_PREFIX=
+	HTTPS_PREFIX=
+	if [ "$#" = 0 ]; then
+	    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+			PORT=$LINUX_PROXY_PORT
+		elif [[ "$OSTYPE" == "darwin"* ]]; then
+			PORT=$MAC_PROXY_PORT
+		fi
+	fi
+    while [[ "$#" > 0 ]]; do case $1 in
+		-p | --port)
+		  [ -z "$2" ] && echo "Please give port number" && exit 1
+		  case "$2" in
+			m|mac)
+				PORT=$MAC_PROXY_PORT
+				shift;;
+			l|linux)
+				PORT=$LINUX_PROXY_PORT
+				shift;;
+			*)
+				PORT=$2
+				shift;;
+		  esac
+		  shift
+		  ;;
+	  -h | --http)
+		HTTP_PREFIX="http://"
+		HTTPS_PREFIX="https://"
+		shift
+		;;
+	  -s | --socks)
+		PORT=1080
+		PREFIX=
+		HTTP_PREFIX="socks5://"
+		HTTPS_PREFIX="socks5://"
+		shift
+		;;
+	 --help)
+		 echo "proxy on [option]"
+		 echo "OPTIONS:"
+		 echo "  -h|--http"
+		 echo "  -s|--socks"
+		 echo "  -p|--port (linux|mac|1087)"
+		 exit 0
+		 ;;
+	  *)
+		echo "Unknown parameter passed: $1"
+		exit 1
+		;;
+    esac done
+	export http_proxy="$HTTP_PREFIX""127.0.0.1:$PORT"
+	export https_proxy="$HTTPS_PREFIX""127.0.0.1:$PORT"
+	export HTTP_PROXY="$HTTP_PREFIX""127.0.0.1:$PORT"
+	export HTTPS_PROXY="$HTTPS_PREFIX""127.0.0.1:$PORT"
+}
 proxy() {
-  MAC_PROXY_PORT=1087
-  LINUX_PROXY_PORT=8999
   if test "$(uname)" = "Darwin"; then
     PROXY_PORT=$MAC_PROXY_PORT
   elif test "$(expr substr $(uname -s) 1 5)" = "Linux"; then
@@ -41,58 +99,12 @@ proxy() {
   fi
 
   if [ "$1" = "on" ]; then
-    case $2 in
-    m* | mac)
-      PROXY_PORT=$MAC_PROXY_PORT
-      ;;
-    l* | linux)
-      PROXY_PORT=$LINUX_PROXY_PORT
-      ;;
-    -h | --help)
-      echo "proxy on [OPTIONS]"
-      echo "Usage: set http/https proxy port"
-      echo ""
-      echo "OPTIONS"
-      echo "  mac"
-      echo "  linux"
-      echo "  any portnumber"
-      echo "  -h|--help: show this message"
-      ;;
-    *)
-      PROXY_PORT=${2:-${PROXY_PORT}}
-      ;;
-    esac
-    export http_proxy="127.0.0.1:$PROXY_PORT"
-    export https_proxy="127.0.0.1:$PROXY_PORT"
-    # docker pull proxy needs this
-    # https://docs.docker.com/config/daemon/systemd/#httphttps-proxy
-    export HTTP_PROXY="127.0.0.1:$PROXY_PORT"
-    export HTTPS_PROXY="127.0.0.1:$PROXY_PORT"
+	_parse_on "${@:2}"
   elif [ "$1" = "off" ]; then
     export http_proxy=""
     export https_proxy=""
     export HTTP_PROXY=""
     export HTTPS_PROXY=""
-  elif [ "$1" = "ons" ]; then
-	PORT=1080
-    case $2 in
-    -h | --help)
-      echo "proxy on [OPTIONS]"
-      echo "Usage: set socks proxy port"
-      echo ""
-      echo "OPTIONS"
-      echo "  any portnumber"
-      echo "  -h|--help: show this message"
-      ;;
-    *)
-      PORT=${2:-${PORT}}
-      ;;
-    esac
-    export http_proxy="socks5://127.0.0.1:$PORT"
-    export https_proxy="socks5://127.0.0.1:$PORT"
-    export HTTP_PROXY="socks5://127.0.0.1:$PORT"
-    export HTTPS_PROXY="socks5://127.0.0.1:$PORT"
- 
   elif [ "$1" = "status" ]; then
     _test_docker
     echo "--------------"
