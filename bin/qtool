@@ -65,7 +65,11 @@ qtool() {
   elif [ "$1" = "s" ]; then
     _get_servers
   elif [ "$1" = "safe" ];then
-	  sudo grep "Failed" /var/log/auth.log | grep -v sudo
+	  if [ "$2" = "uniq" ];then
+        sudo grep "Failed password" /var/log/auth.log | grep -v sudo | grep -Eo "([0-9]*\.){3}[0-9]*" |uniq
+	  else
+	    sudo grep "Failed" /var/log/auth.log | grep -v sudo
+	  fi
   else
     usage qtool
   fi
