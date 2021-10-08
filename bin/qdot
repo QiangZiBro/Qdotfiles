@@ -54,7 +54,7 @@ EOF
 
 update_remote_dotfiles() {
   echo remote:$1, $2
-  ssh -o ConnectTimeout=3 "$1" "/bin/bash /home/qiangzibro/.Qdotfiles/scripts/qdot pull \
+  ssh -o ConnectTimeout=3 "$1" "/bin/bash ~/.Qdotfiles/scripts/qdot pull \
 		-t \"$2\" "
 }
 # parse params
