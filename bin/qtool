@@ -64,6 +64,8 @@ qtool() {
 	  sudo fail2ban-client status $2
   elif [ "$1" = "s" ]; then
     _get_servers
+  elif [ "$1" = "safe" ];then
+	  sudo grep "Failed" /var/log/auth.log
   else
     usage qtool
   fi
