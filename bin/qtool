@@ -66,6 +66,7 @@ qtool() {
     _get_servers
   elif [ "$1" = "safe" ];then
 	  sudo grep "Failed" /var/log/auth.log | grep -v sudo
+	  qtool fs
   else
     usage qtool
   fi
