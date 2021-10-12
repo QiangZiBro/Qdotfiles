@@ -16,8 +16,10 @@ _access_url() {
 
   if [ $result = "200" ]; then
     printf "[%.2f s] %-6s:200 OK✅\n" $dur $1
+	return 0
   else
     printf "[%.2f s] %-6s:${result}🚫\n" $dur $1
+	return 1
   fi
 }
 
