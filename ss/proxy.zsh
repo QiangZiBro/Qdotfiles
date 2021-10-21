@@ -49,7 +49,7 @@ _parse_on(){
 	fi
     while [[ "$#" > 0 ]]; do case $1 in
 		-p | --port)
-		  [ -z "$2" ] && echo "Please give port number" && exit 1
+		  [ -z "$2" ] && echo "Please give port number" && return 1
 		  case "$2" in
 			m|mac)
 				PORT=$MAC_PROXY_PORT
@@ -81,12 +81,16 @@ _parse_on(){
 		 echo "  -h|--http"
 		 echo "  -s|--socks"
 		 echo "  -p|--port (linux|mac|1087)"
-		 exit 0
 		 ;;
 	  *)
-		echo "Unknown parameter passed: $1"
-		exit 1
-		;;
+		if (($1 >= 1000 && $1 <= 65535));then
+			PORT=$1
+			shift
+		else
+			echo "Unknown parameter passed: $1"
+			return 1
+		fi
+	    ;;
     esac done
 	export http_proxy="$HTTP_PREFIX""127.0.0.1:$PORT"
 	export https_proxy="$HTTPS_PREFIX""127.0.0.1:$PORT"
