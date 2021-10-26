@@ -10,13 +10,13 @@ common_aliases () {
 	alias cr="cd ~/.config/ranger/"
     alias unproxy='http_proxy="" https_proxy=""'
 }
+
 mac_aliases () {
 	# 克隆复制的地址
 	alias gcv="git clone `pbpaste`"
     alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
     alias meshlab="/Applications/meshlab.app/Contents/MacOS/meshlab"
     alias meshlabserver="/Applications/meshlab.app/Contents/MacOS/meshlabserver"
-	alias vpn="google-chrome --proxy-server=${http_proxy}"
 }
 linux_aliases () {
     alias hello="world"
@@ -32,6 +32,9 @@ then
 elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
 then
 	linux_aliases
+	vpn(){
+	  google-chrome --proxy-server=${http_proxy}
+	}
 
 	#CUDA
 	if [ -d "/usr/local/cuda/bin" ];then
