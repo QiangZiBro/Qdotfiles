@@ -16,6 +16,7 @@ mac_aliases () {
     alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
     alias meshlab="/Applications/meshlab.app/Contents/MacOS/meshlab"
     alias meshlabserver="/Applications/meshlab.app/Contents/MacOS/meshlabserver"
+	alias vpn="google-chrome --proxy-server=${http_proxy}"
 }
 linux_aliases () {
     alias hello="world"
