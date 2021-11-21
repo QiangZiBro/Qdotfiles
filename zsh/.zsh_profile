@@ -33,7 +33,12 @@ elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
 then
 	linux_aliases
 	vpn(){
-	  google-chrome --proxy-server=${http_proxy}
+	  _access_url google
+	  if [ "$?" = 0 ];then
+		google-chrome --proxy-server=${http_proxy}
+	  else
+		proxy set -a
+	  fi
 	}
 
 	#CUDA
