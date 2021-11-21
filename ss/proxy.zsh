@@ -16,10 +16,10 @@ _access_url() {
 
   if [ $result = "200" ]; then
     printf "[%.2f s] %-6s:200 OK✅\n" $dur $1
-	return 0
+    return 0
   else
     printf "[%.2f s] %-6s:${result}🚫\n" $dur $1
-	return 1
+    return 1
   fi
 }
 
@@ -28,7 +28,7 @@ cg() {
   _access_url google
 }
 _proxy_help() {
-cat <<EOF
+  cat <<EOF
 Usage: proxy [on|off|up|down|status|restart|cmd|set|which|test]
 Command:
  - on/off: set http/https proxy port
@@ -36,66 +36,69 @@ Command:
  - set: select one from all ss configurations which are in ~/.Qdotfiles/ss/export.json
 EOF
 }
-_parse_on(){
-	PORT=1087
-	HTTP_PREFIX=
-	HTTPS_PREFIX=
-	if [ "$#" = 0 ]; then
-	    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-			PORT=$LINUX_PROXY_PORT
-		elif [[ "$OSTYPE" == "darwin"* ]]; then
-			PORT=$MAC_PROXY_PORT
-		fi
-	fi
-    while [[ "$#" > 0 ]]; do case $1 in
-		-p | --port)
-		  [ -z "$2" ] && echo "Please give port number" && return 1
-		  case "$2" in
-			m|mac)
-				PORT=$MAC_PROXY_PORT
-				shift;;
-			l|linux)
-				PORT=$LINUX_PROXY_PORT
-				shift;;
-			*)
-				PORT=$2
-				shift;;
-		  esac
-		  shift
-		  ;;
-	  -h | --http)
-		HTTP_PREFIX="http://"
-		HTTPS_PREFIX="https://"
-		shift
-		;;
-	  -s | --socks)
-		PORT=1080
-		PREFIX=
-		HTTP_PREFIX="socks5://"
-		HTTPS_PREFIX="socks5://"
-		shift
-		;;
-	 --help)
-		 echo "proxy on [option]"
-		 echo "OPTIONS:"
-		 echo "  -h|--http"
-		 echo "  -s|--socks"
-		 echo "  -p|--port (linux|mac|1087)"
-		 ;;
-	  *)
-		if (($1 >= 1000 && $1 <= 65535));then
-			PORT=$1
-			shift
-		else
-			echo "Unknown parameter passed: $1"
-			return 1
-		fi
-	    ;;
+_parse_on() {
+  PORT=1087
+  HTTP_PREFIX=
+  HTTPS_PREFIX=
+  if [ "$#" = 0 ]; then
+    if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+      PORT=$LINUX_PROXY_PORT
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+      PORT=$MAC_PROXY_PORT
+    fi
+  fi
+  while [[ "$#" > 0 ]]; do case $1 in
+    -p | --port)
+      [ -z "$2" ] && echo "Please give port number" && return 1
+      case "$2" in
+      m | mac)
+        PORT=$MAC_PROXY_PORT
+        shift
+        ;;
+      l | linux)
+        PORT=$LINUX_PROXY_PORT
+        shift
+        ;;
+      *)
+        PORT=$2
+        shift
+        ;;
+      esac
+      shift
+      ;;
+    -h | --http)
+      HTTP_PREFIX="http://"
+      HTTPS_PREFIX="https://"
+      shift
+      ;;
+    -s | --socks)
+      PORT=1080
+      PREFIX=
+      HTTP_PREFIX="socks5://"
+      HTTPS_PREFIX="socks5://"
+      shift
+      ;;
+    --help)
+      echo "proxy on [option]"
+      echo "OPTIONS:"
+      echo "  -h|--http"
+      echo "  -s|--socks"
+      echo "  -p|--port (linux|mac|1087)"
+      ;;
+    *)
+      if (($1 >= 1000 && $1 <= 65535)); then
+        PORT=$1
+        shift
+      else
+        echo "Unknown parameter passed: $1"
+        return 1
+      fi
+      ;;
     esac done
-	export http_proxy="$HTTP_PREFIX""127.0.0.1:$PORT"
-	export https_proxy="$HTTPS_PREFIX""127.0.0.1:$PORT"
-	export HTTP_PROXY="$HTTP_PREFIX""127.0.0.1:$PORT"
-	export HTTPS_PROXY="$HTTPS_PREFIX""127.0.0.1:$PORT"
+  export http_proxy="$HTTP_PREFIX""127.0.0.1:$PORT"
+  export https_proxy="$HTTPS_PREFIX""127.0.0.1:$PORT"
+  export HTTP_PROXY="$HTTP_PREFIX""127.0.0.1:$PORT"
+  export HTTPS_PROXY="$HTTPS_PREFIX""127.0.0.1:$PORT"
 }
 proxy() {
   if test "$(uname)" = "Darwin"; then
@@ -105,7 +108,7 @@ proxy() {
   fi
 
   if [ "$1" = "on" ]; then
-	_parse_on "${@:2}"
+    _parse_on "${@:2}"
   elif [ "$1" = "off" ]; then
     export http_proxy=""
     export https_proxy=""
@@ -164,7 +167,11 @@ proxy() {
   elif [ "$1" = "test" ]; then
     cg
   elif [ "$1" = "set" ]; then
-    change_ss "${@:2}"
+    if [ "$2" = "-a" -o "$2" = "--auto" ]; then
+      python ~/.Qdotfiles/ss/benchmark.py
+    else
+      change_ss "${@:2}"
+    fi
   else
     _proxy_help
   fi
