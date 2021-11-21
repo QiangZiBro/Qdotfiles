@@ -172,6 +172,7 @@ proxy() {
     else
       change_ss "${@:2}"
     fi
+	proxy restart
   else
     _proxy_help
   fi
