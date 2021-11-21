@@ -89,7 +89,6 @@ def parse_config():
     for c in data["configs"]:
         if (port and str(c["server"]) == ip and str(c["server_port"])
                 == port) or (port == "" and str(c["server"]) == ip):
-            write(c)
             print_json(c)
             return c
     else:
@@ -116,21 +115,24 @@ if __name__ == "__main__":
         if os.path.exists(source):
             print("Find config file in:")
             print(source)
-            # TODO: Could be better
             with open(source) as json_data:
                 c = json.load(json_data)
                 # del c["local_port"]
                 # del c["local_address"]
                 write(c)
-                print_json(c)
-            # TODO: Could be better
-            config = True
-
+            config = c
         else:
-            print(
-                "Didn't find anyting useful configs in your computer, nothing to do"
-            )
-            exit(1)
+            config = None
+    if config:
+        print()
+        print("SS server node has decided")
+        print("You can also use command below in other platform 🚀\n")
+        print(f'  proxy set \"{config["server"]}:{config["server_port"]}\"')
+    else:
+        print(
+            "Didn't find anyting useful configs in your computer, nothing to do"
+        )
+        exit(1)
 
     if config and args.remote:
         excute("scp -o ConnectTimeout=5 ss.json {}:~/.Qdotfiles/ss/ &",

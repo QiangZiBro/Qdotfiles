@@ -51,6 +51,7 @@ def print_json(c):
 
 
 def hint(c):
+    print()
     print("Best ss server has decided!")
     #print_json(c)
     print("You can also use command below in other platform 🚀\n")
