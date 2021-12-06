@@ -28,6 +28,7 @@ common_aliases
 if test "$(uname)" = "Darwin"
 then
 	mac_aliases
+	export PATH=$PATH:/Users/mac/k210/0.kendryte-toolchain/bin
 
 elif test "$(expr substr $(uname -s) 1 5)" = "Linux"
 then
@@ -55,3 +56,8 @@ fi
 if [ -f ~/.qscerets.zsh ]; then
 	source ~/.qscerets.zsh
 fi
+
+# build and make
+bm(){
+  cmake .. -DPROJ=$@ && make -j32
+}
