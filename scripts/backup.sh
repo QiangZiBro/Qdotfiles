@@ -30,8 +30,12 @@ local_backup() {
   cp_file_if_exists ~/.gitmessage git
   cp_file_if_exists ~/.git-credentials git
   cp_file_if_exists ~/.zsh_profile zsh
+
   # ssh
   cp_file_if_exists ~/.ssh/config ssh
+
+  # alacritty
+  cp_file_if_exists ~/.config/alacritty/alacritty.yml alacritty
 }
 
 local_backup
