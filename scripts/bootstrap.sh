@@ -112,6 +112,9 @@ setup_config() {
   cp git/.gitmessage ~
   cp_file_if_exists git/.git-credentials ~
 
+  # alacritty
+  mkdir -p ~/.config/alacritty && cp alacritty/alacritty.yml ~/.config/alacritty/
+
   # ssh
   cp_file_if_exists ssh/config ~/.ssh
 
