@@ -370,11 +370,11 @@ if index(g:bundle_group, 'nerdtree') >= 0
 	"let g:NERDTreeMinimalUI = 1
 	"let g:NERDTreeDirArrows = 1
 	"let g:NERDTreeHijackNetrw = 0
-	"noremap <space>nn :NERDTree<cr>
-	"noremap <space>no :NERDTreeFocus<cr>
-	"noremap <space>nm :NERDTreeMirror<cr>
-	"noremap <space>nt :NERDTreeToggle<cr>
-	noremap <F7> :NERDTreeToggle<CR>
+	" noremap <space>nn :NERDTree<cr>
+	noremap <space>no :NERDTreeFocus<cr>
+	noremap <space>nm :NERDTreeMirror<cr>
+	noremap <space>nn :NERDTreeToggle<cr>
+	" noremap <F7> :NERDTreeToggle<CR>
     let NERDTreeHighlightCursorline=1
     let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
