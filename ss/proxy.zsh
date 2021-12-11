@@ -127,6 +127,10 @@ proxy() {
     echo "Network test"
     echo "--------------"
     proxy test
+    echo "--------------"
+    echo "The way to set config"
+    echo "--------------"
+	proxy which
   elif [ "$1" = "up" ]; then
     cd ~/.Qdotfiles
     if [ "$2" = "-v" ]; then
@@ -155,6 +159,7 @@ proxy() {
     export http_proxy="http://127.0.0.1:$PROXY_PORT"
     export https_proxy="https://127.0.0.1:$PROXY_PORT"
   elif [ "$1" = "cmd" ]; then
+	# sometimes we may need to type msgs below, so copy it
     echo "Command to open http/s proxy"
     echo export http_proxy="127.0.0.1:$PROXY_PORT"
     echo export https_proxy="127.0.0.1:$PROXY_PORT"
@@ -163,7 +168,11 @@ proxy() {
     echo export http_proxy=
     echo export https_proxy=
   elif [ "$1" = "which" ]; then
-    cat ~/.Qdotfiles/ss/ss.json
+	if [ -f ~/.Qdotfiles/ss/ss.json ];then
+	  ip=$(cat ~/.Qdotfiles/ss/ss.json | grep server | grep -oE "([0-9]*\.){3}[0-9]*")
+	  port=$(cat ~/.Qdotfiles/ss/ss.json | grep server_port | grep -oE "\d+")
+	  echo "proxy set $ip:$port"
+	fi
   elif [ "$1" = "test" ]; then
     cg
   elif [ "$1" = "set" ]; then
