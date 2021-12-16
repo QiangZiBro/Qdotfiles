@@ -78,6 +78,7 @@ def benchmark(json_file, patience=10):
                 #print(f'{c["server"]}:{c["server_port"]} failed')
                 break
         if r and r and r.ok:
+            print(f'{c["server"]}:{c["server_port"]} ✅')
             configs.append(c)
             elapsed.append(r.elapsed.total_seconds())
 
