@@ -8,26 +8,7 @@ function _test_docker() {
     exit 0
   fi
 }
-function _access_url() {
-  start=$SECONDS
-  result=$(curl -m 2 -I --silent www.$1.com | head -n 1 | awk -F' ' '{print $2}')
-  result=${result:-None}
-  dur=$((SECONDS - start))
-
-  if [ $result = "200" ]; then
-    printf "[%.2f s] %-6s:200 OK✅\n" $dur $1
-    return 0
-  else
-    printf "[%.2f s] %-6s:${result}🚫\n" $dur $1
-    return 1
-  fi
-}
-
-function cg() {
-  (_access_url baidu &)
-  (_access_url google &)
-  wait
-} 
+ 
 _proxy_help() {
   cat <<EOF
 Usage: proxy [on|off|up|down|status|restart|cmd|set|which|test]
