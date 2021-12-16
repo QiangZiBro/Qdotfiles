@@ -19,7 +19,6 @@ Command:
 EOF
 }
 function _parse_on() {
-  PORT=1087
   HTTP_PREFIX=
   HTTPS_PREFIX=
   if [ "$#" = 0 ]; then
