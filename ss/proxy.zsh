@@ -2,15 +2,15 @@
 MAC_PROXY_PORT=1087
 LINUX_PROXY_PORT=8999
 
-_test_docker() {
+function _test_docker() {
   if ! command -v docker &>/dev/null; then
     echo "You do not have docker installed or not set in your environment"
     exit 0
   fi
 }
-_access_url() {
+function _access_url() {
   start=$SECONDS
-  result=$(curl -m 3 -I --silent www.$1.com | head -n 1 | awk -F' ' '{print $2}')
+  result=$(curl -m 2 -I --silent www.$1.com | head -n 1 | awk -F' ' '{print $2}')
   result=${result:-None}
   dur=$((SECONDS - start))
 
@@ -23,10 +23,11 @@ _access_url() {
   fi
 }
 
-cg() {
-  _access_url baidu
-  _access_url google
-}
+function cg() {
+  (_access_url baidu &)
+  (_access_url google &)
+  wait
+} 
 _proxy_help() {
   cat <<EOF
 Usage: proxy [on|off|up|down|status|restart|cmd|set|which|test]
@@ -36,7 +37,7 @@ Command:
  - set: select one from all ss configurations which are in ~/.Qdotfiles/ss/export.json
 EOF
 }
-_parse_on() {
+function _parse_on() {
   PORT=1087
   HTTP_PREFIX=
   HTTPS_PREFIX=
@@ -130,7 +131,7 @@ proxy() {
     echo "--------------"
     echo "The way to set config"
     echo "--------------"
-	proxy which
+    proxy which
   elif [ "$1" = "up" ]; then
     cd ~/.Qdotfiles
     if [ "$2" = "-v" ]; then
@@ -159,7 +160,7 @@ proxy() {
     export http_proxy="http://127.0.0.1:$PROXY_PORT"
     export https_proxy="https://127.0.0.1:$PROXY_PORT"
   elif [ "$1" = "cmd" ]; then
-	# sometimes we may need to type msgs below, so copy it
+    # sometimes we may need to type msgs below, so copy it
     echo "Command to open http/s proxy"
     echo export http_proxy="127.0.0.1:$PROXY_PORT"
     echo export https_proxy="127.0.0.1:$PROXY_PORT"
@@ -168,11 +169,11 @@ proxy() {
     echo export http_proxy=
     echo export https_proxy=
   elif [ "$1" = "which" ]; then
-	if [ -f ~/.Qdotfiles/ss/ss.json ];then
-	  ip=$(cat ~/.Qdotfiles/ss/ss.json | grep server | grep -oE "([0-9]*\.){3}[0-9]*")
-	  port=$(cat ~/.Qdotfiles/ss/ss.json | grep server_port | grep -oE "[0-9]+")
-	  echo "proxy set \"$ip:$port\""
-	fi
+    if [ -f ~/.Qdotfiles/ss/ss.json ]; then
+      ip=$(cat ~/.Qdotfiles/ss/ss.json | grep server | grep -oE "([0-9]*\.){3}[0-9]*")
+      port=$(cat ~/.Qdotfiles/ss/ss.json | grep server_port | grep -oE "[0-9]+")
+      echo "proxy set \"$ip:$port\""
+    fi
   elif [ "$1" = "test" ]; then
     cg
   elif [ "$1" = "set" ]; then
@@ -181,7 +182,7 @@ proxy() {
     else
       change_ss "${@:2}"
     fi
-	proxy restart
+    proxy restart
   else
     _proxy_help
   fi
