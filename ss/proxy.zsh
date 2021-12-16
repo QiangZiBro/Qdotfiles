@@ -170,8 +170,8 @@ proxy() {
   elif [ "$1" = "which" ]; then
 	if [ -f ~/.Qdotfiles/ss/ss.json ];then
 	  ip=$(cat ~/.Qdotfiles/ss/ss.json | grep server | grep -oE "([0-9]*\.){3}[0-9]*")
-	  port=$(cat ~/.Qdotfiles/ss/ss.json | grep server_port | grep -oE "\d+")
-	  echo "proxy set $ip:$port"
+	  port=$(cat ~/.Qdotfiles/ss/ss.json | grep server_port | grep -oE "[0-9]+")
+	  echo "proxy set \"$ip:$port\""
 	fi
   elif [ "$1" = "test" ]; then
     cg
