@@ -13,7 +13,7 @@ from ss.utils import get_config_path, write_json
 
 if urllib3.__version__ != '1.25.8':
     print("fix urllib3 version issue...")
-    os.system("http_proxy= && https_proxy= && pip install urllib3==1.25.8")
+    os.system("http_proxy= && https_proxy= && python3 -m pip install urllib3==1.25.8")
     importlib.reload(urllib3)
     print("Now urllib3==", urllib3.__version__)
     print("Please rerun the command again")
