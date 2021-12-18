@@ -2,6 +2,20 @@
 MAC_PROXY_PORT=1087
 LINUX_PROXY_PORT=8999
 
+function _access_url() {
+start=$SECONDS
+result=$(curl -m 2 -I --silent www.$1.com | head -n 1 | awk -F' ' '{print $2}')
+result=${result:-None}
+dur=$((SECONDS - start))
+
+if [ $result = "200" ]; then
+  printf "[%.2f s] %-6s:200 OK✅\n" $dur $1
+  return 0
+else
+  printf "[%.2f s] %-6s:${result}🚫\n" $dur $1
+  return 1
+fi
+}
 function _test_docker() {
   if ! command -v docker &>/dev/null; then
     echo "You do not have docker installed or not set in your environment"
