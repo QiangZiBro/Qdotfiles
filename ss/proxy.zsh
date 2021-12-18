@@ -154,7 +154,12 @@ proxy() {
       ip=$(cat ~/.Qdotfiles/ss/ss.json | grep server | grep -oE "([0-9]*\.){3}[0-9]*")
       port=$(cat ~/.Qdotfiles/ss/ss.json | grep server_port | grep -oE "[0-9]+")
       echo "proxy set \"$ip:$port\""
-    fi
+	
+
+      if test "$(uname)" = "Darwin"; then
+        echo "proxy set \"$ip:$port\"" | pbcopy
+	  fi
+	fi
   elif [ "$1" = "test" ]; then
     cg
   elif [ "$1" = "set" ]; then
