@@ -1,6 +1,7 @@
 # -*- coding: UTF-8 -*-
 import json
 import os
+import subprocess
 from subprocess import check_call, DEVNULL, STDOUT
 
 
@@ -35,6 +36,11 @@ def write_json(c, filename="ss.json"):
 
 
 def restart_ss_service():
-    check_call(['docker-compose', 'restart'],
-               stdout=DEVNULL,
-               stderr=STDOUT)
+    if subprocess.getoutput("docker ps | grep qdotfiles"):
+        check_call(['docker-compose', 'restart'],
+                   stdout=DEVNULL,
+                   stderr=STDOUT)
+    else:
+        check_call(['docker-compose', 'up', '-d'],
+                   stdout=DEVNULL,
+                   stderr=STDOUT)
