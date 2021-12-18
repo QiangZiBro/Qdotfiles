@@ -9,6 +9,7 @@ Contact: qiangzibro@gmail.com
 import os
 import json
 import argparse
+from ss.utils import get_config_path
 
 
 def get_machines():
@@ -73,26 +74,14 @@ def write(c):
         json.dump(c, outfile, indent=4)
 
 
-def print_json(c):
-    print(
-        "----------------------------------------------------------------------------------"
-    )
-    print(json.dumps(c, indent=4, sort_keys=True))
-    print(
-        "----------------------------------------------------------------------------------"
-    )
-
-
-def parse_config():
-    with open(json_file) as json_data:
+def parse_config(ip, port):
+    with open(get_config_path()) as json_data:
         data = json.load(json_data)
     for c in data["configs"]:
-        if (port and str(c["server"]) == ip and str(c["server_port"])
-                == port) or (port == "" and str(c["server"]) == ip):
-            print_json(c)
+        if (port and str(c["server"]) == ip and str(c["server_port"]) == port) or (
+                port == "" and str(c["server"]) == ip):
             return c
     else:
-        print("I did't find any configuration in your file")
         return None
 
 
@@ -102,43 +91,59 @@ def excute(template, machines):
     os.system(cmd)
 
 
-if __name__ == "__main__":
-    MACHINES = get_machines()
-    ip, port, json_file, args = parse_args()
-    if ip:
-        # If ip is specified, look up it from the whole config file
-        config = parse_config()
+def find_in_other_places():
+    print("Finding config in setting positions")
+    source = "/Users/mac/Library/Application Support/ShadowsocksX-NG/ss-local-config.json"
+    if os.path.exists(source):
+        print("Find one in ", source)
+        with open(source) as json_data:
+            c = json.load(json_data)
+            # del c["local_port"]
+            # del c["local_address"]
+            write(c)
+        return c
     else:
-        # Single config file may be stored in your shadowsocks software, so
-        # find it directly
-        source = "/Users/mac/Library/Application Support/ShadowsocksX-NG/ss-local-config.json"
-        if os.path.exists(source):
-            print("Find config file in:")
-            print(source)
-            with open(source) as json_data:
-                c = json.load(json_data)
-                # del c["local_port"]
-                # del c["local_address"]
-                write(c)
-            config = c
-        else:
-            config = None
-    if config:
-        print()
-        print("SS server node has decided")
-        print("You can also use command below in other platform 🚀\n")
-        print(f'  proxy set \"{config["server"]}:{config["server_port"]}\"')
-    else:
-        print(
-            "Didn't find anyting useful configs in your computer, nothing to do"
-        )
-        exit(1)
+        return None
 
-    if config and args.remote:
-        excute("scp -o ConnectTimeout=5 ss.json {}:~/.Qdotfiles/ss/ &",
-               MACHINES)
-        if args.docker_restart:
-            excute(
-                'ssh -o ConnectTimeout=5 {} "cd ~/.Qdotfiles && docker-compose restart " &',
-                MACHINES,
-            )
+#
+# if __name__ == "__main__":
+#     MACHINES = get_machines()
+#     ip, port, json_file, args = parse_args()
+#     if ip:
+#         # If ip is specified, look up it from the whole config file
+#         config = parse_config(ip)
+#     else:
+#         # Single config file may be stored in your shadowsocks software, so
+#         # find it directly
+#         source = "/Users/mac/Library/Application Support/ShadowsocksX-NG/ss-local-config.json"
+#         if os.path.exists(source):
+#             print("Find config file in:")
+#             print(source)
+#             with open(source) as json_data:
+#                 c = json.load(json_data)
+#                 # del c["local_port"]
+#                 # del c["local_address"]
+#                 write(c)
+#             config = c
+#         else:
+#             config = None
+#     if config:
+#         print()
+#         write(config)
+#         print("SS server node has decided")
+#         print("You can also use command below in other platform 🚀\n")
+#         print(f'  proxy set \"{config["server"]}:{config["server_port"]}\"')
+#     else:
+#         print(
+#             "Didn't find anyting useful configs in your computer, nothing to do"
+#         )
+#         exit(1)
+#
+#     if config and args.remote:
+#         excute("scp -o ConnectTimeout=5 ss.json {}:~/.Qdotfiles/ss/ &",
+#                MACHINES)
+#         if args.docker_restart:
+#             excute(
+#                 'ssh -o ConnectTimeout=5 {} "cd ~/.Qdotfiles && docker-compose restart " &',
+#                 MACHINES,
+#             )

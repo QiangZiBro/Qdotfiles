@@ -28,6 +28,7 @@ function _parse_on() {
       PORT=$MAC_PROXY_PORT
     fi
   fi
+  # shellcheck disable=SC2071
   while [[ "$#" > 0 ]]; do case $1 in
     -p | --port)
       [ -z "$2" ] && echo "Please give port number" && return 1
@@ -157,12 +158,7 @@ proxy() {
   elif [ "$1" = "test" ]; then
     cg
   elif [ "$1" = "set" ]; then
-    if [ "$2" = "-a" -o "$2" = "--auto" ]; then
-      python ~/.Qdotfiles/ss/benchmark.py
-    else
-      change_ss "${@:2}"
-    fi
-    proxy restart
+	  python ~/.Qdotfiles/ss/set.py "${@:2}"
   else
     _proxy_help
   fi
