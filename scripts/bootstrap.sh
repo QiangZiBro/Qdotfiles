@@ -120,6 +120,11 @@ setup_config() {
 
   # python
   cp conda/.condarc ~
+  # yabai
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+	mkdir -p ~/.config/yabai
+	cp yabai/yabairc ~/.config/yabai/
+  fi
 }
 
 main() {
