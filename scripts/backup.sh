@@ -36,6 +36,9 @@ local_backup() {
 
   # alacritty
   cp_file_if_exists ~/.config/alacritty/alacritty.yml alacritty
+
+  cp ~/.skhdrc skhd
+  cp ~/.config/yabai/yabairc yabai
 }
 
 local_backup
