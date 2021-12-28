@@ -80,7 +80,7 @@
 # https://github.com/koekeishiya/skhd/issues/1
 
 # new terminal 
-cmd - return : ~/Applications/alacritty/target/release/alacritty &
+cmd - return : alacritty &
 
 cmd + alt - escape : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 
