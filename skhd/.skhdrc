@@ -183,7 +183,7 @@ cmd - f : yabai -m window --toggle zoom-fullscreen
 cmd + shift - f : yabai -m window --toggle native-fullscreen
 cmd - p : yabai -m window --toggle zoom-parent
 
-cmd - s : yabai -m window --toggle shadow
+# cmd - s : yabai -m window --toggle shadow
 cmd - e : yabai -m window --toggle expose
 cmd - m : yabai -m window --minimize
 cmd - d : yabai -m window --deminimize
