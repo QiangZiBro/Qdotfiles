@@ -82,7 +82,7 @@
 # new terminal 
 cmd - return : alacritty &
 
-cmd + alt - escape : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+# cmd + alt - escape : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 
 # focus window
 cmd - h : yabai -m window --focus west
