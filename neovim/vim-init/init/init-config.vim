@@ -180,4 +180,78 @@ augroup InitFileTypesGroup
 
 augroup END
 
+function! <SID>GetDate()
+    "windows
+    let date = system("date /T")
+    if (v:shell_error!=0)
+        "linux
+        let date = system("date +\"%Y/%m/%d %H:%M:%S\" ")
+    endif
+    if (date[strlen(date)-1]=="\n")
+        let date = strpart(date, 0, strlen(date)-1)
+    endif
+    return date
+endfunction
 
+function! <SID>GetYear()
+    return strftime("%Y")
+endfunction
+
+function! <SID>GetFileName()
+    let fname = expand("%")
+    return fname
+endfunction
+
+function! <SID>GetPythonFileHeader()
+    let cur_line = line(".")
+    let first_line = getline(cur_line)
+    let leading_blank = matchstr(first_line, '\(\s*\)')
+    let doc = ""
+    let doc = doc. leading_blank."#!/usr/bin/env python\n"
+    let doc = doc. leading_blank."# -*- coding: utf-8 -*- \n"
+    let doc = doc. leading_blank." \n"
+    let doc = doc. leading_blank."if __name__ == '__main__':\n"
+    return doc
+endfunction
+
+function! <SID>GetNthItemFromList(list, n, sep) 
+    let itemStart = 0 
+    let itemEnd = -1
+    let pos = 0 
+    let item = ""
+    let i = 0 
+    while (i != a:n)
+        let itemStart = itemEnd + 1 
+        let itemEnd = match(a:list, a:sep, itemStart)
+        let i = i + 1 
+        if (itemEnd == -1) 
+            if (i == a:n)
+                let itemEnd = strlen(a:list)
+            endif
+            break
+        endif
+    endwhile
+    if (itemEnd != -1)
+        let item = strpart(a:list, itemStart, itemEnd - itemStart)
+    endif
+    return item
+endfunction
+
+function! <SID>GetFileHeader()
+    let cur_line = line(".")
+    let doc = <SID>GetPythonFileHeader()
+    if (strlen(doc)>0)
+        let idx =1
+        let li = <SID>GetNthItemFromList(doc, idx, "\n")
+        while (strlen(li)>0)
+            call append( cur_line-1, li.expand("<CR>"))
+            let idx = idx + 1
+            let cur_line = cur_line + 1
+            let li = <SID>GetNthItemFromList(doc, idx, "\n")
+        endwhile
+    endif
+endfunction
+
+if has("autocmd")
+    autocmd BufNewFile *.py :call <SID>GetFileHeader() | autocmd! BufNewFile
+endif
