@@ -181,12 +181,14 @@ ctrl + cmd - j : yabai -m window --insert south
 # cmd - d : yabai -m window --toggle zoom-parent
 # cmd - f : yabai -m window --toggle zoom-fullscreen
 # cmd + shift - f : yabai -m window --toggle native-fullscreen
-cmd - p : yabai -m window --toggle zoom-fullscreen
+
+# cmd - ;
+cmd - 0x29 : yabai -m window --toggle zoom-fullscreen
 
 # cmd - s : yabai -m window --toggle shadow
 cmd - e : yabai -m window --toggle expose
-cmd - m : yabai -m window --minimize
-cmd - d : yabai -m window --deminimize
+# cmd - m : yabai -m window --minimize
+# cmd - d : yabai -m window --deminimize
 
 # toggle window split type
 alt - e : yabai -m window --toggle split
