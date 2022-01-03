@@ -279,6 +279,8 @@ function! ExecuteFile()
 		" 写全路径名是因为后面 -cwd=? 会改变运行时的当前路径，所以写全路径
 		" 加双引号是为了避免路径中包含空格
 		let cmd = 'gcc "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" && "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"'
+	elseif &ft == 'cpp'
+		let cmd = 'g++-11 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" && "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"'
 	elseif &ft == 'python'
 		let $PYTHONUNBUFFERED=1 " 关闭 python 缓存，实时看到输出
 		let cmd = 'python "$(VIM_FILEPATH)"'
