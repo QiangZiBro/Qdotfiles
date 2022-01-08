@@ -55,6 +55,10 @@ function _parse_on() {
         PORT=$LINUX_PROXY_PORT
         shift
         ;;
+	  cl | clash)
+		PORT=7890
+		shift
+		;;
       *)
         PORT=$2
         shift
