@@ -127,10 +127,6 @@ proxy() {
     echo "Network test"
     echo "--------------"
     proxy test
-    echo "--------------"
-    echo "The way to set config"
-    echo "--------------"
-    proxy which
   elif [ "$1" = "up" ]; then
     cd ~/.Qdotfiles
     if [ "$2" = "-v" ]; then
