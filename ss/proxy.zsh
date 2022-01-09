@@ -1,5 +1,5 @@
 #!/bin/bash
-MAC_PROXY_PORT=1087
+MAC_PROXY_PORT=7890
 LINUX_PROXY_PORT=8999
 
 function _access_url() {
