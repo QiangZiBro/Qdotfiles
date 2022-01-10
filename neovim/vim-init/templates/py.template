@@ -1,0 +1,9 @@
+## 
+## @author      : {{NAME}} ({{EMAIL}})
+## @created     : {{TODAY}}
+## @filename    : {{FILE}}
+## 
+
+
+if __name__ == "__main__":
+    pass

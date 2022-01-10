@@ -112,9 +112,15 @@ cmd + shift - j : yabai -m window --swap south
 # shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
 
 # create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
+# 把当前窗口移动过去
 alt + cmd - n : yabai -m space --create && \
                   index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
                   yabai -m window --space "${index}" && \
+                  yabai -m space --focus "${index}"
+
+# 不把当前窗口移动过去
+alt + cmd + shift - n : yabai -m space --create && \
+                  index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
                   yabai -m space --focus "${index}"
 # destroy desktop
 alt + cmd - d : yabai -m space --destroy
@@ -124,16 +130,16 @@ alt + cmd - 0 : yabai -m space --balance
 
 # fast focus desktop
 # cmd + alt - x : yabai -m space --focus recent
-cmd - 1 : yabai -m space --focus 1
-cmd - 2 : yabai -m space --focus 2
-cmd - 3 : yabai -m space --focus 3
-cmd - 4 : yabai -m space --focus 4
-cmd - 5 : yabai -m space --focus 5
-cmd - 6 : yabai -m space --focus 6
-cmd - 7 : yabai -m space --focus 7
-cmd - 8 : yabai -m space --focus 8
-cmd - 0x21 : yabai -m space --focus prev || yabai -m space --focus last
-cmd - 0x1E : yabai -m space --focus next || yabai -m space --focus first
+alt - 1 : yabai -m space --focus 1
+alt - 2 : yabai -m space --focus 2
+alt - 3 : yabai -m space --focus 3
+alt - 4 : yabai -m space --focus 4
+alt - 5 : yabai -m space --focus 5
+alt - 6 : yabai -m space --focus 6
+alt - 7 : yabai -m space --focus 7
+alt - 8 : yabai -m space --focus 8
+alt - 0x21 : yabai -m space --focus prev || yabai -m space --focus last
+alt - 0x1E : yabai -m space --focus next || yabai -m space --focus first
 
 # send window to desktop and follow focus
 # shift + cmd - z : yabai -m window --space next; yabai -m space --focus next

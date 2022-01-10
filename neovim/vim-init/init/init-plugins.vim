@@ -55,6 +55,10 @@ Plug 'godlygeek/tabular', { 'on': 'Tabularize' }
 " Diff 增强，支持 histogram / patience 等更科学的 diff 算法
 Plug 'chrisbra/vim-diff-enhanced'
 
+" 代码模板
+Plug 'tibabit/vim-templates'
+let g:tmpl_search_paths = ['~/.Qdotfiles/neovim/vim-init/templates']
+
 " Coc补全
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
