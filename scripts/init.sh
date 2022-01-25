@@ -22,6 +22,7 @@ source_if_exists() {
     source "$file"
   fi
 }
+export EDITOR=nvim
 export PATH=$PATH:~/.Qdotfiles/git/custom
 export PATH=$PATH:~/.Qdotfiles/bin
 QDOTFILES="~/.Qdotfiles"
@@ -37,9 +38,12 @@ if [ -d $HOME/.oh-my-zsh ];then
         source $ZSH/oh-my-zsh.sh
 fi
 source ~/.Qdotfiles/zsh/theme.zsh
+
 source_if_exists ~/.zsh_profile
+
 # github
 source ~/.Qdotfiles/git/aliases.zsh
+
 # conda
 source ~/.Qdotfiles/conda/conda.zsh
 
@@ -51,14 +55,12 @@ source ~/.Qdotfiles/neovim/editor.sh
 # tmux
 source ~/.Qdotfiles/tmux/tmux.zsh
 
-# fuck
-command -V thefuck 2>&1 >/dev/null && eval $(thefuck --alias)
-
 # 命令补全
 source ~/.Qdotfiles/scripts/completion.sh
+
 # fzf命令补全
 # 初始化 $(brew --prefix)/opt/fzf/install
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source_if_exists ~/.fzf.zsh
 
 # 整理 PATH，删除重复路径
 if [ -n "$PATH" ]; then
@@ -75,5 +77,4 @@ if [ -n "$PATH" ]; then
   PATH=${PATH#:}
   unset old_PATH x
 fi
-
 export PATH
