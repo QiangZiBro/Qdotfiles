@@ -37,6 +37,20 @@ yabai -m config mouse_action1                move
 yabai -m config mouse_action2                resize
 yabai -m config mouse_drop_action            swap
 
+yabai -m rule --add app="^System Preferences$" sticky=on layer=above manage=off
+yabai -m rule --add app="^Finder$" sticky=on layer=above manage=off
+yabai -m rule --add app="^Disk Utility$" sticky=on layer=above manage=off
+yabai -m rule --add app="^System Information$" sticky=on layer=above manage=off
+yabai -m rule --add app="^Activity Monitor$" sticky=on layer=above manage=off
+yabai -m rule --add app="^Spotify$" manage=off
+yabai -m rule --add app="^Logi Options$" manage=off
+yabai -m rule --add app="^Discord$" manage=off
+yabai -m rule --add app="^Messages$" manage=off
+yabai -m rule --add app="^Zoom$" manage=off
+yabai -m rule --add app="^Preview$" manage=off
+yabai -m rule --add app="^Calendar$" manage=off
+yabai -m rule --add title="^Opening .*$" manage=off layer=above
+
 # yabai -m config external_bar all:20:0
 
 # general space settings
