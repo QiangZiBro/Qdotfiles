@@ -58,5 +58,9 @@ fi
 
 # build and make
 bm() {
-  cmake .. -DPROJ=$@ && make -j32
+	cmake .. -DPROJ=$@ && make -j32
+}
+# kflash burn
+kb() {
+	kflash  -p /dev/cu.usbserial-* -b 1500000 -t $@
 }
