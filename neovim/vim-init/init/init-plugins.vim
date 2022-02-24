@@ -58,6 +58,8 @@ Plug 'chrisbra/vim-diff-enhanced'
 " 代码模板
 Plug 'tibabit/vim-templates'
 let g:tmpl_search_paths = ['~/.Qdotfiles/neovim/vim-init/templates']
+let g:tmpl_author_email = 'qiangzibro@gmail.com'
+let g:tmpl_author_name = 'QiangZiBro'
 
 " Coc补全
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
