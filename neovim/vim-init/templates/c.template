@@ -1,0 +1,13 @@
+/**
+ * @author      : {{NAME}} {{EMAIL}}
+ * @created     : {{TODAY}}
+ * @filename    : {{FILE}}
+ * @descrption  : {{CURSOR}}
+ */
+#include<stdio.h>
+
+
+int main(){
+
+	return 0;
+}
