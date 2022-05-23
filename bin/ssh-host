@@ -1,0 +1,16 @@
+#!/bin/bash
+# Show how many hosts we have
+# ssh-host s: show hosts which contains numbers.numbers, for example nv_1.12
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+	REGEX_ARG="-P"
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+	REGEX_ARG="-E"
+fi
+case "$1" in
+	""|s|servers)
+		grep $REGEX_ARG "^Host ([^*]+)$" $HOME/.ssh/config | sed 's/Host //' | grep $REGEX_ARG "\\d+.\\d+"
+		;;
+	a|all)
+		grep $REGEX_ARG "^Host ([^*]+)$" $HOME/.ssh/config | sed 's/Host //'
+		;;
+esac

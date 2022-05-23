@@ -1,7 +1,6 @@
 /**
  * @author      : {{NAME}} {{EMAIL}}
  * @created     : {{TODAY}}
- * @filename    : {{FILE}}
  * @descrption  : {{CURSOR}}
  */
 #include<iostream>

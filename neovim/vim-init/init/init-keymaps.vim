@@ -8,22 +8,20 @@
 "   - 终端支持
 "   - 编译运行
 "   - 符号搜索
-"
-" Created by skywind on 2018/05/30
-" Last Modified: 2018/05/30 17:59:31
-"
 "======================================================================
 " vim: set ts=4 sw=4 tw=78 noet :
 
 
+map s <nop>
 "----------------------------------------------------------------------
 " Leader键相关配置
 "----------------------------------------------------------------------
-let mapleader = "\<Space>"
-nnoremap <leader>sv :source $MYVIMRC<cr>
+let mapleader = " "
+" nnoremap R :source $MYVIMRC<cr>
+nnoremap <leader>ev :e ~/.Qdotfiles/neovim/vim-init/init<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
-map <LEADER>p <Esc>/<++><CR>:nohlsearch<CR>4s
+nnoremap <leader><cr> :set nohlsearch<cr>
 "----------------------------------------------------------------------
 " INSERT 模式下使用 EMACS 键位
 "----------------------------------------------------------------------
@@ -31,7 +29,6 @@ inoremap <c-a> <home>
 inoremap <c-e> <end>
 inoremap <c-d> <del>
 inoremap <c-_> <c-k>
-
 
 "----------------------------------------------------------------------
 " 设置 CTRL+HJKL 移动光标（INSERT 模式偶尔需要移动的方便些）
@@ -47,7 +44,6 @@ inoremap <C-j> <down>
 inoremap <C-k> <up>
 inoremap <C-l> <right>
 
-
 "----------------------------------------------------------------------
 " 命令模式的快速移动
 "----------------------------------------------------------------------
@@ -61,7 +57,6 @@ cnoremap <c-f> <c-d>
 cnoremap <c-b> <left>
 cnoremap <c-d> <del>
 cnoremap <c-_> <c-k>
-
 
 "----------------------------------------------------------------------
 " <leader>+数字键 切换tab
@@ -77,76 +72,16 @@ noremap <silent><leader>8 8gt<cr>
 noremap <silent><leader>9 9gt<cr>
 noremap <silent><leader>0 10gt<cr>
 
-
-"----------------------------------------------------------------------
-" ALT+N 切换 tab
-"----------------------------------------------------------------------
-noremap <silent><m-1> :tabn 1<cr>
-noremap <silent><m-2> :tabn 2<cr>
-noremap <silent><m-3> :tabn 3<cr>
-noremap <silent><m-4> :tabn 4<cr>
-noremap <silent><m-5> :tabn 5<cr>
-noremap <silent><m-6> :tabn 6<cr>
-noremap <silent><m-7> :tabn 7<cr>
-noremap <silent><m-8> :tabn 8<cr>
-noremap <silent><m-9> :tabn 9<cr>
-noremap <silent><m-0> :tabn 10<cr>
-inoremap <silent><m-1> <ESC>:tabn 1<cr>
-inoremap <silent><m-2> <ESC>:tabn 2<cr>
-inoremap <silent><m-3> <ESC>:tabn 3<cr>
-inoremap <silent><m-4> <ESC>:tabn 4<cr>
-inoremap <silent><m-5> <ESC>:tabn 5<cr>
-inoremap <silent><m-6> <ESC>:tabn 6<cr>
-inoremap <silent><m-7> <ESC>:tabn 7<cr>
-inoremap <silent><m-8> <ESC>:tabn 8<cr>
-inoremap <silent><m-9> <ESC>:tabn 9<cr>
-inoremap <silent><m-0> <ESC>:tabn 10<cr>
-
-
-" MacVim 允许 CMD+数字键快速切换标签
-if has("gui_macvim")
-	set macmeta
-	noremap <silent><d-1> :tabn 1<cr>
-	noremap <silent><d-2> :tabn 2<cr>
-	noremap <silent><d-3> :tabn 3<cr>
-	noremap <silent><d-4> :tabn 4<cr>
-	noremap <silent><d-5> :tabn 5<cr>
-	noremap <silent><d-6> :tabn 6<cr>
-	noremap <silent><d-7> :tabn 7<cr>
-	noremap <silent><d-8> :tabn 8<cr>
-	noremap <silent><d-9> :tabn 9<cr>
-	noremap <silent><d-0> :tabn 10<cr>
-	inoremap <silent><d-1> <ESC>:tabn 1<cr>
-	inoremap <silent><d-2> <ESC>:tabn 2<cr>
-	inoremap <silent><d-3> <ESC>:tabn 3<cr>
-	inoremap <silent><d-4> <ESC>:tabn 4<cr>
-	inoremap <silent><d-5> <ESC>:tabn 5<cr>
-	inoremap <silent><d-6> <ESC>:tabn 6<cr>
-	inoremap <silent><d-7> <ESC>:tabn 7<cr>
-	inoremap <silent><d-8> <ESC>:tabn 8<cr>
-	inoremap <silent><d-9> <ESC>:tabn 9<cr>
-	inoremap <silent><d-0> <ESC>:tabn 10<cr>
-endif
-
-
-
-"----------------------------------------------------------------------
-" 缓存：插件 unimpaired 中定义了 [b, ]b 来切换缓存
-"----------------------------------------------------------------------
-noremap <silent> <leader>bn :bn<cr>
-noremap <silent> <leader>bp :bp<cr>
-
-
 "----------------------------------------------------------------------
 " TAB：创建，关闭，上一个，下一个，左移，右移
 " 其实还可以用原生的 CTRL+PageUp, CTRL+PageDown 来切换标签
 "----------------------------------------------------------------------
-
-noremap <silent> <leader>tc :tabnew<cr>
-noremap <silent> <leader>tq :tabclose<cr>
-noremap <silent> <leader>tn :tabnext<cr>
-noremap <silent> <leader>tp :tabprev<cr>
-noremap <silent> <leader>to :tabonly<cr>
+noremap <silent>tn :tabnew<cr>
+noremap <silent> tj :tabnext<cr>
+noremap <silent> tk :tabprev<cr>
+noremap <silent> tl :tabnext<cr>
+noremap <silent> th :tabprev<cr>
+noremap <silent> to :tabonly<cr>
 
 
 " 左移 tab
@@ -165,71 +100,30 @@ function! Tab_MoveRight()
 	endif
 endfunc
 
-noremap <silent><leader>tl :call Tab_MoveLeft()<cr>
-noremap <silent><leader>tr :call Tab_MoveRight()<cr>
-noremap <silent><m-left> :call Tab_MoveLeft()<cr>
-noremap <silent><m-right> :call Tab_MoveRight()<cr>
-
+noremap <silent><leader>th :call Tab_MoveLeft()<cr>
+noremap <silent><leader>tl :call Tab_MoveRight()<cr>
+noremap <silent><leader>tk :call Tab_MoveLeft()<cr>
+noremap <silent><leader>tj :call Tab_MoveRight()<cr>
+"----------------------------------------------------------------------
+" 窗口分隔：s+hjkl
+"----------------------------------------------------------------------
+map sl :set splitright<CR>:vsplit<CR>
+map sh :set nosplitright<CR>:vsplit<CR>
+map sk :set nosplitbelow<CR>:split<CR>
+map sj :set splitbelow<CR>:split<CR>
 
 "----------------------------------------------------------------------
-" ALT 键移动增强
+" 窗口切换：<leader>+hjkl
+" 窗口大小：上下左右
 "----------------------------------------------------------------------
-
-" ALT+h/l 快速左右按单词移动（正常模式+插入模式）
-noremap <m-h> b
-noremap <m-l> w
-inoremap <m-h> <c-left>
-inoremap <m-l> <c-right>
-
-" ALT+j/k 逻辑跳转下一行/上一行（按 wrap 逻辑换行进行跳转） 
-noremap <m-j> gj
-noremap <m-k> gk
-inoremap <m-j> <c-\><c-o>gj
-inoremap <m-k> <c-\><c-o>gk
-
-" 命令模式下的相同快捷
-cnoremap <m-h> <c-left>
-cnoremap <m-l> <c-right>
-
-" ALT+y 删除到行末
-noremap <m-y> d$
-inoremap <m-y> <c-\><c-o>d$
-
-
-"----------------------------------------------------------------------
-" 窗口切换：ALT+SHIFT+hjkl
-" 传统的 CTRL+hjkl 移动窗口不适用于 vim 8.1 的终端模式，CTRL+hjkl 在
-" bash/zsh 及带文本界面的程序中都是重要键位需要保留，不能 tnoremap 的
-"----------------------------------------------------------------------
-noremap <m-H> <c-w>h
-noremap <m-L> <c-w>l
-noremap <m-J> <c-w>j
-noremap <m-K> <c-w>k
-inoremap <m-H> <esc><c-w>h
-inoremap <m-L> <esc><c-w>l
-inoremap <m-J> <esc><c-w>j
-inoremap <m-K> <esc><c-w>k
-
-if has('terminal') && exists(':terminal') == 2 && has('patch-8.1.1')
-	" vim 8.1 支持 termwinkey ，不需要把 terminal 切换成 normal 模式
-	" 设置 termwinkey 为 CTRL 加减号（GVIM），有些终端下是 CTRL+?
-	" 后面四个键位是搭配 termwinkey 的，如果 termwinkey 更改，也要改
-	set termwinkey=<c-_>
-	tnoremap <m-H> <c-_>h
-	tnoremap <m-L> <c-_>l
-	tnoremap <m-J> <c-_>j
-	tnoremap <m-K> <c-_>k
-	tnoremap <m-q> <c-\><c-n>
-elseif has('nvim')
-	" neovim 没有 termwinkey 支持，必须把 terminal 切换回 normal 模式
-	tnoremap <m-H> <c-\><c-n><c-w>h
-	tnoremap <m-L> <c-\><c-n><c-w>l
-	tnoremap <m-J> <c-\><c-n><c-w>j
-	tnoremap <m-K> <c-\><c-n><c-w>k
-	tnoremap <m-q> <c-\><c-n>
-endif
-
-
+noremap <leader>h <c-w>h
+noremap <leader>l <c-w>l
+noremap <leader>j <c-w>j
+noremap <leader>k <c-w>k
+noremap <up> :res+5<CR>
+noremap <down> :res-5<CR>
+noremap <left> :vertical :res-5<CR>
+noremap <right> :vertical :res+5<CR>
 
 "----------------------------------------------------------------------
 " 编译运行 C/C++ 项目
@@ -249,8 +143,9 @@ nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>
 "nnoremap <silent> <F9> :AsyncRun gcc -Wall -O2 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" <cr>
 
 " F5 运行文件
-nnoremap <silent> <F5> :call ExecuteFile()<cr>
-
+nnoremap <silent> <F5> :call ExecuteFile('host')<cr>
+nnoremap <silent> <S-F5> :call ExecuteFile('container')<cr>
+nnoremap <silent> <leader><F5> :call ExecuteFile('container')<cr>
 "" F7 编译项目
 "nnoremap <silent> <F7> :AsyncRun -cwd=<root> make <cr>
 "
@@ -264,15 +159,21 @@ nnoremap <silent> <F5> :call ExecuteFile()<cr>
 "nnoremap <silent> <F4> :AsyncRun -cwd=<root> cmake . <cr>
 
 " Windows 下支持直接打开新 cmd 窗口运行
-if has('win32') || has('win64')
-	nnoremap <silent> <F8> :AsyncRun -cwd=<root> -mode=4 make run <cr>
-endif
+" if has('win32') || has('win64')
+" 	nnoremap <silent> <F8> :AsyncRun -cwd=<root> -mode=4 make run <cr>
+" endif
 
 
+"----------------------------------------------------------------------
+" tasks
+"----------------------------------------------------------------------
+nnoremap <silent> <leader>tt :Leaderf --nowrap task<cr>
+nnoremap <silent> <leader>tr :AsyncTask file-run<cr>
+nnoremap <silent> <leader>tb :AsyncTask file-build<cr>
 "----------------------------------------------------------------------
 " F5 运行当前文件：根据文件类型判断方法，并且输出到 quickfix 窗口
 "----------------------------------------------------------------------
-function! ExecuteFile()
+function! ExecuteFile(choice='host')
 	let cmd = ''
 	if index(['c'], &ft) >= 0
 		" native 语言，把当前文件名去掉扩展名后作为可执行运行
@@ -283,25 +184,11 @@ function! ExecuteFile()
 		let cmd = 'g++-11 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" && "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"'
 	elseif &ft == 'python'
 		let $PYTHONUNBUFFERED=1 " 关闭 python 缓存，实时看到输出
-		let cmd = 'python "$(VIM_FILEPATH)"'
-	elseif &ft == 'javascript'
-		let cmd = 'node "$(VIM_FILEPATH)"'
-	elseif &ft == 'perl'
-		let cmd = 'perl "$(VIM_FILEPATH)"'
-	elseif &ft == 'ruby'
-		let cmd = 'ruby "$(VIM_FILEPATH)"'
-	elseif &ft == 'php'
-		let cmd = 'php "$(VIM_FILEPATH)"'
-	elseif &ft == 'lua'
-		let cmd = 'lua "$(VIM_FILEPATH)"'
+		let cmd = 'python3 %'
 	elseif &ft == 'zsh'
-		let cmd = 'zsh "$(VIM_FILEPATH)"'
-	elseif &ft == 'ps1'
-		let cmd = 'powershell -file "$(VIM_FILEPATH)"'
-	elseif &ft == 'vbs'
-		let cmd = 'cscript -nologo "$(VIM_FILEPATH)"'
+		let cmd = 'zsh %'
 	elseif &ft == 'sh'
-		let cmd = 'bash "$(VIM_FILEPATH)"'
+		let cmd = 'bash %'
 	else
 		return
 	endif
@@ -312,11 +199,14 @@ function! ExecuteFile()
 	if has('win32') || has('win64')
 		exec 'AsyncRun -cwd=$(VIM_FILEDIR) -raw -save=2 -mode=4 '. cmd
 	else
-		exec 'AsyncRun -cwd=$(VIM_FILEDIR) -raw -save=2 -mode=0 '. cmd
+		if a:choice == 'host'
+			exec 'FloatermNew --autoclose=0 --cwd=<buffer>' cmd
+		elseif a:choice == 'container'
+			" 使用我自己定义的Docker镜像运行这个命令
+			exec 'FloatermNew --autoclose=0 --cwd=<buffer> source ~/.Qdotfiles/docker/docker.zsh && d' cmd
+		endif
 	endif
 endfunc
-
-
 
 "----------------------------------------------------------------------
 " F2 在项目目录下 Grep 光标下单词，默认 C/C++/Py/Js ，扩展名自己扩充
@@ -341,3 +231,39 @@ else
 endif
 
 
+" coc.nvim
+" Find symbol of current document.
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+function! s:check_back_space() abort
+let col = col('.') - 1
+return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+" Insert <tab> when previous text is space, refresh completion if not.
+inoremap <silent><expr> <TAB>
+\ coc#pum#visible() ? coc#pum#next(1):
+\ <SID>check_back_space() ? "\<Tab>" :
+\ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" For lazygit
+noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>a
+
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>f <cmd>Telescope find_files<cr>
+nnoremap <leader>g <cmd>Telescope live_grep<cr>
+nnoremap <leader>b <cmd>Telescope buffers<cr>
+
+" Ranger
+let g:ranger_map_keys = 0
+map <leader>r :Ranger<CR>
+
+" Floaterm
+" Open terminal in the path of this file
+noremap <silent><leader>7   :FloatermNew --cwd=<buffer><CR>
+
+" 注释
+noremap <silent><c-_> :Commentary<CR>
+" Ctrl+Shift+l 一键格式化中文md文档
+noremap <silent><c-L> :PanguAll<CR>

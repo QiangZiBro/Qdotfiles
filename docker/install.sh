@@ -32,15 +32,21 @@ if test ! $(which docker); then
   pip install docker-compose
 fi
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-  # 解决Linux下docker要sudo的问题
-  GROUPNAME=docker
-  getent group $GROUPNAME 2>&1 >/dev/null || groupadd $GROUPNAME
-  sudo usermod -aG docker $(whoami)
   # 安装GPU支持的docker
   _install_nvidia_docker
 
+  # 解决Linux下docker要sudo的问题
+  GROUPNAME=docker
+  getent group $GROUPNAME 2>&1 >/dev/null || groupadd $GROUPNAME && exit 0
+  sudo usermod -aG docker $(whoami)
+
+
   #为Docker设置Http代理
   #_setting_docker_runtime_proxy
-  sudo systemctl daemon-reload
-  sudo systemctl restart docker
+
+  echo "Warning: you should run command below to make docker's setup make effect"
+  echo sudo systemctl daemon-reload
+  echo sudo systemctl restart docker
+  #sudo systemctl daemon-reload
+  #sudo systemctl restart docker
 fi

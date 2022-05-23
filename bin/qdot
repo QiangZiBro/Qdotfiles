@@ -47,6 +47,8 @@ Usage 4: git add + commit + push + origin pull + bootstrap
 Usage 5[TODO]: use multi processes
 	qdot [command] -d
 
+Usage 6: Sync Qdotfiles qtools ssh-config across multiple machines
+    qdot sync
 EOF
 
   exit 1
@@ -79,6 +81,10 @@ while [[ "$#" > 0 ]]; do case $1 in
     COMMAND="COPY"
     DESTINATION="$2"
     shift
+    shift
+    ;;
+  s | sync)
+    COMMAND="SYNC"
     shift
     ;;
   update)
@@ -164,6 +170,8 @@ elif [ "$COMMAND" = "PULL" ]; then
   /bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
 elif [ "$COMMAND" = "BOOTSTRAP" ]; then
   /bin/bash ~/.Qdotfiles/scripts/bootstrap.sh
+elif [ "$COMMAND" = "SYNC" ]; then
+	[[ -d ~/.qtools ]] && /bin/bash ~/.qtools/sync/install
 elif [ "$COMMAND" = "BACKUP" ]; then
   /bin/bash ~/.Qdotfiles/scripts/backup.sh
 elif [ "$COMMAND" = "COPY" ]; then

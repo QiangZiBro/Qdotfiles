@@ -35,7 +35,7 @@ _heic() {
 hserver() {
   port=${1-8080}
   ip=$(qtool ip)
-  python -m http.server $port --bind ${ip}
+  python3 -m http.server $port --bind ${ip}
 }
 qtool() {
   if [ "$1" = "ip" ]; then

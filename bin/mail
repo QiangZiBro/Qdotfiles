@@ -1,0 +1,101 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+""" Send a mail when your command finishes.
+
+1. Go to qq mail web, 设置 -- 账户 -- POP3/SMTP服务 -- 开启
+2. After get your password, write config to `possible_paths`
+    config={
+        "email": "name@qq.com",
+        "password": password,
+        "to": ["name1@mail1.com", "name2@mail2.com"]
+    }
+3. Run 
+    mail COMMAND
+    After your COMMAND is finished, you'll get a email
+
+[OPTIONAL] 4. In docker
+    4.1 cp path_to_mail /usr/bin
+    4.2 go to step 3
+"""
+import smtplib
+from email.mime.text import MIMEText
+from email.header import Header
+from email.mime.multipart import MIMEMultipart
+import os, sys
+import subprocess
+import argparse
+import time
+from datetime import timedelta
+
+try:
+    from my_secrets import config
+except:
+    possible_paths = ["~/.Qdotfiles/secrets/mail_config.py", "/home/qiang.zhang/.Qdotfiles/secrets/mail_config.py"]
+    for path in possible_paths:
+        path = os.path.expanduser(path)
+        if os.path.exists(path):
+            sys.path.append(os.path.dirname(path))
+            from mail_config import config
+            break
+    else:
+        raise Exception("No secrets file found")
+
+
+# 设置SMTP服务器以及登录信息
+SERVER = {
+    'host': "smtp.qq.com",
+    'port': 465
+}
+
+
+class PersonMail(object):
+    def __init__(self, receivers, sender=config["email"]):
+        self.From = sender
+        self.To = receivers
+        self.msg = ''
+
+
+    def _write(self, subject, content):
+        self.msg['From'] = Header(self.From)
+        self.msg['To'] = Header(str(";".join(self.To)))
+        self.msg['Subject'] = Header(subject)
+
+    def write_msg(self, subject, content):
+        # 三个参数：第一个为文本内容，第二个 plain 设置文本格式，第三个 utf-8 设置编码
+        self.msg = MIMEText(content, 'plain', 'utf-8')
+        self._write(subject, content)
+
+    def write_file(self, path):
+        self.msg = MIMEMultipart()
+        self.msg.attach(MIMEText(open(path).read()))
+
+    def send_email(self):
+        try:
+            smtp_client = smtplib.SMTP_SSL(SERVER["host"], SERVER["port"])
+            smtp_client.login(config["email"], config["password"])
+            smtp_client.sendmail(self.From, self.To, self.msg.as_string())
+            smtp_client.quit()
+            return 1
+        except smtplib.SMTPException as e:
+            print("error", e)
+            return 0
+
+def send_mail(msg):
+    receivers = config["to"]
+    mail = PersonMail(receivers)
+    mail.write_msg("Notification from Qtools", msg)
+    mail.send_email()
+
+def notify(cmd, delta):
+    msg = "Hi dear, your command:"
+    msg += " [".join(cmd) + "] has finished!\n"
+    msg += "   Total time cost: {}".format(delta)
+    send_mail(msg)
+
+if __name__ == "__main__":
+    command = sys.argv[1:]
+    start=time.time()
+    subprocess.run(command)
+    elapsed = timedelta(seconds=time.time()-start)
+    td_str=str(elapsed)
+    notify(command, elapsed)

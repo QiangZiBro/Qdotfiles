@@ -22,9 +22,17 @@ source_if_exists() {
     source "$file"
   fi
 }
-export EDITOR=nvim
 export PATH=$PATH:~/.Qdotfiles/git/custom
 export PATH=$PATH:~/.Qdotfiles/bin
+if test -d /snap/bin;then
+	export PATH=$PATH:/snap/bin
+fi
+if test -d ~/.local/bin;then
+	export PATH=$PATH:~/.local/bin
+fi
+if test -d ~/.qtools/bin;then
+	export PATH=$PATH:~/.qtools/bin
+fi
 QDOTFILES="~/.Qdotfiles"
 
 # ss
@@ -50,7 +58,16 @@ source ~/.Qdotfiles/conda/conda.zsh
 # docker
 source ~/.Qdotfiles/docker/docker.zsh
 
-source ~/.Qdotfiles/neovim/editor.sh
+# choose editor
+if ! command -V nvim 2>&1 > /dev/null ;then
+	export EDITOR=vim
+	alias vi=vim
+	alias nvim=vim
+else
+	export EDITOR=nvim
+	alias vi=nvim
+	alias vim=nvim
+fi
 
 # tmux
 source ~/.Qdotfiles/tmux/tmux.zsh
@@ -61,6 +78,16 @@ source ~/.Qdotfiles/scripts/completion.sh
 # fzf命令补全
 # 初始化 $(brew --prefix)/opt/fzf/install
 source_if_exists ~/.fzf.zsh
+
+# Homebrew
+[ -f /home/$USER/.linuxbrew/bin/brew ] && /home/$USER/.linuxbrew/bin/brew shellenv > /dev/null
+if [ -d ~/.linuxbrew/bin ];then
+	export PATH=${PATH}:~/.linuxbrew/bin
+fi
+
+if [ -d ~/.vim/bundles/asynctasks.vim/bin ];then
+	export PATH=${PATH}:~/.vim/bundles/asynctasks.vim/bin
+fi
 
 # 整理 PATH，删除重复路径
 if [ -n "$PATH" ]; then

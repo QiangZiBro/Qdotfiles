@@ -1,0 +1,10 @@
+#!/bin/bash
+echo "ssh-copy-id to"
+ssh-host a |xargs -I{} echo - {}
+script=~/.qtools/create_users/ssh-copy-id-to-all-hosts
+if [ -f $script ];then 
+	cd ~/.qtools/create_users
+	$script 2>&1 > /dev/null
+else
+	echo doesn\'t support sc
+fi

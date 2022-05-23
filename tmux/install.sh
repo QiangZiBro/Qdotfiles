@@ -17,5 +17,9 @@ if [ ! -d ~/.tmux/plugins/tpm ]; then
   git clone https://github.com/tmux-plugins/tpm
 fi
 tmux source ~/.tmux.conf
-
+if [ -f ~/.tmux/plugins/tpm/bin/install_plugins ];then
+	bash ~/.tmux/plugins/tpm/bin/install_plugins
+else
+	echo "Check your tpm (https://github.com/tmux-plugins/tpm), maybe not installed?"
+fi
 exit 0

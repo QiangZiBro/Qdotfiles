@@ -1,2 +1,2 @@
 #!/bin/bash
-python "$@"
+python3 "$@"

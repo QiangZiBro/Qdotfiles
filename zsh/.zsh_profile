@@ -2,13 +2,17 @@
 common_aliases() {
   alias ei="nvim ~/.Qdotfiles/scripts/init.sh"
   alias q="qdot"
+  alias qu="bash ~/.Qdotfiles/scripts/update.sh"
   alias fm="ranger"
   alias sb="source ~/.zshrc"
   alias eb="nvim ~/.zshrc"
   alias cz="cd ~/.Qdotfiles/zsh/"
   alias cq="cd ~/.Qdotfiles/"
+  alias ct="cd ~/.qtools/"
   alias cr="cd ~/.config/ranger/"
   alias unproxy='http_proxy="" https_proxy=""'
+  alias lzd='lazydocker'
+  alias task='asynctask -f'
 }
 
 mac_aliases() {
@@ -28,7 +32,10 @@ common_aliases
 if test "$(uname)" = "Darwin"; then
   mac_aliases
   export PATH=$PATH:/Users/mac/k210/0.kendryte-toolchain/bin
-
+  export PATH="/usr/local/opt/binutils/bin:$PATH"
+  merge() {
+    "/System/Library/Automator/Combine PDF Pages.action/Contents/Resources/join.py" "$@"
+  }
 elif test "$(expr substr $(uname -s) 1 5)" = "Linux"; then
   linux_aliases
   vpn() {
@@ -64,3 +71,18 @@ bm() {
 kb() {
 	kflash  -p /dev/cu.usbserial-* -b 1500000 -t $@
 }
+
+# ranger
+function zle_eval(){
+	echo -en "\e[2K\r"
+	eval "$@"
+	zle redisplay
+}
+function openlazygit (){
+	zle_eval lazygit
+}
+zle -N openlazygit; bindkey "^G" openlazygit
+function opentask(){
+	task
+}
+zle -N opentask; bindkey "^[[15~" opentask

@@ -55,7 +55,7 @@
 	"diagnostic.checkCurrentLine": true,
 	"diagnostic.virtualTextPrefix": " ❯❯❯ ",
 	"diagnostic.virtualText": false,
-	"codeLens.enable": true,
+	"codeLens.enable": false,
 	"list.previewHighlightGroup": "Statement",
 	"list.nextKeymap": "<C-e>",
 	"list.previousKeymap": "<C-u>",
@@ -71,19 +71,6 @@
 	"snippets.ultisnips.directories": [
 		"$HOME/.config/nvim/Ultisnips/",
 		"$HOME/.config/nvim/plugged/vim-snippets/UltiSnips/"
-	],
-	"coc.preferences.formatOnSaveFiletypes": [
-		"python",
-		"javascript",
-		"typescript",
-		"html",
-		"css",
-		"json",
-		"java",
-		"vue",
-		"svelte",
-		"c",
-		"prisma"
 	],
 	"yaml.format.enable": true,
 	"signature.target": "float",
@@ -227,10 +214,21 @@
 		"eelixir": "mix_format"
 	},
 	"languageserver": {
+		"cmake": {
+			"command": "cmake-language-server",
+			"filetypes": ["cmake"],
+			"rootPatterns": [
+				"build/"
+			],
+			"initializationOptions": {
+				"buildDirectory": "build"
+			}
+		},
 		"ccls": {
 			"command": "ccls",
 			"filetypes": [
 				"c",
+				"cuda",
 				"cc",
 				"cpp",
 				"c++",

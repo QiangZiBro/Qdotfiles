@@ -67,11 +67,11 @@ pre_set() {
   unameOut="$(uname -s)"
   case "${unameOut}" in
   Linux*)
-    if [ ! -d /usr/local/softwares/ ]; then
-      echo INFO:Creating directory in /usr/local/softwares/, may need sudo priviledge
-      $SUDO mkdir -p /usr/local/softwares/
-      $SUDO chmod 777 -R /usr/local/softwares/
-    fi
+  #  if [ ! -d /usr/local/softwares/ ]; then
+  #    echo INFO:Creating directory in /usr/local/softwares/, may need sudo priviledge
+  #    $SUDO mkdir -p /usr/local/softwares/
+  #    $SUDO chmod 777 -R /usr/local/softwares/
+  #  fi
     ;;
   Darwin*)
     mkdir -p ~/applications/
@@ -103,9 +103,13 @@ setup_config() {
   # nvim
   mkdir -p ~/.config/nvim && cp neovim/init.vim ~/.config/nvim
   cp ~/.Qdotfiles/neovim/coc-settings.json ~/.config/nvim/coc-settings.json
+  cp ~/.Qdotfiles/neovim/tasks.ini ~/.vim
 
   # tmux
   cp tmux/.tmux.conf ~
+  # ranger
+  mkdir -p ~/.config
+  rsync --delete -au ranger ~/.config
 
   # git
   cp git/.gitconfig ~
@@ -117,6 +121,8 @@ setup_config() {
 
   # ssh
   cp_file_if_exists ssh/config ~/.ssh
+  # npm
+  cp node/.npmrc ~
 
   # python
   cp conda/.condarc ~
@@ -127,13 +133,27 @@ setup_config() {
 	# skhd
 	cp skhd/.skhdrc ~
   fi
+
+  # lazygit
+  linux_lazygit=~/.config/lazygit
+  macos_lazygit=~/Library/Application\ Support/lazygit
+  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+	  if [ -d "$linux_lazygit" ];then
+		  cp lazygit/config.yml "$linux_lazygit"
+	  fi
+  elif [[ "$OSTYPE" == "darwin"* ]]; then
+	  if [ -d "$macos_lazygit" ];then
+		  cp lazygit/config.yml "$macos_lazygit"
+	  fi
+  fi
 }
 
 main() {
-  greeting
+  #greeting
   pre_set
   check_project
   setup_config
+  cd $OLDPWD
   exec zsh
 }
 
