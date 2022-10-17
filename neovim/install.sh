@@ -15,6 +15,11 @@ if ! command -v ccls 2>&1 >/dev/null; then
   if test "$(uname)" = "Darwin"; then
     brew install ccls
   elif test "$(expr substr $(uname -s) 1 5)" = "Linux"; then
+	# ccls is too hard to install (at least for me) on ubuntu, so I decided to install
+	# from source. You can also install by 
+	#	brew install ccls
+	# or
+	#	snap install ccls
 	sudo apt install  zlib1g-dev -y
 	sudo apt install clang cmake libclang-dev llvm-dev rapidjson-dev -y
 	sudo apt install libtinfo -y
@@ -29,7 +34,9 @@ if ! command -v ccls 2>&1 >/dev/null; then
 	cd -
   fi
 fi
+
 # 安装ripgrep进行搜索
+# Used in telescope.vim
 if ! command -v rg 2>&1 >/dev/null; then
 	if ! sudo apt install ripgrep -y; then
 		name=rg-$RANDOM
@@ -41,9 +48,16 @@ if ! command -v rg 2>&1 >/dev/null; then
 		cd -
 	fi
 fi
+
 # Python provider
 python3 -m pip install pynvim
 python3.7 -m pip install pynvim
+
+# For cmake language server
+python3 -m pip install cmake-language-server
+python3.7 -m pip install cmake-language-server
+
+# neovim dependencies
 ## check node and to latest
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   sudo apt install -y nodejs npm
