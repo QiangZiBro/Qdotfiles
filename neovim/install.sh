@@ -37,7 +37,7 @@ if ! command -v rg 2>&1 >/dev/null; then
 		cd /tmp/$name
 		curl -s https://api.github.com/repos/BurntSushi/ripgrep/releases/latest | grep "https://.*linux-musl.tar.gz" | cut -d : -f 2,3 | tr -d \" | wget -qi -
 		tar xzf *.tar.gz
-		sudo cp */gz /usr/local/bin/rg
+		sudo cp */rg /usr/local/bin
 		cd -
 	fi
 fi
