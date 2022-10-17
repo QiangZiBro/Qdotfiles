@@ -1,6 +1,6 @@
 #!/bin/bash
-# fix version
-# sudo snap install nvim --edge --classic && sudo apt purge neovim -y
+# There's really a lot to install for neovim ...
+
 # 安装neovim
 if ! command -v nvim 2>&1 >/dev/null; then
   if test "$(uname)" = "Darwin"; then
