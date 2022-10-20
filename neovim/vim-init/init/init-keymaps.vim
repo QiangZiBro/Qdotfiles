@@ -171,6 +171,10 @@ nnoremap <silent> <leader>tt :Leaderf --nowrap task<cr>
 nnoremap <silent> <leader>tr :AsyncTask file-run<cr>
 nnoremap <silent> <leader>tb :AsyncTask file-build<cr>
 "----------------------------------------------------------------------
+" tags
+"----------------------------------------------------------------------
+map <F4> :Tagbar<cr>
+"----------------------------------------------------------------------
 " F5 运行当前文件：根据文件类型判断方法，并且输出到 quickfix 窗口
 "----------------------------------------------------------------------
 function! ExecuteFile(choice='host')

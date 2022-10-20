@@ -102,6 +102,7 @@ endif
 " 增强插件
 "----------------------------------------------------------------------
 if index(g:bundle_group, 'enhanced') >= 0
+	Plug 'preservim/tagbar'
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 	Plug 'hotoo/pangu.vim', { 'for': ['markdown', 'vimwiki', 'text'] }
