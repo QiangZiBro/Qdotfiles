@@ -1,7 +1,7 @@
 #!/bin/bash
 # There's really a lot to install for neovim ...
 
-# 安装neovim
+## 1. 安装neovim
 if ! command -v nvim 2>&1 >/dev/null; then
   if test "$(uname)" = "Darwin"; then
     brew install neovim
@@ -10,6 +10,7 @@ if ! command -v nvim 2>&1 >/dev/null; then
   fi
 fi
 
+## 2. 安装neovim的依赖
 # 安装 C/C++ language server
 if ! command -v ccls 2>&1 >/dev/null; then
   if test "$(uname)" = "Darwin"; then
@@ -38,6 +39,7 @@ fi
 # 安装ripgrep进行搜索
 # Used in telescope.vim
 if ! command -v rg 2>&1 >/dev/null; then
+if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	if ! sudo apt install ripgrep -y; then
 		name=rg-$RANDOM
 		mkdir -p /tmp/$name
@@ -47,8 +49,17 @@ if ! command -v rg 2>&1 >/dev/null; then
 		sudo cp */rg /usr/local/bin
 		cd -
 	fi
+elif test "$(uname)" = "Darwin"; then
+	echo "Need to install ripgrep on mac"
+fi
 fi
 
+# preservim/tagbar 需要 ctags 依赖
+if test "$(uname)" = "Darwin"; then
+	echo "ctags need to install on mac"
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+	sudo apt install exuberant-ctags -y
+fi
 # Python provider
 python3 -m pip install pynvim
 python3.7 -m pip install pynvim
