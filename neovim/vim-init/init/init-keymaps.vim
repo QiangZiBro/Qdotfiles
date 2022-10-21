@@ -207,7 +207,7 @@ function! ExecuteFile(choice='host')
 			exec 'FloatermNew --autoclose=0 --cwd=<buffer>' cmd
 		elseif a:choice == 'container'
 			" 使用我自己定义的Docker镜像运行这个命令
-			exec 'FloatermNew --autoclose=0 --cwd=<buffer> source ~/.Qdotfiles/docker/docker.zsh && d' cmd
+			exec 'FloatermNew --autoclose=0 --cwd=<buffer> ~/.Qdotfiles/bin/d' cmd
 		endif
 	endif
 endfunc

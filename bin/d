@@ -1,0 +1,161 @@
+#!/bin/zsh
+##################################################################################
+# Run everything on host but inside docker container
+#
+#		d [options] [cmd]
+#
+#
+# Examples:
+#
+# Mark docker containers and remove them
+#	d -k
+# Find containers whose names start with $USER
+#	d -u
+# Run any command inside of a container
+#	d bash script.sh
+#	d python3 script.py
+#	d cmake --build build
+#	... etc.
+# Choose how many GPU cards I wanna use
+#	d -g2 $cmd
+#
+# Some tricks:
+# - You may see we don't need to determine container name in commands, because 
+#	this script will determine by two aspects:
+#	- If $APP variable is not null, use the container $USER-$APP, if it's null, then
+#	- List all containers, use fzf to choose one to enter
+# - About GPU cards
+#	- If $CUDA_VISIBLE_DEVICES is set on host, use it, if not
+#	- Use default 2 cards if -g not set, if -g set, use
+#	- how many argument value of -g
+#
+##################################################################################
+
+__ScriptVersion="0.1"
+_ConfigFile=/tmp/qdot-d-env
+
+#===  FUNCTION  ================================================================
+#         NAME:  usage
+#  DESCRIPTION:  Display usage information.
+#===============================================================================
+function usage ()
+{
+	echo "Usage :  $0 [options] [--]
+
+    Options:
+    -h|help       Display this message
+    -v|version    Display script version"
+
+}    # ----------  end of function usage  ----------
+
+#-----------------------------------------------------------------------
+#  Handle command line arguments
+#-----------------------------------------------------------------------
+
+while getopts "aukhvg:" opt
+do
+  case $opt in
+
+	h|help     )  usage; exit 0   ;;
+
+	u|user     )  rm -f $_ConfigFile; PREFIX=$USER-  ;;
+
+	a|all     )   rm -f $_ConfigFile  ;;
+
+	k|kill     )  KILL=1  ;;
+
+	g|gpus     )  GPUS=$OPTARG  ;; #TODO
+
+	v|version  )  echo "$0 -- Version $__ScriptVersion"; exit 0   ;;
+
+	* )  echo -e "\n  Option does not exist : $OPTARG\n"
+		  usage; exit 1   ;;
+
+  esac    # --- end of case ---
+done
+shift $(($OPTIND-1))
+
+# remaining is the command you want to run in docker container
+CMD=($*)
+
+# auto determine gpus
+if [ ! -z $GPUS ];then
+	CUDA_VISIBLE_DEVICES=$(seq -s "," 0 $((GPUS-1)))
+else
+	CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:=0,1}
+fi
+
+# echo Arg check:
+# echo PREFIX=$PREFIX
+# echo KILL=$KILL
+# echo GPUS=$GPUS
+# echo CMD=$CMD
+
+choose_container(){
+	if [ ! -z $PREFIX ]; then
+		_CONTAINER_NAME=$(docker ps --format '{{.Names}}' |grep $PREFIX |fzf)
+	else
+		_CONTAINER_NAME=$(docker ps --format '{{.Names}}' |fzf)
+	fi
+	echo $_CONTAINER_NAME
+}
+
+dq() {
+  # TODO: here only support in zsh, how to adapt to bash?
+  name=("${(@f)$(docker ps --format '{{.Names}}' | fzf -m)}")
+  for c in $name
+  do
+	  if [[ ! -z $c ]];then
+		  docker stop $c
+		  docker rm $c
+	  fi
+  done
+}
+
+
+dr() {
+	# dr $NAME $CMD [ARGS]
+	if [ ! -z "$ENV" ];then
+		EXTRA="-e $ENV"
+	fi
+	docker exec -it -w $PWD -e "CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES}"  $EXTRA $1  ${@:2}
+}
+# run command inside of docker container 
+# - same working path in/outside of container
+# - docker container's name should be $USER-$APP, so here we export $APP before run this command
+run_cmd_in_docker(){
+	if [ -f $_ConfigFile ];then
+		source $_ConfigFile
+	fi
+
+	if [ -z "$_CONTAINER_NAME" ];then
+		if [ -z "$APP" ];then
+			export _CONTAINER_NAME=$(choose_container)
+
+			if [ -z $_CONTAINER_NAME ];then
+				return 1
+			else
+				export APP=$(echo ${_CONTAINER_NAME} | sed "s/$USER-//")
+			fi
+		else
+			export _CONTAINER_NAME="$USER-$APP"
+		fi
+
+		# Memorize choices
+		touch $_ConfigFile
+		echo "_CONTAINER_NAME=${_CONTAINER_NAME}" >> $_ConfigFile
+		echo "APP=${APP}" >> $_ConfigFile
+		echo "CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES}" >> $_ConfigFile
+	fi
+	dr $_CONTAINER_NAME  $@
+}
+
+main(){
+if [ ! -z "$KILL" ];then
+	dq
+elif [ ! -z "$CMD" ];then
+	run_cmd_in_docker $CMD
+fi
+}
+
+main
