@@ -40,15 +40,15 @@ _ConfigFile=/tmp/qdot-d-env
 #===============================================================================
 function usage ()
 {
-	echo "Usage :  $0 [options] [--]
+echo "Usage :  $0 [options] [--]
 
-    Options:
-    -h|help       Display this message
-    -v|version    Display script version
-	-a|all Find all running containers
-	-u|user Find containers only starts with $USER
-	-k|kill Kill and remove containers
-	-g|gpus Set GPU visible devices in docker container"
+Options:
+-h|help       Display this message
+-v|version    Display script version
+-a|all Find all running containers
+-u|user Find containers only starts with $USER
+-k|kill Kill and remove containers
+-g|gpus Set GPU visible devices in docker container"
 
 }    # ----------  end of function usage  ----------
 
