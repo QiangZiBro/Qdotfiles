@@ -188,11 +188,11 @@ function! ExecuteFile(choice='host')
 		let cmd = 'g++-11 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" && "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"'
 	elseif &ft == 'python'
 		let $PYTHONUNBUFFERED=1 " 关闭 python 缓存，实时看到输出
-		let cmd = 'python3 %'
+		let cmd = 'python3 "$(VIM_FILEPATH)"'
 	elseif &ft == 'zsh'
-		let cmd = 'zsh %'
+		let cmd = 'zsh $(VIM_FILEPATH)'
 	elseif &ft == 'sh'
-		let cmd = 'bash %'
+		let cmd = 'bash $(VIM_FILEPATH)'
 	else
 		return
 	endif
