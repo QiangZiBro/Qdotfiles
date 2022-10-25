@@ -143,6 +143,7 @@ if index(g:bundle_group, 'enhanced') >= 0
 
 	Plug 'skywind3000/asynctasks.vim'
 	Plug 'skywind3000/asyncrun.vim'
+	Plug 'benmills/vimux'
 	let g:asyncrun_open = 6
 	" stole from https://github.com/skywind3000/asynctasks.vim/wiki/UI-Integration
 	"
