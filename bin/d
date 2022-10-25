@@ -93,7 +93,6 @@ elif [ ! -z "$CUDA_VISIBLE_DEVICES" ];then
 else
 	export _CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:=0,1}
 fi
-export CUDA_VISIBLE_DEVICES="${_CUDA_VISIBLE_DEVICES}"
 # echo Arg check:
 # echo PREFIX=$PREFIX
 # echo KILL=$KILL
@@ -137,6 +136,7 @@ run_cmd_in_docker(){
 		source $_ConfigFile
 	fi
 
+	export CUDA_VISIBLE_DEVICES="${_CUDA_VISIBLE_DEVICES}"
 	if [ -z "$_CONTAINER_NAME" ];then
 		if [ -z "$APP" ];then
 			export _CONTAINER_NAME=$(choose_container)
