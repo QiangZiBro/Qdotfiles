@@ -68,7 +68,7 @@ do
 
 	k|kill     )  KILL=1  ;;
 
-	g|gpus     )  GPUS=$OPTARG  ;; #TODO
+	g|gpus     )  rm -f $_ConfigFile; GPUS=$OPTARG  ;; #TODO
 
 	v|version  )  echo "$0 -- Version $__ScriptVersion"; exit 0   ;;
 
