@@ -84,9 +84,9 @@ CMD=($*)
 
 # auto determine gpus
 if [ ! -z $GPUS ];then
-	CUDA_VISIBLE_DEVICES=$(seq -s "," 0 $((GPUS-1)))
+	export CUDA_VISIBLE_DEVICES=$(seq -s "," 0 $((GPUS-1)))
 else
-	CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:=0,1}
+	export CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:=0,1}
 fi
 
 # echo Arg check:
