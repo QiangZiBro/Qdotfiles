@@ -93,7 +93,7 @@ elif [ ! -z "$CUDA_VISIBLE_DEVICES" ];then
 else
 	export _CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:=0,1}
 fi
-
+export CUDA_VISIBLE_DEVICES="${_CUDA_VISIBLE_DEVICES}"
 # echo Arg check:
 # echo PREFIX=$PREFIX
 # echo KILL=$KILL
