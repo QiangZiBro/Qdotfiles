@@ -68,7 +68,7 @@ do
 
 	k|kill     )  KILL=1  ;;
 
-	g|gpus     )  rm -f $_ConfigFile; GPUS=$OPTARG  ;; #TODO
+	g|gpus     )  GPUS=$OPTARG  ;; #TODO
 
 	v|version  )  echo "$0 -- Version $__ScriptVersion"; exit 0   ;;
 
@@ -83,10 +83,15 @@ shift $(($OPTIND-1))
 CMD=($*)
 
 # auto determine gpus
+# Args in No.1 priority
 if [ ! -z $GPUS ];then
-	export CUDA_VISIBLE_DEVICES=$(seq -s "," 0 $((GPUS-1)))
+	export _CUDA_VISIBLE_DEVICES=$(seq -s "," 0 $((GPUS-1)))
+# Env var in No.2 priority
+elif [ ! -z "$CUDA_VISIBLE_DEVICES" ];then
+	export _CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES}"
+# Pick a default value
 else
-	export CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:=0,1}
+	export _CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:=0,1}
 fi
 
 # echo Arg check:
