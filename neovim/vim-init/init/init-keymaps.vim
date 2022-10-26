@@ -144,7 +144,7 @@ nnoremap <F10> :call asyncrun#quickfix_toggle(6)<cr>
 
 " F5 运行文件
 nnoremap <silent> <F5> :call ExecuteFile('host')<cr>
-nnoremap <silent> <S-F5> :call ExecuteFile('container')<cr>
+nnoremap <silent> <S-F5> :call ExecuteFile('choose-container')<cr>
 nnoremap <silent> <leader><F5> :call ExecuteFile('container')<cr>
 "" F7 编译项目
 "nnoremap <silent> <F7> :AsyncRun -cwd=<root> make <cr>
@@ -206,8 +206,9 @@ function! ExecuteFile(choice='host')
 		if a:choice == 'host'
 			exec 'AsyncRun -mode=term -pos=floaterm' cmd
 		elseif a:choice == 'container'
-			" 使用我自己定义的Docker镜像运行这个命令
 			exec 'AsyncRun -mode=term -pos=floaterm ~/.Qdotfiles/bin/d' cmd
+		elseif a:choice == 'choose-container'
+			exec 'AsyncRun -mode=term -pos=floaterm ~/.Qdotfiles/bin/d -a' cmd
 		endif
 	endif
 endfunc
