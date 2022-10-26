@@ -188,11 +188,11 @@ function! ExecuteFile(choice='host')
 		let cmd = 'g++-11 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" && "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"'
 	elseif &ft == 'python'
 		let $PYTHONUNBUFFERED=1 " 关闭 python 缓存，实时看到输出
-		let cmd = 'python3 %:p'
+		let cmd = 'python3 $(VIM_FILEPATH)'
 	elseif &ft == 'zsh'
-		let cmd = 'zsh %:p'
+		let cmd = 'zsh $(VIM_FILEPATH)'
 	elseif &ft == 'sh'
-		let cmd = 'bash %:p'
+		let cmd = 'bash $(VIM_FILEPATH)'
 	else
 		return
 	endif
@@ -204,10 +204,10 @@ function! ExecuteFile(choice='host')
 		exec 'AsyncRun -cwd=$(VIM_FILEDIR) -raw -save=2 -mode=4 '. cmd
 	else
 		if a:choice == 'host'
-			exec 'FloatermNew --autoclose=0 --cwd=<buffer>' cmd
+			exec 'AsyncRun -mode=term -pos=floaterm' cmd
 		elseif a:choice == 'container'
 			" 使用我自己定义的Docker镜像运行这个命令
-			exec 'FloatermNew --autoclose=0 --cwd=<buffer> ~/.Qdotfiles/bin/d' cmd
+			exec 'AsyncRun -mode=term -pos=floaterm ~/.Qdotfiles/bin/d' cmd
 		endif
 	endif
 endfunc
@@ -218,21 +218,21 @@ endfunc
 " 不是在当前目录 grep，而是会去到当前文件所属的项目目录 project root
 " 下面进行 grep，这样能方便的对相关项目进行搜索
 "----------------------------------------------------------------------
-if executable('rg')
-	noremap <silent><F2> :AsyncRun! -cwd=<root> rg -n --no-heading 
-				\ --color never -g *.h -g *.c* -g *.py -g *.js -g *.vim 
-				\ <C-R><C-W> "<root>" <cr>
-elseif has('win32') || has('win64')
-	noremap <silent><F2> :AsyncRun! -cwd=<root> findstr /n /s /C:"<C-R><C-W>" 
-				\ "\%CD\%\*.h" "\%CD\%\*.c*" "\%CD\%\*.py" "\%CD\%\*.js"
-				\ "\%CD\%\*.vim"
-				\ <cr>
-else
-	noremap <silent><F2> :AsyncRun! -cwd=<root> grep -n -s -R <C-R><C-W> 
-				\ --include='*.h' --include='*.c*' --include='*.py' 
-				\ --include='*.js' --include='*.vim'
-				\ '<root>' <cr>
-endif
+" if executable('rg')
+" 	noremap <silent><F2> :AsyncRun! -cwd=<root> rg -n --no-heading 
+" 				\ --color never -g *.h -g *.c* -g *.py -g *.js -g *.vim 
+" 				\ <C-R><C-W> "<root>" <cr>
+" elseif has('win32') || has('win64')
+" 	noremap <silent><F2> :AsyncRun! -cwd=<root> findstr /n /s /C:"<C-R><C-W>" 
+" 				\ "\%CD\%\*.h" "\%CD\%\*.c*" "\%CD\%\*.py" "\%CD\%\*.js"
+" 				\ "\%CD\%\*.vim"
+" 				\ <cr>
+" else
+" 	noremap <silent><F2> :AsyncRun! -cwd=<root> grep -n -s -R <C-R><C-W> 
+" 				\ --include='*.h' --include='*.c*' --include='*.py' 
+" 				\ --include='*.js' --include='*.vim'
+" 				\ '<root>' <cr>
+" endif
 
 
 " coc.nvim
