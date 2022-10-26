@@ -142,6 +142,7 @@ if index(g:bundle_group, 'enhanced') >= 0
 	Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 
 	Plug 'skywind3000/asynctasks.vim'
+	let g:asynctasks_term_pos = 'floaterm'
 	Plug 'skywind3000/asyncrun.vim'
 	Plug 'benmills/vimux'
 	let g:asyncrun_open = 6
