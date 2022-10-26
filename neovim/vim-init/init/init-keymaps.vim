@@ -168,8 +168,6 @@ nnoremap <silent> <leader><F5> :call ExecuteFile('container')<cr>
 " tasks
 "----------------------------------------------------------------------
 nnoremap <silent> <leader>tt :Leaderf --nowrap task<cr>
-nnoremap <silent> <leader>tr :AsyncTask file-run<cr>
-nnoremap <silent> <leader>tb :AsyncTask file-build<cr>
 "----------------------------------------------------------------------
 " tags
 "----------------------------------------------------------------------
@@ -185,7 +183,7 @@ function! ExecuteFile(choice='host')
 		" 加双引号是为了避免路径中包含空格
 		let cmd = 'gcc "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" && "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"'
 	elseif &ft == 'cpp'
-		let cmd = 'g++-11 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" && "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"'
+		let cmd = 'g++ "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" && "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"'
 	elseif &ft == 'python'
 		let $PYTHONUNBUFFERED=1 " 关闭 python 缓存，实时看到输出
 		let cmd = 'python3 $(VIM_FILEPATH)'
@@ -204,11 +202,11 @@ function! ExecuteFile(choice='host')
 		exec 'AsyncRun -cwd=$(VIM_FILEDIR) -raw -save=2 -mode=4 '. cmd
 	else
 		if a:choice == 'host'
-			exec 'AsyncRun -mode=term -pos=floaterm' cmd
+			exec 'AsyncRun -mode=term -pos=floaterm -cwd=$(VIM_FILEDIR) -save=2 ' cmd
 		elseif a:choice == 'container'
-			exec 'AsyncRun -mode=term -pos=floaterm ~/.Qdotfiles/bin/d' cmd
+			exec 'AsyncRun -mode=term -pos=floaterm -cwd=$(VIM_FILEDIR) -save=2 ~/.Qdotfiles/bin/d' cmd
 		elseif a:choice == 'choose-container'
-			exec 'AsyncRun -mode=term -pos=floaterm ~/.Qdotfiles/bin/d -a' cmd
+			exec 'AsyncRun -mode=term -pos=floaterm -cwd=$(VIM_FILEDIR) -save=2 ~/.Qdotfiles/bin/d -a' cmd
 		endif
 	endif
 endfunc
