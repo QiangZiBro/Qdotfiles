@@ -1,0 +1,3 @@
+#!/bin/bash
+HOST=$(ssh-host | fzf)
+[[ -z "$HOST" ]] || ssh $HOST
