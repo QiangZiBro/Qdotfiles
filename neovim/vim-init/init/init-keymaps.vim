@@ -183,7 +183,7 @@ function! ExecuteFile(choice='host')
 		" 加双引号是为了避免路径中包含空格
 		let cmd = 'gcc "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" && "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"'
 	elseif &ft == 'cpp'
-		let cmd = 'g++ "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" && "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"'
+		let cmd = 'g++ -std=c++17 "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)" && "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"'
 	elseif &ft == 'python'
 		let $PYTHONUNBUFFERED=1 " 关闭 python 缓存，实时看到输出
 		let cmd = 'python3 $(VIM_FILEPATH)'
