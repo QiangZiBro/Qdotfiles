@@ -103,7 +103,8 @@ setup_config() {
   # nvim
   mkdir -p ~/.config/nvim && cp neovim/init.vim ~/.config/nvim
   cp ~/.Qdotfiles/neovim/coc-settings.json ~/.config/nvim/coc-settings.json
-  cp ~/.Qdotfiles/neovim/tasks.ini ~/.vim
+  mkdir -p ~/.vim
+  cp ~/.Qdotfiles/neovim/tasks.ini ~/.vim/
 
   # tmux
   cp tmux/.tmux.conf ~
