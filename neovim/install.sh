@@ -74,7 +74,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   sudo apt install -y nodejs npm
   sudo npm cache clean -f
   sudo npm install -g n
-  sudo n stable
+  sudo n 16
 fi
 ## 安装vim插件管理器
 if ! test -e "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim; then
