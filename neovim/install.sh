@@ -60,7 +60,11 @@ if test "$(uname)" = "Darwin"; then
 elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	sudo apt install exuberant-ctags -y
 fi
-# Python provider
+
+## Python provider for nvim
+# python3 -V 需要大于等于3.7
+# 有的机器这个库没装会导致pynvim无法安装
+sudo apt install libpython3.7-dev -y
 python3 -m pip install pynvim
 python3.7 -m pip install pynvim
 
