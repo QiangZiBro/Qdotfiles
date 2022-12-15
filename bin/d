@@ -164,7 +164,7 @@ if [ ! -z "$KILL" ];then
 	dq
 elif [ ! -z "$CMD" ];then
 	run_cmd_in_docker $CMD
-elif [ ! -f $_ConfigFile ];then
+elif [ -f $_ConfigFile ];then
 	cat $_ConfigFile
 fi
 }
