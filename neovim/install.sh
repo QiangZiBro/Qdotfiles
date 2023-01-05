@@ -12,29 +12,7 @@ fi
 
 ## 2. 安装neovim的依赖
 # 安装 C/C++ language server
-if ! command -v ccls 2>&1 >/dev/null; then
-  if test "$(uname)" = "Darwin"; then
-    brew install ccls
-  elif test "$(expr substr $(uname -s) 1 5)" = "Linux"; then
-	# ccls is too hard to install (at least for me) on ubuntu, so I decided to install
-	# from source. You can also install by 
-	#	brew install ccls
-	# or
-	#	snap install ccls
-	sudo apt install  zlib1g-dev -y
-	sudo apt install clang cmake libclang-dev llvm-dev rapidjson-dev -y
-	sudo apt install libtinfo -y
-	cd /tmp
-	git clone --depth=1 --recursive https://github.com/MaskRay/ccls
-	cd ccls
-	wget -c http://releases.llvm.org/8.0.0/clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
-	tar xf clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04.tar.xz
-	cmake -H. -BRelease -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=$PWD/clang+llvm-8.0.0-x86_64-linux-gnu-ubuntu-18.04
-	cmake --build Release
-	sudo cmake --build Release --target install
-	cd -
-  fi
-fi
+PREFIX=/tmp/ccls-proj ~/.Qdotfiles/neovim/install_ccls.sh
 
 # 安装ripgrep进行搜索
 # Used in telescope.vim

@@ -3,7 +3,7 @@
 "----------------------------------------------------------------------
 if !exists('g:bundle_group')
 	let g:bundle_group = ['basic', 'tags', 'enhanced', 'filetypes', 'textobj']
-	let g:bundle_group += ['tags', 'airline', 'ale', 'echodoc']
+	let g:bundle_group += ['tags', 'airline', 'echodoc']
 	let g:bundle_group += ['leaderf', 'coc']
 endif
 
@@ -385,85 +385,85 @@ endif
 "----------------------------------------------------------------------
 " LanguageTool 语法检查
 "----------------------------------------------------------------------
-"if index(g:bundle_group, 'grammer') >= 0
-"	Plug 'rhysd/vim-grammarous'
-"	noremap <space>rg :GrammarousCheck --lang=en-US --no-move-to-first-error --no-preview<cr>
-"	map <space>rr <Plug>(grammarous-open-info-window)
-"	map <space>rv <Plug>(grammarous-move-to-info-window)
-"	map <space>rs <Plug>(grammarous-reset)
-"	map <space>rx <Plug>(grammarous-close-info-window)
-"	map <space>rm <Plug>(grammarous-remove-error)
-"	map <space>rd <Plug>(grammarous-disable-rule)
-"	map <space>rn <Plug>(grammarous-move-to-next-error)
-"	map <space>rp <Plug>(grammarous-move-to-previous-error)
-"endif
+if index(g:bundle_group, 'grammer') >= 0
+	Plug 'rhysd/vim-grammarous'
+	noremap <space>rg :GrammarousCheck --lang=en-US --no-move-to-first-error --no-preview<cr>
+	map <space>rr <Plug>(grammarous-open-info-window)
+	map <space>rv <Plug>(grammarous-move-to-info-window)
+	map <space>rs <Plug>(grammarous-reset)
+	map <space>rx <Plug>(grammarous-close-info-window)
+	map <space>rm <Plug>(grammarous-remove-error)
+	map <space>rd <Plug>(grammarous-disable-rule)
+	map <space>rn <Plug>(grammarous-move-to-next-error)
+	map <space>rp <Plug>(grammarous-move-to-previous-error)
+endif
 
 
 "----------------------------------------------------------------------
 " ale：动态语法检查
 "----------------------------------------------------------------------
-if index(g:bundle_group, 'ale') >= 0
-	Plug 'w0rp/ale'
+" if index(g:bundle_group, 'ale') >= 0
+" 	Plug 'w0rp/ale'
 
-	" 设定延迟和提示信息
-	let g:ale_completion_delay = 500
-	let g:ale_echo_delay = 20
-	let g:ale_lint_delay = 500
-	let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+" 	" 设定延迟和提示信息
+" 	let g:ale_completion_delay = 500
+" 	let g:ale_echo_delay = 20
+" 	let g:ale_lint_delay = 500
+" 	let g:ale_echo_msg_format = '[%linter%] %code: %%s'
 
-	" 设定检测的时机：normal 模式文字改变，或者离开 insert模式
-	" 禁用默认 INSERT 模式下改变文字也触发的设置，太频繁外，还会让补全窗闪烁
-	let g:ale_lint_on_text_changed = 'normal'
-	let g:ale_lint_on_insert_leave = 1
+" 	" 设定检测的时机：normal 模式文字改变，或者离开 insert模式
+" 	" 禁用默认 INSERT 模式下改变文字也触发的设置，太频繁外，还会让补全窗闪烁
+" 	let g:ale_lint_on_text_changed = 'normal'
+" 	let g:ale_lint_on_insert_leave = 1
 
-	" 在 linux/mac 下降低语法检查程序的进程优先级（不要卡到前台进程）
-	if has('win32') == 0 && has('win64') == 0 && has('win32unix') == 0
-		let g:ale_command_wrapper = 'nice -n5'
-	endif
+" 	" 在 linux/mac 下降低语法检查程序的进程优先级（不要卡到前台进程）
+" 	if has('win32') == 0 && has('win64') == 0 && has('win32unix') == 0
+" 		let g:ale_command_wrapper = 'nice -n5'
+" 	endif
 
-	" 允许 airline 集成
-	let g:airline#extensions#ale#enabled = 1
+" 	" 允许 airline 集成
+" 	let g:airline#extensions#ale#enabled = 1
 
-	" 编辑不同文件类型需要的语法检查器
-	let g:ale_linters = {
-				\ 'c': ['gcc', 'cppcheck'], 
-				\ 'cpp': ['gcc', 'cppcheck'], 
-				\ 'python': ['flake8', 'pylint'], 
-				\ 'lua': ['luac'], 
-				\ 'go': ['go build', 'gofmt'],
-				\ 'java': ['javac'],
-				\ 'javascript': ['eslint'], 
-				\ }
+" 	" 编辑不同文件类型需要的语法检查器
+" 	let g:ale_linters = {
+" 				\ 'c': ['gcc', 'cppcheck'], 
+" 				\ 'cpp': ['gcc', 'cppcheck'], 
+" 				\ 'python': ['flake8', 'pylint'], 
+" 				\ 'lua': ['luac'], 
+" 				\ 'go': ['go build', 'gofmt'],
+" 				\ 'java': ['javac'],
+" 				\ 'javascript': ['eslint'], 
+" 				\ }
 
 
-	" 获取 pylint, flake8 的配置文件，在 vim-init/tools/conf 下面
-	function s:lintcfg(name)
-		let conf = s:path('tools/conf/')
-		let path1 = conf . a:name
-		let path2 = expand('~/.vim/linter/'. a:name)
-		if filereadable(path2)
-			return path2
-		endif
-		return shellescape(filereadable(path2)? path2 : path1)
-	endfunc
+" 	" 获取 pylint, flake8 的配置文件，在 vim-init/tools/conf 下面
+" 	function s:lintcfg(name)
+" 		let conf = s:path('tools/conf/')
+" 		let path1 = conf . a:name
+" 		let path2 = expand('~/.vim/linter/'. a:name)
+" 		if filereadable(path2)
+" 			return path2
+" 		endif
+" 		return shellescape(filereadable(path2)? path2 : path1)
+" 	endfunc
 
-	" 设置 flake8/pylint 的参数
-	let g:ale_python_flake8_options = '--conf='.s:lintcfg('flake8.conf')
-	let g:ale_python_pylint_options = '--rcfile='.s:lintcfg('pylint.conf')
-	let g:ale_python_pylint_options .= ' --disable=W'
-	let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
-	let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
-	let g:ale_c_cppcheck_options = ''
-	let g:ale_cpp_cppcheck_options = ''
+" 	" 设置 flake8/pylint 的参数
+" 	let g:ale_python_flake8_options = '--conf='.s:lintcfg('flake8.conf')
+" 	let g:ale_python_pylint_options = '--rcfile='.s:lintcfg('pylint.conf')
+" 	let g:ale_python_pylint_options .= ' --disable=W'
+" 	let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
+" 	let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+" 	let g:ale_c_cppcheck_options = ''
+" 	let g:ale_cpp_cppcheck_options = ''
 
-	let g:ale_linters.text = ['textlint', 'write-good', 'languagetool']
+" 	let g:ale_linters.text = ['textlint', 'write-good', 'languagetool']
 
-	" 如果没有 gcc 只有 clang 时（FreeBSD）
-	if executable('gcc') == 0 && executable('clang')
-		let g:ale_linters.c += ['clang']
-		let g:ale_linters.cpp += ['clang']
-	endif
-endif
+" 	" 如果没有 gcc 只有 clang 时（FreeBSD）
+" 	if executable('gcc') == 0 && executable('clang')
+" 		let g:ale_linters.c += ['clang']
+" 		let g:ale_linters.cpp += ['clang']
+" 	endif
+" endif
 
 "----------------------------------------------------------------------
 " 结束插件安装
