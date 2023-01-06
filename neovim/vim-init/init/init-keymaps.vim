@@ -22,6 +22,10 @@ nnoremap <leader>ev :e ~/.Qdotfiles/neovim/vim-init/init<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>q :q<cr>
 nnoremap <leader><cr> :set nohlsearch<cr>
+" Find files using Telescope command-line sugar.
+nnoremap <leader>f <cmd>Telescope find_files<cr>
+nnoremap <leader>g <cmd>Telescope live_grep<cr>
+nnoremap <Leader>s :<C-u>call gitblame#echo()<CR>
 "----------------------------------------------------------------------
 " INSERT 模式下使用 EMACS 键位
 "----------------------------------------------------------------------
@@ -251,12 +255,6 @@ inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 " For lazygit
 noremap <c-g> :tabe<CR>:-tabmove<CR>:term lazygit<CR>a
-
-
-" Find files using Telescope command-line sugar.
-nnoremap <leader>f <cmd>Telescope find_files<cr>
-nnoremap <leader>g <cmd>Telescope live_grep<cr>
-nnoremap <leader>b <cmd>Telescope buffers<cr>
 
 " Ranger
 let g:ranger_map_keys = 0
