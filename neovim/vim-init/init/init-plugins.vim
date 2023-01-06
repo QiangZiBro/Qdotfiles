@@ -51,6 +51,7 @@ let g:tmpl_author_name = substitute(system('git config user.name'),'\n\+$', '', 
 if index(g:bundle_group, 'basic') >= 0
 
 	Plug 'zivyangll/git-blame.vim'
+	autocmd CursorHold * :call gitblame#echo()
 	" 一次性安装一大堆 colorscheme
 	Plug 'flazz/vim-colorschemes'
 
