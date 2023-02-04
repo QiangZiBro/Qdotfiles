@@ -33,6 +33,9 @@ if test "$(uname)" = "Darwin"; then
   mac_aliases
   export PATH=$PATH:/Users/mac/k210/0.kendryte-toolchain/bin
   export PATH="/usr/local/opt/binutils/bin:$PATH"
+  if [ -d "/opt/homebrew/bin" ];then
+    export PATH=/opt/homebrew/bin:${PATH:+:${PATH}}
+  fi
   merge() {
     "/System/Library/Automator/Combine PDF Pages.action/Contents/Resources/join.py" "$@"
   }
