@@ -12,7 +12,9 @@ fi
 
 ## 2. 安装neovim的依赖
 # 安装 C/C++ language server
+if ! command -v ccls 2>&1 >/dev/null; then
 PREFIX=/tmp/ccls-proj ~/.Qdotfiles/neovim/install_ccls.sh
+fi
 
 # 安装ripgrep进行搜索
 # Used in telescope.vim
