@@ -7,7 +7,7 @@ if test "$(uname)" = "Darwin"; then
   if [ ! -f $DEST ]; then
     wget $MACURL -O $DEST
   fi
-  bash $DEST -p ~/applications/miniconda3 -b
+  bash $DEST -p ~/Applications/miniconda3 -b
 elif test "$(expr substr $(uname -s) 1 5)" = "Linux"; then
   if [ ! -f $DEST ]; then
     wget $LINUXURL -O $DEST
