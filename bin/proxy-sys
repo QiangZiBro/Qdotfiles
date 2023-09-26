@@ -1,0 +1,7 @@
+#!/bin/bash
+# Script for turning on/off MacOS system proxy
+
+option=${1:-on}
+networksetup -setwebproxystate Wi-Fi ${option}
+networksetup -setsecurewebproxystate Wi-Fi ${option}
+networksetup -setsocksfirewallproxystate Wi-Fi ${option}
