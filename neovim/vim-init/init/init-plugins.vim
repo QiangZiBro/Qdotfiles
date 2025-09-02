@@ -4,7 +4,7 @@
 if !exists('g:bundle_group')
 	let g:bundle_group = ['basic', 'tags', 'enhanced', 'filetypes', 'textobj']
 	let g:bundle_group += ['tags', 'airline', 'echodoc']
-	let g:bundle_group += ['leaderf', 'coc']
+	let g:bundle_group += ['coc']
 endif
 
 
@@ -138,7 +138,7 @@ if index(g:bundle_group, 'enhanced') >= 0
 	" ALT_+/- 用于按分隔符扩大缩小 v 选区
 	map <m-=> <Plug>(expand_region_expand)
 	map <m--> <Plug>(expand_region_shrink)
-	Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+	" Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 
 	Plug 'skywind3000/asynctasks.vim'
 	let g:asynctasks_term_pos = 'floaterm'
@@ -238,7 +238,7 @@ if index(g:bundle_group, 'coc') >= 0
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	let g:coc_disable_startup_warning = 1
 	" Coc的补全插件
-	let g:coc_global_extensions = ['coc-json', 'coc-pyright', 'coc-vimlsp', 'coc-sh', 'coc-ultisnips']
+	let g:coc_global_extensions = ['coc-json', 'coc-vimlsp', 'coc-ultisnips']
 	" Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 	" unicode characters in the file autoload/float.vim
 	set encoding=utf-8
@@ -295,9 +295,9 @@ if index(g:bundle_group, 'coc') >= 0
 	Plug 'SirVer/ultisnips'
 
 	" Snippets are separated from the engine. Add this if you want them:
-	Plug 'QiangZiBro/vim-snippets'
-	let g:UltiSnipsJumpForwardTrigger="<tab>"                                       
-	let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+	" Plug 'QiangZiBro/vim-snippets'
+	" let g:UltiSnipsJumpForwardTrigger="<tab>"                                       
+	" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 endif
 
 

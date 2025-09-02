@@ -1,10 +1,8 @@
 #!/bin/bash
 
-softwares=(
-git vim zsh silversearcher-ag ripgrep fd-find ranger net-tools
-curl tree make htop nodejs npm snapd docker docker.io docker-compose
-rename highlight python3.7 python3-pip
-)
+softwares=(git vim zsh silversearcher-ag ripgrep fd-find ranger net-tools curl tree make htop nodejs npm snapd rename highlight python3 python3-pip)
+
+
 if test "$(uname)" = "Darwin"; then
   echo not supported now on mac now!
 

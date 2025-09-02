@@ -45,7 +45,9 @@ if [ -d $HOME/.oh-my-zsh ];then
         ZSH_THEME="robbyrussell"
         source $ZSH/oh-my-zsh.sh
 fi
-source ~/.Qdotfiles/zsh/theme.zsh
+if [ -d ~/.zplug ];then
+	source ~/.Qdotfiles/zsh/theme.zsh
+fi
 
 source_if_exists ~/.zsh_profile
 

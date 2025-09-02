@@ -1,5 +1,8 @@
 #!/bin/bash
 set -e
+
+source $(dirname $(realpath "$0"))/util_vars.sh
+
 if [ $(whoami) = "root" ]; then
   SUDO=
 else
@@ -63,7 +66,7 @@ cp_file_if_exists() {
   fi
 }
 
-pre_set() {
+pre_check() {
   unameOut="$(uname -s)"
   case "${unameOut}" in
   Linux*)
@@ -95,8 +98,9 @@ check_project() {
   cd $QDOTFILES
 }
 
-setup_config() {
+setup_config_files() {
   # zshrc
+  bash ${QD_HOME}/zsh/install.sh
   cp zsh/.zshrc ~
   cp_file_if_exists zsh/.zsh_profile ~
 
@@ -117,43 +121,33 @@ setup_config() {
   cp git/.gitmessage ~
   cp_file_if_exists git/.git-credentials ~
 
-  # alacritty
-  mkdir -p ~/.config/alacritty && cp alacritty/alacritty.yml ~/.config/alacritty/
-
   # ssh
   cp_file_if_exists ssh/config ~/.ssh
+
   # npm
   cp node/.npmrc ~
 
   # python
   cp conda/.condarc ~
-  if [[ "$OSTYPE" == "darwin"* ]]; then
-    # yabai
-	mkdir -p ~/.config/yabai
-	cp yabai/yabairc ~/.config/yabai/
-	# skhd
-	cp skhd/.skhdrc ~
-  fi
 
   # lazygit
-  linux_lazygit=~/.config/lazygit
-  macos_lazygit=~/Library/Application\ Support/lazygit
   if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 	  if [ -d "$linux_lazygit" ];then
-		  cp lazygit/config.yml "$linux_lazygit"
+		  cp lazygit/config.yml ~/.config/lazygit
 	  fi
   elif [[ "$OSTYPE" == "darwin"* ]]; then
 	  if [ -d "$macos_lazygit" ];then
-		  cp lazygit/config.yml "$macos_lazygit"
+		  cp lazygit/config.yml "~/Library/Application Support/lazygit"
 	  fi
   fi
 }
 
 main() {
-  #greeting
-  pre_set
+  greeting
   check_project
-  setup_config
+  pre_check
+  setup_config_files 
+
   cd $OLDPWD
   exec zsh
 }
