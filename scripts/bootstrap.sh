@@ -3,12 +3,6 @@ set -e
 
 source $(dirname $(realpath "$0"))/util_vars.sh
 
-if [ $(whoami) = "root" ]; then
-  SUDO=
-else
-  SUDO=sudo
-fi
-
 setup_color() {
   # Only use colors if connected to a terminal
   if [ -t 1 ]; then
@@ -104,6 +98,9 @@ setup_config_files() {
   cp zsh/.zshrc ~
   cp_file_if_exists zsh/.zsh_profile ~
 
+  # homebrew
+  bash ${QD_HOME}/homebrew/install.sh
+
   # nvim
   mkdir -p ~/.config/nvim && cp neovim/init.vim ~/.config/nvim
   cp ~/.Qdotfiles/neovim/coc-settings.json ~/.config/nvim/coc-settings.json
@@ -112,9 +109,11 @@ setup_config_files() {
 
   # tmux
   cp tmux/.tmux.conf ~
+
   # ranger
   mkdir -p ~/.config
-  rsync --delete -au ranger ~/.config
+  rm -rf ~/.config/ranger
+  cp -r ranger ~/.config
 
   # git
   cp git/.gitconfig ~

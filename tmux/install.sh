@@ -1,9 +1,11 @@
 #!/bin/bash
+source $(dirname $(realpath "$0"))/../scripts/util_vars.sh
+
 if test ! $(which tmux); then
   if test "$(uname)" = "Darwin"; then
     brew install tmux
   elif test "$(expr substr $(uname -s) 1 5)" = "Linux"; then
-    sudo apt install tmux
+    ${SUDO} apt install tmux -y
   fi
 fi
 

@@ -9,6 +9,12 @@ QD_YELLOW='\033[1;33m'
 QD_BLUE='\033[0;34m'
 QD_NC='\033[0m' # No Color
 
+if [ $(whoami) = "root" ]; then
+  SUDO=
+else
+  SUDO=sudo
+fi
+
 # 获取系统信息和架构版本
 QD_OS_NAME="unknown"
 QD_OS_VERSION="unknown"

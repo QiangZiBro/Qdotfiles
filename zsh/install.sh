@@ -9,24 +9,24 @@ install_zsh() {
     
     case $QD_OS_NAME in
         ubuntu|debian|kali|raspbian)
-            sudo apt update
-            sudo apt install -y zsh zsh-syntax-highlighting zsh-autosuggestions
+            ${SUDO} apt update
+            ${SUDO} apt install -y zsh zsh-syntax-highlighting zsh-autosuggestions
             ;;
             
         centos|rhel|fedora|amzn|almalinux|rocky)
             if command -v dnf &> /dev/null; then
-                sudo dnf install -y zsh util-linux-user
+                ${SUDO} dnf install -y zsh util-linux-user
             else
-                sudo yum install -y zsh
+                ${SUDO} yum install -y zsh
             fi
             ;;
             
         arch|manjaro)
-            sudo pacman -Sy --noconfirm zsh
+            ${SUDO} pacman -Sy --noconfirm zsh
             ;;
             
         alpine)
-            sudo apk add zsh
+            ${SUDO} apk add zsh
             ;;
             
         macos)
@@ -74,19 +74,19 @@ set_zsh_as_default() {
     # 确保 zsh 在 /etc/shells 中
     # if ! grep -qxF "$zsh_path" /etc/shells 2>/dev/null; then
     #     echo -e "${QD_YELLOW}📝 将 zsh 添加到 /etc/shells...${QD_NC}"
-    #     echo "$zsh_path" | sudo tee -a /etc/shells > /dev/null
+    #     echo "$zsh_path" | ${SUDO} tee -a /etc/shells > /dev/null
     # fi
     
     # 更改默认 shell
     echo -e "${QD_YELLOW}🔄 更改默认 shell...${QD_NC}"
-    if sudo chsh -s "$zsh_path" "$USER" 2>/dev/null; then
+    if ${SUDO} chsh -s "$zsh_path" "$USER" 2>/dev/null; then
         echo -e "${QD_GREEN}✅ 成功设置 zsh 为默认 shell${QD_NC}"
         echo -e "${QD_YELLOW}📝 更改将在下次登录时生效${QD_NC}"
     else
-        # 如果 sudo chsh 失败，尝试其他方法
+        # 如果 ${SUDO} chsh 失败，尝试其他方法
         echo -e "${QD_YELLOW}⚠️  尝试其他方法更改 shell...${QD_NC}"
         if command -v usermod &> /dev/null; then
-            sudo usermod -s "$zsh_path" "$USER"
+            ${SUDO} usermod -s "$zsh_path" "$USER"
             echo -e "${QD_GREEN}✅ 通过 usermod 设置成功${QD_NC}"
         else
             echo -e "${QD_RED}❌ 无法更改默认 shell${QD_NC}"

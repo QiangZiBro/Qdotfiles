@@ -1,15 +1,11 @@
 #!/bin/bash
-source $(dirname $0)/../homebrew/homebrew.zsh
+source $(dirname $(realpath "$0"))/../scripts/util_vars.sh
 
 install_linux(){
-cd /tmp
-curl -s https://api.github.com/repos/jesseduffield/lazygit/releases/latest \
-| grep "https://.*Linux_x86_64.tar.gz" \
-| cut -d : -f 2,3 \
-| tr -d \" \
-| wget -qi -
-tar xzf *Linux_x86_64.tar.gz
-sudo cp lazygit /usr/local/bin
+cd /tmp && rm -rf lazygit*.tar.gz && rm -rf lazygit
+curl -s https://api.github.com/repos/jesseduffield/lazygit/releases/latest | grep "browser_download_url" |grep $QD_ARCH |grep $QD_PLATFORM | cut -d : -f 2,3 | tr -d \" | wget -qi -
+tar xzf lazygit*.tar.gz
+${SUDO} cp lazygit /usr/local/bin
 }
 if command -v lazygit 2>&1 >/dev/null; then
   echo lazygit has been installed
